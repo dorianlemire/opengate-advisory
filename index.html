@@ -4,373 +4,387 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Opengate Advisory — EMEA Sales Leadership</title>
-<meta name="description" content="Senior sales leadership and business development for international companies targeting EMEA. Based in Dubai.">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --navy:#0D1B2A;
-  --navy2:#0a1520;
-  --gold:#C9A84C;
-  --gold2:#e8c97a;
-  --electric:#E8F4FF;
-  --electric2:#B8D9F5;
-  --electric3:#6EB3E8;
-  --white:#FFFFFF;
-  --grey:#8899AA;
-  --ease:cubic-bezier(0.4,0,0.2,1);
+  --navy:#0D1B2A;--navy2:#0a1520;--navy3:#071018;
+  --gold:#C9A84C;--gold2:#e8c97a;
+  --electric:#E8F4FF;--electric2:#B8D9F5;--electric3:#6EB3E8;
+  --grey:#8899AA;--ease:cubic-bezier(0.4,0,0.2,1);
 }
 html{scroll-behavior:smooth;cursor:none}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
-.cursor{position:fixed;width:8px;height:8px;background:var(--electric3);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,background 0.3s}
-.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(232,244,255,0.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,border-color 0.3s}
-.cursor.expand{width:5px;height:5px;background:var(--gold)}
-.cursor-ring.expand{width:52px;height:52px;border-color:rgba(201,168,76,0.6)}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.8rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background 0.5s,padding 0.4s}
-nav.scrolled{background:rgba(10,21,32,0.96);backdrop-filter:blur(20px);padding:1.2rem 4rem;border-bottom:1px solid rgba(232,244,255,0.06)}
-.nav-logo{font-size:1.1rem;font-weight:700;letter-spacing:0.02em;color:var(--white);text-decoration:none}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy3);color:var(--electric);overflow-x:hidden}
+.cur{position:fixed;width:8px;height:8px;background:var(--electric3);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s}
+.cur-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(110,179,232,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .35s,height .35s,border-color .3s}
+.cur.ex{width:5px;height:5px;background:var(--gold)}
+.cur-ring.ex{width:54px;height:54px;border-color:rgba(201,168,76,.5)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.8rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .5s,padding .4s}
+nav.sc{background:rgba(7,16,24,.97);backdrop-filter:blur(24px);padding:1.1rem 4rem;border-bottom:1px solid rgba(110,179,232,.07)}
+.nav-logo{font-size:1.05rem;font-weight:700;color:var(--electric);text-decoration:none}
 .nav-logo span{color:var(--gold)}
-.nav-links{display:flex;align-items:center;gap:3rem}
-.nav-links a{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--grey);text-decoration:none;position:relative;transition:color 0.3s;font-weight:500}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--electric3);transition:width 0.4s var(--ease)}
+.nav-links{display:flex;align-items:center;gap:2.8rem}
+.nav-links a{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);text-decoration:none;position:relative;transition:color .3s;font-weight:500}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--electric3);transition:width .4s var(--ease)}
 .nav-links a:hover{color:var(--electric)}
 .nav-links a:hover::after{width:100%}
-.nav-book{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--navy);background:var(--electric);padding:0.65rem 1.6rem;text-decoration:none;transition:all 0.3s;font-weight:700;border-radius:2px}
-.nav-book:hover{background:var(--electric2);transform:translateY(-1px)}
-.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 4rem;position:relative;overflow:hidden}
-.hero-glow-1{position:absolute;width:600px;height:600px;background:rgba(110,179,232,0.06);top:-100px;right:-100px;border-radius:50%;filter:blur(80px);pointer-events:none}
-.hero-glow-2{position:absolute;width:400px;height:400px;background:rgba(201,168,76,0.05);bottom:100px;left:200px;border-radius:50%;filter:blur(80px);pointer-events:none}
-.hero-lines{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.hero-line{position:absolute;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,244,255,0.06),transparent);animation:lineFloat 8s ease-in-out infinite}
-.hero-eyebrow{font-size:0.62rem;letter-spacing:0.45em;text-transform:uppercase;color:var(--electric3);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp 1s 0.3s forwards;font-weight:500}
-.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--electric3)}
-h1.hero-title{font-size:clamp(4rem,7vw,8rem);line-height:0.95;margin-bottom:3rem;opacity:0;animation:fadeUp 1s 0.5s forwards;font-weight:700;letter-spacing:-0.03em}
-h1.hero-title em{font-style:italic;font-weight:300;color:var(--gold);display:block}
-.hero-sub{font-size:1rem;line-height:1.9;color:var(--grey);max-width:460px;margin-bottom:4rem;font-weight:300;opacity:0;animation:fadeUp 1s 0.7s forwards}
-.hero-actions{display:flex;align-items:center;gap:3rem;opacity:0;animation:fadeUp 1s 0.9s forwards}
-.btn-electric{display:inline-block;background:var(--electric);color:var(--navy);padding:1rem 2.5rem;font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;position:relative;overflow:hidden;transition:color 0.4s;border-radius:2px}
-.btn-electric::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform 0.5s var(--ease)}
-.btn-electric:hover::before{transform:translateX(0)}
-.btn-electric:hover{color:var(--navy)}
-.btn-electric span{position:relative;z-index:1}
-.btn-ghost-link{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:0.8rem;transition:color 0.3s;font-weight:500}
-.btn-ghost-link .arrow{transition:transform 0.3s}
-.btn-ghost-link:hover{color:var(--electric)}
-.btn-ghost-link:hover .arrow{transform:translateX(6px)}
-.hero-scroll{position:absolute;bottom:3rem;left:4rem;display:flex;align-items:center;gap:1rem;font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(136,153,170,0.35);opacity:0;animation:fadeUp 1s 1.2s forwards}
-.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(110,179,232,0.4),transparent);animation:scrollPulse 2s ease-in-out infinite}
-.hero-badge{position:absolute;right:4rem;bottom:3rem;opacity:0;animation:fadeUp 1s 1s forwards;text-align:right}
-.hero-badge-num{font-size:4.5rem;font-weight:700;color:rgba(232,244,255,0.06);line-height:1;letter-spacing:-0.04em}
-.hero-badge-label{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(136,153,170,0.25)}
-.tag-strip{padding:1.2rem 0;overflow:hidden;border-top:1px solid rgba(232,244,255,0.05);border-bottom:1px solid rgba(232,244,255,0.05);position:relative}
-.tag-strip::before,.tag-strip::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
-.tag-strip::before{left:0;background:linear-gradient(to right,var(--navy),transparent)}
-.tag-strip::after{right:0;background:linear-gradient(to left,var(--navy),transparent)}
-.tag-track{display:flex;white-space:nowrap;animation:marquee 28s linear infinite}
-.tag-item{font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;color:rgba(136,153,170,0.25);padding:0 2rem;flex-shrink:0;transition:color 0.3s;font-weight:500}
-.tag-item:hover{color:var(--electric3)}
-.tag-dot{color:var(--electric3);opacity:0.3;padding:0 0.5rem}
-.services{padding:8rem 4rem}
-.services-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:5rem;align-items:end}
-.section-label{font-size:0.58rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--electric3);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem;font-weight:600}
-.section-label::before{content:'';width:24px;height:1px;background:var(--electric3)}
-.section-title{font-size:clamp(2.2rem,3.5vw,3.5rem);line-height:1.05;font-weight:700;letter-spacing:-0.02em}
-.section-title em{font-style:italic;font-weight:300;color:var(--gold)}
-.services-desc{font-size:0.88rem;line-height:1.9;color:var(--grey);font-weight:300}
-.services-list{border-top:1px solid rgba(232,244,255,0.06)}
-.svc-item{display:grid;grid-template-columns:72px 1fr 48px;align-items:center;padding:2rem 0;border-bottom:1px solid rgba(232,244,255,0.06);cursor:pointer;position:relative;overflow:hidden;transition:padding 0.4s var(--ease)}
-.svc-item::before{content:'';position:absolute;inset:0;background:rgba(232,244,255,0.02);transform:scaleX(0);transform-origin:left;transition:transform 0.5s var(--ease)}
-.svc-item:hover::before{transform:scaleX(1)}
-.svc-item:hover{padding:2rem 1.2rem}
-.svc-num{font-size:0.7rem;color:rgba(110,179,232,0.25);font-weight:600;letter-spacing:0.1em;transition:color 0.3s}
-.svc-item:hover .svc-num{color:var(--electric3)}
-.svc-name{font-size:1.6rem;font-weight:700;color:rgba(255,255,255,0.6);transition:color 0.4s;letter-spacing:-0.02em}
-.svc-item:hover .svc-name{color:var(--white)}
-.svc-desc-inline{font-size:0.78rem;line-height:1.8;color:var(--grey);max-width:520px;height:0;overflow:hidden;opacity:0;transition:height 0.4s var(--ease),opacity 0.4s,margin 0.3s;font-weight:300}
-.svc-text{display:flex;flex-direction:column}
-.svc-arrow{color:rgba(110,179,232,0.2);font-size:1.2rem;text-align:right;transition:color 0.3s,transform 0.4s}
-.svc-item:hover .svc-arrow{color:var(--electric3);transform:translateX(4px) rotate(-45deg)}
-.stats-section{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(232,244,255,0.04)}
-.stat-item{background:var(--navy2);padding:4rem 3rem;position:relative;overflow:hidden;transition:background 0.4s}
-.stat-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--electric3),var(--gold));transform:scaleX(0);transition:transform 0.5s var(--ease)}
-.stat-item:hover{background:rgba(232,244,255,0.02)}
-.stat-item:hover::after{transform:scaleX(1)}
-.stat-n{font-size:4rem;font-weight:700;letter-spacing:-0.04em;line-height:1;margin-bottom:0.5rem;transition:transform 0.3s}
-.stat-n.electric{color:var(--electric)}
-.stat-n.gold{color:var(--gold)}
-.stat-item:hover .stat-n{transform:translateY(-4px)}
-.stat-l{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--grey);font-weight:500}
-.about{padding:8rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center;background:var(--navy2)}
-.about-title{font-size:clamp(2rem,3vw,3rem);line-height:1.1;margin-bottom:2.5rem;font-weight:700;letter-spacing:-0.02em}
+.nav-cta{color:var(--navy)!important;background:var(--electric);padding:.6rem 1.5rem;border-radius:3px;font-weight:700!important;transition:background .3s,transform .2s!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--electric2)!important;transform:translateY(-1px)}
+.hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.25) saturate(.7)}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,var(--navy3) 15%,rgba(7,16,24,.6) 60%,rgba(7,16,24,.3));z-index:1}
+canvas#pts{position:absolute;inset:0;z-index:2;opacity:.5}
+.hero-content{position:relative;z-index:3;padding:0 4rem 6rem}
+.hero-eyebrow{font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;color:var(--electric3);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;font-weight:500}
+.hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--electric3)}
+h1.ht{font-size:clamp(4rem,7.5vw,9rem);line-height:.92;margin-bottom:2rem;font-weight:700;letter-spacing:-.04em}
+h1.ht .ln{display:block;overflow:hidden}
+h1.ht .ln span{display:inline-block;transform:translateY(110%)}
+h1.ht em{font-style:italic;font-weight:300;color:var(--gold)}
+.hero-sub{font-size:.95rem;line-height:1.9;color:rgba(136,153,170,.8);max-width:480px;margin-bottom:3rem;font-weight:300;opacity:0;transform:translateY(20px)}
+.hero-acts{display:flex;align-items:center;gap:2.5rem;opacity:0;transform:translateY(20px)}
+.btn-e{display:inline-block;background:var(--electric);color:var(--navy);padding:.95rem 2.4rem;font-size:.67rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;position:relative;overflow:hidden;border-radius:3px;transition:color .4s}
+.btn-e::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .5s var(--ease)}
+.btn-e:hover::before{transform:translateX(0)}
+.btn-e span{position:relative;z-index:1}
+.btn-ghost{font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:.7rem;transition:color .3s;font-weight:500}
+.btn-ghost:hover{color:var(--electric3)}
+.btn-ghost .ar{transition:transform .3s}
+.btn-ghost:hover .ar{transform:translateX(5px)}
+.hero-scroll{position:absolute;bottom:2.5rem;right:4rem;z-index:3;display:flex;flex-direction:column;align-items:center;gap:.8rem;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(136,153,170,.25)}
+.sc-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(110,179,232,.4),transparent);animation:sPulse 2s ease-in-out infinite}
+.mq{padding:1rem 0;overflow:hidden;border-top:1px solid rgba(110,179,232,.06);border-bottom:1px solid rgba(110,179,232,.06);position:relative;background:var(--navy3)}
+.mq::before,.mq::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.mq::before{left:0;background:linear-gradient(to right,var(--navy3),transparent)}
+.mq::after{right:0;background:linear-gradient(to left,var(--navy3),transparent)}
+.mq-track{display:flex;white-space:nowrap;animation:marq 26s linear infinite}
+.mq-i{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(136,153,170,.2);padding:0 1.8rem;flex-shrink:0;transition:color .3s;font-weight:500}
+.mq-i:hover{color:var(--electric3)}
+.mq-dot{color:var(--electric3);opacity:.2}
+.img-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:200px 200px;gap:6px;padding:6px;background:var(--navy3)}
+.ig-cell{position:relative;overflow:hidden;border-radius:8px;border:1px solid rgba(110,179,232,.08);cursor:pointer}
+.ig-cell:first-child{grid-row:1/3}
+.ig-cell img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.65);transition:transform .8s var(--ease),filter .5s}
+.ig-cell:hover img{transform:scale(1.06);filter:brightness(.75) saturate(.85)}
+.ig-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,16,24,.85),transparent 55%);border-radius:8px}
+.ig-label{position:absolute;bottom:1.2rem;left:1.2rem;font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(232,244,255,.4);font-weight:500;transition:color .3s}
+.ig-cell:hover .ig-label{color:var(--electric3)}
+.ig-border-glow{position:absolute;inset:0;border-radius:8px;border:1px solid transparent;transition:border-color .4s}
+.ig-cell:hover .ig-border-glow{border-color:rgba(110,179,232,.25)}
+.services{padding:7rem 4rem;background:var(--navy2)}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:5rem;align-items:end}
+.sec-label{font-size:.56rem;letter-spacing:.42em;text-transform:uppercase;color:var(--electric3);margin-bottom:1.1rem;display:flex;align-items:center;gap:.8rem;font-weight:600}
+.sec-label::before{content:'';width:20px;height:1px;background:var(--electric3)}
+.sec-title{font-size:clamp(2rem,3.5vw,3.4rem);line-height:1.05;font-weight:700;letter-spacing:-.02em}
+.sec-title em{font-style:italic;font-weight:300;color:var(--gold)}
+.sec-desc{font-size:.87rem;line-height:1.9;color:var(--grey);font-weight:300}
+.svc-list{border-top:1px solid rgba(110,179,232,.07)}
+.svc-row{display:grid;grid-template-columns:64px 56px 1fr auto;align-items:center;gap:1.5rem;padding:1.8rem 0;border-bottom:1px solid rgba(110,179,232,.07);cursor:pointer;position:relative;overflow:hidden;transition:padding .4s var(--ease)}
+.svc-bg{position:absolute;inset:0;background:rgba(110,179,232,.02);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.svc-row:hover .svc-bg{transform:scaleX(1)}
+.svc-row:hover{padding:1.8rem 1rem}
+.svc-n{font-size:.65rem;color:rgba(110,179,232,.2);font-weight:600;letter-spacing:.1em;transition:color .3s;z-index:1}
+.svc-row:hover .svc-n{color:var(--electric3)}
+.svc-icon{width:40px;height:40px;border:1px solid rgba(110,179,232,.1);border-radius:6px;display:flex;align-items:center;justify-content:center;transition:border-color .3s,background .3s;z-index:1;flex-shrink:0}
+.svc-row:hover .svc-icon{border-color:rgba(110,179,232,.3);background:rgba(110,179,232,.06)}
+.svc-icon svg{width:18px;height:18px;stroke:rgba(110,179,232,.3);transition:stroke .3s,transform .4s}
+.svc-row:hover .svc-icon svg{stroke:var(--electric3);transform:scale(1.15)}
+.svc-text{z-index:1}
+.svc-name{font-size:1.5rem;font-weight:700;color:rgba(232,244,255,.5);transition:color .4s;letter-spacing:-.02em}
+.svc-row:hover .svc-name{color:var(--electric)}
+.svc-desc-r{font-size:.75rem;line-height:1.8;color:var(--grey);max-width:500px;height:0;overflow:hidden;opacity:0;transition:height .4s var(--ease),opacity .35s,margin .3s;font-weight:300}
+.svc-arr{color:rgba(110,179,232,.15);font-size:1.1rem;transition:color .3s,transform .4s;z-index:1}
+.svc-row:hover .svc-arr{color:var(--electric3);transform:translateX(4px) rotate(-45deg)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(110,179,232,.04)}
+.stat{background:var(--navy3);padding:3.5rem 3rem;position:relative;overflow:hidden;transition:background .4s}
+.stat::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--electric3),var(--gold));transform:scaleX(0);transition:transform .6s var(--ease)}
+.stat:hover{background:rgba(110,179,232,.02)}
+.stat:hover::after{transform:scaleX(1)}
+.stat-n{font-size:4rem;font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:.5rem;transition:transform .4s}
+.stat-n.e{color:var(--electric)}
+.stat-n.g{color:var(--gold)}
+.stat:hover .stat-n{transform:translateY(-5px)}
+.stat-l{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--grey);font-weight:500}
+.about{padding:7rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;background:var(--navy2)}
+.about-img-wrap{position:relative}
+.about-img{border-radius:10px;overflow:hidden;border:1px solid rgba(110,179,232,.1);position:relative}
+.about-img img{width:100%;height:480px;object-fit:cover;filter:brightness(.65) saturate(.7);transition:transform .8s var(--ease),filter .5s}
+.about-img:hover img{transform:scale(1.04);filter:brightness(.8) saturate(.85)}
+.about-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,16,24,.4),transparent 60%);border-radius:10px}
+.about-img-glow{position:absolute;inset:0;border-radius:10px;border:1px solid transparent;transition:border-color .5s}
+.about-img:hover .about-img-glow{border-color:rgba(110,179,232,.2)}
+.about-tag{position:absolute;bottom:1.5rem;left:1.5rem;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(232,244,255,.4);font-weight:500}
+.profile-photo{position:absolute;bottom:-2rem;right:-2rem;width:90px;height:90px;border-radius:50%;overflow:hidden;border:2px solid rgba(110,179,232,.2);box-shadow:0 0 30px rgba(110,179,232,.1)}
+.profile-photo img{width:100%;height:100%;object-fit:cover}
+.about-r{position:relative;z-index:1}
+.about-title{font-size:clamp(1.8rem,2.8vw,2.8rem);line-height:1.1;margin-bottom:2rem;font-weight:700;letter-spacing:-.02em}
 .about-title em{font-style:italic;font-weight:300;color:var(--gold)}
-.about-body{font-size:0.88rem;line-height:2;color:var(--grey);font-weight:300;margin-bottom:1.2rem}
-.about-quote{font-size:1.1rem;font-weight:300;font-style:italic;color:var(--electric);border-left:2px solid var(--electric3);padding-left:1.5rem;line-height:1.6;margin-top:2.5rem}
-.profile-card{background:rgba(232,244,255,0.03);border:1px solid rgba(232,244,255,0.08);padding:2.5rem;position:relative;overflow:hidden;transition:border-color 0.4s,background 0.4s}
-.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--electric3),var(--gold),transparent);transform:scaleX(0);transition:transform 0.7s var(--ease)}
-.profile-card:hover{border-color:rgba(110,179,232,0.2);background:rgba(232,244,255,0.04)}
+.about-body{font-size:.86rem;line-height:2;color:var(--grey);font-weight:300;margin-bottom:1rem}
+.about-quote{font-size:1rem;font-weight:300;font-style:italic;color:var(--electric2);border-left:2px solid var(--electric3);padding-left:1.5rem;line-height:1.7;margin:2rem 0}
+.profile-card{background:rgba(232,244,255,.02);border:1px solid rgba(110,179,232,.1);border-radius:8px;padding:2rem;position:relative;overflow:hidden;transition:all .4s;margin-top:1.5rem}
+.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--electric3),var(--gold),transparent);transform:scaleX(0);transition:transform .7s var(--ease)}
+.profile-card:hover{border-color:rgba(110,179,232,.2);background:rgba(232,244,255,.03)}
 .profile-card:hover::before{transform:scaleX(1)}
-.profile-init{width:64px;height:64px;border:1px solid rgba(110,179,232,0.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;color:var(--electric3);margin-bottom:1.8rem;letter-spacing:0.05em;border-radius:2px}
-.profile-name{font-size:1.6rem;font-weight:700;margin-bottom:0.3rem;letter-spacing:-0.02em}
-.profile-role{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--electric3);margin-bottom:1.5rem;font-weight:600}
-.profile-bio{font-size:0.82rem;line-height:1.9;color:var(--grey);font-weight:300;margin-bottom:1.8rem}
-.credentials{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2rem}
-.cred{font-size:0.72rem;color:rgba(136,153,170,0.6);display:flex;align-items:center;gap:0.8rem;font-weight:400}
-.cred::before{content:'';width:12px;height:1px;background:var(--electric3);opacity:0.4;flex-shrink:0}
-.linkedin-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--electric3);text-decoration:none;border:1px solid rgba(110,179,232,0.2);padding:0.55rem 1.1rem;transition:all 0.3s;font-weight:600}
-.linkedin-link:hover{background:rgba(110,179,232,0.08);border-color:var(--electric3)}
-.cta-wrap{padding:10rem 4rem;text-align:center;position:relative;overflow:hidden;background:var(--navy2)}
-.cta-glow{position:absolute;width:800px;height:400px;background:radial-gradient(ellipse,rgba(110,179,232,0.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.cta-glow2{position:absolute;width:400px;height:400px;background:radial-gradient(ellipse,rgba(201,168,76,0.04) 0%,transparent 70%);top:50%;left:30%;transform:translate(-50%,-50%);pointer-events:none}
-.cta-eyebrow{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--electric3);margin-bottom:2rem;display:flex;align-items:center;justify-content:center;gap:1rem;font-weight:600}
-.cta-eyebrow::before,.cta-eyebrow::after{content:'';width:32px;height:1px;background:var(--electric3);opacity:0.4}
-.cta-title{font-size:clamp(3rem,6vw,6rem);line-height:0.95;margin-bottom:1.5rem;font-weight:700;letter-spacing:-0.03em}
+.p-top{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.2rem}
+.p-avatar{width:52px;height:52px;border-radius:50%;overflow:hidden;border:1px solid rgba(110,179,232,.2);flex-shrink:0}
+.p-avatar img{width:100%;height:100%;object-fit:cover}
+.p-name{font-size:1.1rem;font-weight:700;letter-spacing:-.01em;line-height:1.1}
+.p-role{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--electric3);font-weight:600;margin-top:.2rem}
+.p-bio{font-size:.78rem;line-height:1.85;color:var(--grey);font-weight:300;margin-bottom:1.2rem}
+.creds{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+.cred{font-size:.7rem;color:rgba(136,153,170,.5);display:flex;align-items:center;gap:.7rem}
+.cred::before{content:'';width:10px;height:1px;background:var(--electric3);opacity:.35;flex-shrink:0}
+.li-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--electric3);text-decoration:none;border:1px solid rgba(110,179,232,.18);border-radius:3px;padding:.5rem 1rem;transition:all .3s;font-weight:600}
+.li-btn:hover{background:rgba(110,179,232,.07);border-color:var(--electric3)}
+.map-section{padding:6rem 4rem;background:var(--navy3);position:relative;overflow:hidden}
+.map-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(110,179,232,.03),transparent 60%);pointer-events:none}
+.map-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:center}
+.map-title{font-size:clamp(1.8rem,2.8vw,2.8rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:1.5rem}
+.map-title em{font-style:italic;font-weight:300;color:var(--gold)}
+.map-desc{font-size:.86rem;line-height:1.9;color:var(--grey);font-weight:300;margin-bottom:2rem}
+.regions{display:flex;flex-wrap:wrap;gap:.6rem}
+.region-tag{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);border:1px solid rgba(110,179,232,.1);border-radius:20px;padding:.35rem .9rem;transition:all .3s;font-weight:500;cursor:default}
+.region-tag:hover{color:var(--electric3);border-color:rgba(110,179,232,.35);background:rgba(110,179,232,.05)}
+#map-container{border:1px solid rgba(110,179,232,.08);border-radius:10px;background:rgba(10,21,32,.6);padding:1rem;position:relative;overflow:hidden}
+.d3-map{width:100%;height:auto}
+.country{fill:rgba(110,179,232,.06);stroke:rgba(110,179,232,.12);stroke-width:.5;transition:fill .3s,stroke .3s}
+.country.active{fill:rgba(110,179,232,.15);stroke:rgba(110,179,232,.4)}
+.country.active:hover{fill:rgba(110,179,232,.25);stroke:var(--electric3);cursor:pointer}
+.country.gold-active{fill:rgba(201,168,76,.2);stroke:rgba(201,168,76,.5)}
+.country.gold-active:hover{fill:rgba(201,168,76,.35);stroke:var(--gold)}
+.map-tooltip{position:absolute;background:rgba(7,16,24,.95);border:1px solid rgba(110,179,232,.2);border-radius:6px;padding:.6rem 1rem;font-size:.65rem;letter-spacing:.1em;color:var(--electric);pointer-events:none;opacity:0;transition:opacity .2s;font-weight:500;white-space:nowrap;z-index:10}
+.city-dot{fill:var(--electric3);animation:cityPulse 2s ease-in-out infinite}
+.city-dot.gold{fill:var(--gold)}
+.cta{padding:9rem 4rem;text-align:center;position:relative;overflow:hidden;background:var(--navy2)}
+.cta-g1{position:absolute;width:900px;height:500px;background:radial-gradient(ellipse,rgba(110,179,232,.05),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-g2{position:absolute;width:500px;height:500px;background:radial-gradient(ellipse,rgba(201,168,76,.04),transparent 70%);top:40%;left:25%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-ey{font-size:.57rem;letter-spacing:.42em;text-transform:uppercase;color:var(--electric3);margin-bottom:2rem;display:flex;align-items:center;justify-content:center;gap:1rem;font-weight:600}
+.cta-ey::before,.cta-ey::after{content:'';width:28px;height:1px;background:var(--electric3);opacity:.35}
+.cta-title{font-size:clamp(3rem,6vw,6.5rem);line-height:.93;margin-bottom:1.5rem;font-weight:700;letter-spacing:-.04em}
 .cta-title em{font-style:italic;font-weight:300;color:var(--gold)}
-.cta-sub{font-size:1rem;color:var(--grey);margin-bottom:3.5rem;font-weight:300}
-.btn-cta{display:inline-block;background:var(--electric);color:var(--navy);padding:1.1rem 3rem;font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;position:relative;overflow:hidden;transition:color 0.4s;border-radius:2px}
-.btn-cta::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform 0.5s var(--ease)}
+.cta-sub{font-size:.95rem;color:var(--grey);margin-bottom:3.5rem;font-weight:300}
+.btn-cta{display:inline-block;background:var(--electric);color:var(--navy);padding:1.1rem 3rem;font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;position:relative;overflow:hidden;border-radius:3px;transition:color .4s,transform .3s}
+.btn-cta::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .5s var(--ease)}
 .btn-cta:hover::before{transform:translateX(0)}
-.btn-cta:hover{color:var(--navy)}
+.btn-cta:hover{transform:translateY(-2px)}
 .btn-cta span{position:relative;z-index:1}
-.cta-note{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(136,153,170,0.25);margin-top:1.5rem;font-weight:500}
-footer{padding:2.5rem 4rem;border-top:1px solid rgba(232,244,255,0.05);display:flex;align-items:center;justify-content:space-between;background:var(--navy)}
-.footer-logo{font-size:0.9rem;font-weight:700;color:rgba(255,255,255,0.3)}
-.footer-logo span{color:var(--gold)}
-.footer-links{display:flex;gap:2.5rem}
-.footer-links a{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(136,153,170,0.25);text-decoration:none;transition:color 0.3s;font-weight:500}
-.footer-links a:hover{color:var(--electric3)}
-.footer-copy{font-size:0.6rem;color:rgba(136,153,170,0.18);letter-spacing:0.1em}
+.cta-note{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(136,153,170,.2);margin-top:1.5rem;font-weight:500}
+.booking-note{font-size:.72rem;color:var(--grey);margin-top:.8rem;font-weight:300}
+.booking-note a{color:var(--electric3);text-decoration:none;border-bottom:1px solid rgba(110,179,232,.3);transition:border-color .3s}
+.booking-note a:hover{border-color:var(--electric3)}
+footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:flex;align-items:center;justify-content:space-between;background:var(--navy3)}
+.f-logo{font-size:.9rem;font-weight:700;color:rgba(232,244,255,.25)}
+.f-logo span{color:var(--gold)}
+.f-links{display:flex;gap:2.5rem}
+.f-links a{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(136,153,170,.2);text-decoration:none;transition:color .3s;font-weight:500}
+.f-links a:hover{color:var(--electric3)}
+.f-copy{font-size:.58rem;color:rgba(136,153,170,.15);letter-spacing:.08em}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes sPulse{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes cityPulse{0%,100%{opacity:.5;r:3}50%{opacity:1;r:5}}
+.fu{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.fu.on{opacity:1;transform:translateY(0)}
+.fd1{transition-delay:.1s}.fd2{transition-delay:.2s}.fd3{transition-delay:.3s}
 @media(max-width:768px){
-  nav{padding:1.2rem 1.5rem}
-  nav.scrolled{padding:1rem 1.5rem}
-  .nav-links a:not(.nav-book){display:none}
-  .hero{padding:0 1.5rem}
-  h1.hero-title{font-size:clamp(3rem,12vw,5rem)}
-  .hero-badge{display:none}
-  .hero-scroll{left:1.5rem}
-  .services{padding:5rem 1.5rem}
-  .services-header{grid-template-columns:1fr;gap:1.5rem;margin-bottom:3rem}
-  .svc-name{font-size:1.2rem}
-  .svc-item{grid-template-columns:48px 1fr 32px}
-  .stats-section{grid-template-columns:1fr}
-  .stat-item{padding:2.5rem 1.5rem}
-  .about{padding:5rem 1.5rem;grid-template-columns:1fr;gap:3rem}
-  .cta-wrap{padding:6rem 1.5rem}
-  .cta-title{font-size:clamp(2.5rem,10vw,4rem)}
-  footer{padding:2rem 1.5rem;flex-direction:column;gap:1.5rem;text-align:center}
-  .footer-links{flex-wrap:wrap;justify-content:center;gap:1.5rem}
+  nav{padding:1.2rem 1.5rem}nav.sc{padding:1rem 1.5rem}
+  .nav-links a:not(.nav-cta){display:none}
+  .hero-content{padding:0 1.5rem 5rem}
+  h1.ht{font-size:clamp(3rem,12vw,5rem)}
+  .img-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .ig-cell:first-child{grid-row:auto}
+  .services,.about,.map-section,.cta{padding:5rem 1.5rem}
+  .sec-head,.about,.map-grid{grid-template-columns:1fr;gap:2rem}
+  .stats{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1.5rem;text-align:center;padding:2rem 1.5rem}
 }
-@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes lineFloat{0%,100%{opacity:0.4;transform:translateY(0)}50%{opacity:1;transform:translateY(-20px)}}
-@keyframes scrollPulse{0%,100%{opacity:0.3}50%{opacity:1}}
-.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease)}
-.reveal.on{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:0.1s}
-.reveal-d2{transition-delay:0.2s}
-.reveal-d3{transition-delay:0.3s}
 </style>
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
 <nav id="nav">
   <a href="#" class="nav-logo">Open<span>gate</span> Advisory</a>
   <div class="nav-links">
     <a href="#services">Services</a>
     <a href="#about">About</a>
+    <a href="#regions">Regions</a>
     <a href="#contact">Contact</a>
-    <a href="#contact" class="nav-book">Book a Call</a>
+    <a href="#contact" class="nav-cta">Book a Call</a>
   </div>
 </nav>
-
 <section class="hero">
-  <div class="hero-glow-1"></div>
-  <div class="hero-glow-2"></div>
-  <div class="hero-lines" id="heroLines"></div>
-  <div class="hero-eyebrow">Dubai · EMEA · Global Markets</div>
-  <h1 class="hero-title">Scale.<br>Expand.<br><em>Win.</em></h1>
-  <p class="hero-sub">Senior sales leadership and business development for international companies targeting EMEA. We open the gate — you walk through.</p>
-  <div class="hero-actions">
-    <a href="#contact" class="btn-electric"><span>Book a Discovery Call</span></a>
-    <a href="#services" class="btn-ghost-link">Explore Services <span class="arrow">→</span></a>
+  <div class="hero-bg"><img src="images/dubai-skyline.jpg" alt="Dubai Skyline" onerror="this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80'"></div>
+  <div class="hero-gradient"></div>
+  <canvas id="pts"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Dubai · EMEA · Global Markets</div>
+    <h1 class="ht">
+      <span class="ln"><span>Scale.</span></span>
+      <span class="ln"><span>Expand.</span></span>
+      <em class="ln"><span>Win.</span></em>
+    </h1>
+    <p class="hero-sub">Senior sales leadership and business development for international companies targeting EMEA. We open the gate — you walk through.</p>
+    <div class="hero-acts">
+      <a href="#contact" class="btn-e"><span>Book a Discovery Call</span></a>
+      <a href="#services" class="btn-ghost">Explore Services <span class="ar">→</span></a>
+    </div>
   </div>
-  <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
-  <div class="hero-badge">
-    <div class="hero-badge-num">25+</div>
-    <div class="hero-badge-label">Years EMEA</div>
-  </div>
+  <div class="hero-scroll"><div class="sc-bar"></div>Scroll</div>
 </section>
-
-<div class="tag-strip">
-  <div class="tag-track">
-    <span class="tag-item">Direct Sales</span><span class="tag-dot">·</span>
-    <span class="tag-item">Business Development</span><span class="tag-dot">·</span>
-    <span class="tag-item">Market Entry</span><span class="tag-dot">·</span>
-    <span class="tag-item">Fractional CRO</span><span class="tag-dot">·</span>
-    <span class="tag-item">EMEA Expansion</span><span class="tag-dot">·</span>
-    <span class="tag-item">Channel Partnerships</span><span class="tag-dot">·</span>
-    <span class="tag-item">Revenue Scaling</span><span class="tag-dot">·</span>
-    <span class="tag-item">Go-To-Market</span><span class="tag-dot">·</span>
-    <span class="tag-item">Direct Sales</span><span class="tag-dot">·</span>
-    <span class="tag-item">Business Development</span><span class="tag-dot">·</span>
-    <span class="tag-item">Market Entry</span><span class="tag-dot">·</span>
-    <span class="tag-item">Fractional CRO</span><span class="tag-dot">·</span>
-    <span class="tag-item">EMEA Expansion</span><span class="tag-dot">·</span>
-    <span class="tag-item">Channel Partnerships</span><span class="tag-dot">·</span>
-    <span class="tag-item">Revenue Scaling</span><span class="tag-dot">·</span>
-    <span class="tag-item">Go-To-Market</span><span class="tag-dot">·</span>
+<div class="mq">
+  <div class="mq-track">
+    <span class="mq-i">Direct Sales</span><span class="mq-dot"> · </span><span class="mq-i">Business Development</span><span class="mq-dot"> · </span><span class="mq-i">Market Entry</span><span class="mq-dot"> · </span><span class="mq-i">Fractional CRO</span><span class="mq-dot"> · </span><span class="mq-i">EMEA Expansion</span><span class="mq-dot"> · </span><span class="mq-i">Channel Partnerships</span><span class="mq-dot"> · </span><span class="mq-i">Revenue Scaling</span><span class="mq-dot"> · </span><span class="mq-i">Go-To-Market</span><span class="mq-dot"> · </span><span class="mq-i">Direct Sales</span><span class="mq-dot"> · </span><span class="mq-i">Business Development</span><span class="mq-dot"> · </span><span class="mq-i">Market Entry</span><span class="mq-dot"> · </span><span class="mq-i">Fractional CRO</span><span class="mq-dot"> · </span><span class="mq-i">EMEA Expansion</span><span class="mq-dot"> · </span><span class="mq-i">Channel Partnerships</span><span class="mq-dot"> · </span><span class="mq-i">Revenue Scaling</span><span class="mq-dot"> · </span><span class="mq-i">Go-To-Market</span><span class="mq-dot"> · </span>
   </div>
 </div>
-
+<div class="img-grid">
+  <div class="ig-cell"><img src="images/business-meeting.jpg" alt="Business Meeting" onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80'"><div class="ig-overlay"></div><div class="ig-border-glow"></div><div class="ig-label">Executive Meetings</div></div>
+  <div class="ig-cell"><img src="images/hand-shake.jpg" alt="Partnership" onerror="this.src='https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80'"><div class="ig-overlay"></div><div class="ig-border-glow"></div><div class="ig-label">Partnerships</div></div>
+  <div class="ig-cell"><img src="images/strategy-whiteboard.jpg" alt="Strategy" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80'"><div class="ig-overlay"></div><div class="ig-border-glow"></div><div class="ig-label">GTM Strategy</div></div>
+</div>
 <section class="services" id="services">
-  <div class="services-header">
-    <div class="reveal">
-      <div class="section-label">What We Do</div>
-      <h2 class="section-title">Senior expertise,<br><em>real results.</em></h2>
-    </div>
-    <p class="services-desc reveal reveal-d1">We don't consult from the sidelines. We embed at Sales Director and CRO level — carrying the bag, building the pipeline, closing the deals.</p>
+  <div class="sec-head">
+    <div class="fu"><div class="sec-label">What We Do</div><h2 class="sec-title">Senior expertise,<br><em>real results.</em></h2></div>
+    <p class="sec-desc fu fd1">We don't consult from the sidelines. We embed at Sales Director and CRO level — carrying the bag, building the pipeline, closing the deals.</p>
   </div>
-  <div class="services-list reveal">
-    <div class="svc-item">
-      <span class="svc-num">01</span>
-      <div class="svc-text">
-        <span class="svc-name">Direct Sales</span>
-        <span class="svc-desc-inline">End-to-end sales execution across EMEA. We prospect, qualify, negotiate and close — with full accountability for revenue outcomes.</span>
-      </div>
-      <span class="svc-arrow">→</span>
-    </div>
-    <div class="svc-item">
-      <span class="svc-num">02</span>
-      <div class="svc-text">
-        <span class="svc-name">Business Development</span>
-        <span class="svc-desc-inline">Strategic partnerships, channel development and ecosystem building to accelerate your regional footprint fast.</span>
-      </div>
-      <span class="svc-arrow">→</span>
-    </div>
-    <div class="svc-item">
-      <span class="svc-num">03</span>
-      <div class="svc-text">
-        <span class="svc-name">Market Entry</span>
-        <span class="svc-desc-inline">From ICP definition to first closed deal. Structured GTM planning for companies entering UAE, KSA and broader EMEA.</span>
-      </div>
-      <span class="svc-arrow">→</span>
-    </div>
-    <div class="svc-item">
-      <span class="svc-num">04</span>
-      <div class="svc-text">
-        <span class="svc-name">Fractional CRO</span>
-        <span class="svc-desc-inline">CRO-level revenue leadership on a flexible model. Own your strategy, process and commercial outcomes — without permanent headcount.</span>
-      </div>
-      <span class="svc-arrow">→</span>
-    </div>
-    <div class="svc-item">
-      <span class="svc-num">05</span>
-      <div class="svc-text">
-        <span class="svc-name">Channel & Partnerships</span>
-        <span class="svc-desc-inline">Build and activate the partner ecosystem that multiplies your reach across resellers, distributors and alliances in the region.</span>
-      </div>
-      <span class="svc-arrow">→</span>
-    </div>
-    <div class="svc-item">
-      <span class="svc-num">06</span>
-      <div class="svc-text">
-        <span class="svc-name">Revenue Scaling</span>
-        <span class="svc-desc-inline">Pipeline architecture, forecasting discipline and sales process engineering — the backbone your growth requires.</span>
-      </div>
-      <span class="svc-arrow">→</span>
-    </div>
+  <div class="svc-list fu fd2">
+    <div class="svc-row"><div class="svc-bg"></div><span class="svc-n">01</span><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M16 6l6 6-6 6"/></svg></div><div class="svc-text"><span class="svc-name">Direct Sales</span><span class="svc-desc-r">End-to-end sales execution across EMEA. We prospect, qualify, negotiate and close — with full accountability for revenue outcomes.</span></div><span class="svc-arr">→</span></div>
+    <div class="svc-row"><div class="svc-bg"></div><span class="svc-n">02</span><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="svc-text"><span class="svc-name">Business Development</span><span class="svc-desc-r">Strategic partnerships, channel development and ecosystem building to accelerate your regional footprint fast.</span></div><span class="svc-arr">→</span></div>
+    <div class="svc-row"><div class="svc-bg"></div><span class="svc-n">03</span><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="svc-text"><span class="svc-name">Market Entry</span><span class="svc-desc-r">From ICP definition to first closed deal. Structured GTM planning for companies entering UAE, KSA and broader EMEA.</span></div><span class="svc-arr">→</span></div>
+    <div class="svc-row"><div class="svc-bg"></div><span class="svc-n">04</span><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="svc-text"><span class="svc-name">Fractional CRO</span><span class="svc-desc-r">CRO-level revenue leadership on a flexible model. Own your strategy, process and commercial outcomes — without permanent headcount.</span></div><span class="svc-arr">→</span></div>
+    <div class="svc-row"><div class="svc-bg"></div><span class="svc-n">05</span><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="svc-text"><span class="svc-name">Channel & Partnerships</span><span class="svc-desc-r">Build and activate the partner ecosystem that multiplies your reach across resellers, distributors and alliances in the region.</span></div><span class="svc-arr">→</span></div>
+    <div class="svc-row"><div class="svc-bg"></div><span class="svc-n">06</span><div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="svc-text"><span class="svc-name">Revenue Scaling</span><span class="svc-desc-r">Pipeline architecture, forecasting discipline and sales process engineering — the backbone your growth requires.</span></div><span class="svc-arr">→</span></div>
   </div>
 </section>
-
-<div class="stats-section">
-  <div class="stat-item reveal">
-    <div class="stat-n electric">25+</div>
-    <div class="stat-l">Years EMEA Experience</div>
-  </div>
-  <div class="stat-item reveal reveal-d1">
-    <div class="stat-n gold">CRO</div>
-    <div class="stat-l">Level Engagement</div>
-  </div>
-  <div class="stat-item reveal reveal-d2">
-    <div class="stat-n electric">Dubai</div>
-    <div class="stat-l">Regional HQ · MENA</div>
-  </div>
+<div class="stats">
+  <div class="stat fu"><div class="stat-n e">25+</div><div class="stat-l">Years EMEA Experience</div></div>
+  <div class="stat fu fd1"><div class="stat-n g">CRO</div><div class="stat-l">Level Engagement</div></div>
+  <div class="stat fu fd2"><div class="stat-n e">Dubai</div><div class="stat-l">Regional HQ · MENA</div></div>
 </div>
-
 <section class="about" id="about">
-  <div class="about-l reveal">
-    <div class="section-label">Who We Are</div>
+  <div class="about-img-wrap fu">
+    <div class="about-img"><img src="images/business-meeting.jpg" alt="Opengate Advisory" onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80'"><div class="about-img-overlay"></div><div class="about-img-glow"></div><div class="about-tag">Opengate Advisory · Dubai</div></div>
+    <div class="profile-photo"><img src="images/Georges.jpeg" alt="Georges Lemire"></div>
+  </div>
+  <div class="about-r fu fd1">
+    <div class="sec-label">Who We Are</div>
     <h2 class="about-title">The gate between ambition and <em>EMEA revenue.</em></h2>
     <p class="about-body">International companies expanding into EMEA face a consistent challenge — building a sales engine fast enough to matter. Finding the right people, the right relationships, and the right commercial discipline takes years most companies simply don't have.</p>
-    <p class="about-body">Opengate Advisory steps in at the Sales Director and CRO level. Embedded, accountable, and wired into the region.</p>
+    <p class="about-body">Opengate Advisory steps in at Sales Director and CRO level. Embedded, accountable, and wired into the region.</p>
     <div class="about-quote">"Senior sales leadership, without the permanent headcount."</div>
-  </div>
-  <div class="reveal reveal-d1">
     <div class="profile-card">
-      <div class="profile-init">GL</div>
-      <div class="profile-name">Georges Lemire</div>
-      <div class="profile-role">Founder · Principal Advisor</div>
-      <p class="profile-bio">Former Managing Director France & Regional Director MEA at Cisco. 25+ years growing technology businesses across Europe, Middle East and Africa. Based in Dubai.</p>
-      <div class="credentials">
-        <div class="cred">Managing Director France — Cisco</div>
-        <div class="cred">Regional Director Middle East Africa — Cisco</div>
-        <div class="cred">Director Operations Sales EMEAR — Cisco</div>
-        <div class="cred">Area VP EMEA — Neat</div>
-      </div>
-      <a href="https://www.linkedin.com/in/georgeslemire/" target="_blank" class="linkedin-link">↗ LinkedIn Profile</a>
+      <div class="p-top"><div class="p-avatar"><img src="images/Georges.jpeg" alt="Georges Lemire"></div><div><div class="p-name">Georges Lemire</div><div class="p-role">Founder · Principal Advisor</div></div></div>
+      <p class="p-bio">Former Managing Director France & Regional Director MEA at Cisco. 25+ years growing technology businesses across Europe, Middle East and Africa.</p>
+      <div class="creds"><div class="cred">Managing Director France — Cisco</div><div class="cred">Regional Director Middle East Africa — Cisco</div><div class="cred">Director Operations Sales EMEAR — Cisco</div><div class="cred">Area VP EMEA — Neat</div></div>
+      <a href="https://www.linkedin.com/in/georgeslemire/" target="_blank" class="li-btn">↗ LinkedIn Profile</a>
     </div>
   </div>
 </section>
-
-<section class="cta-wrap" id="contact">
-  <div class="cta-glow"></div>
-  <div class="cta-glow2"></div>
-  <div class="cta-eyebrow reveal">Let's Talk</div>
-  <h2 class="cta-title reveal reveal-d1">Ready to open<br>your <em>gate?</em></h2>
-  <p class="cta-sub reveal reveal-d2">Let's talk about scaling your business across EMEA.</p>
-  <a href="https://calendly.com" target="_blank" class="btn-cta reveal reveal-d3"><span>Book a Discovery Call</span></a>
-  <div class="cta-note reveal">Free · 30 minutes · No commitment</div>
-</section>
-
-<footer>
-  <div class="footer-logo">Open<span>gate</span> Advisory</div>
-  <div class="footer-links">
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="https://www.linkedin.com/in/georgeslemire/" target="_blank">LinkedIn</a>
-    <a href="#contact">Contact</a>
+<section class="map-section" id="regions">
+  <div class="map-grid">
+    <div class="map-info fu">
+      <div class="sec-label">Coverage</div>
+      <h2 class="map-title">EMEA reach,<br><em>local expertise.</em></h2>
+      <p class="map-desc">25+ years of relationships, networks and market knowledge across Europe, the Middle East and Africa. We know how deals get done in every region.</p>
+      <div class="regions">
+        <div class="region-tag">🇦🇪 UAE</div><div class="region-tag">🇸🇦 KSA</div><div class="region-tag">🇫🇷 France</div><div class="region-tag">🇬🇧 UK</div><div class="region-tag">🇩🇪 DACH</div><div class="region-tag">🇳🇱 Benelux</div><div class="region-tag">🇪🇸 Iberia</div><div class="region-tag">🇿🇦 Africa</div><div class="region-tag">🇪🇬 Egypt</div><div class="region-tag">🇶🇦 Qatar</div>
+      </div>
+    </div>
+    <div class="fu fd1">
+      <div id="map-container">
+        <div class="map-tooltip" id="mapTip"></div>
+        <svg class="d3-map" id="emea-map" viewBox="0 0 600 500"></svg>
+      </div>
+    </div>
   </div>
-  <div class="footer-copy">© 2025 Opengate Advisory · Dubai, UAE</div>
+</section>
+<section class="cta" id="contact">
+  <div class="cta-g1"></div><div class="cta-g2"></div>
+  <div class="cta-ey fu">Let's Talk</div>
+  <h2 class="cta-title fu fd1">Ready to open<br>your <em>gate?</em></h2>
+  <p class="cta-sub fu fd2">Let's talk about scaling your business across EMEA.</p>
+  <a href="YOUR_MICROSOFT_BOOKINGS_URL" target="_blank" class="btn-cta fu fd3"><span>Book a Discovery Call</span></a>
+  <div class="cta-note fu">Free · 30 minutes · No commitment</div>
+  <p class="booking-note fu">Powered by <a href="https://outlook.office.com/bookings" target="_blank">Microsoft Bookings</a></p>
+</section>
+<footer>
+  <div class="f-logo">Open<span>gate</span> Advisory</div>
+  <div class="f-links"><a href="#services">Services</a><a href="#about">About</a><a href="#regions">Regions</a><a href="https://www.linkedin.com/in/georgeslemire/" target="_blank">LinkedIn</a><a href="#contact">Contact</a></div>
+  <div class="f-copy">© 2025 Opengate Advisory · Dubai, UAE</div>
 </footer>
-
 <script>
-const cursor=document.getElementById('cursor');
-const ring=document.getElementById('cursorRing');
+const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
-function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
-animRing();
-document.querySelectorAll('a,button,.svc-item,.stat-item,.profile-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cursor.classList.add('expand');ring.classList.add('expand')});
-  el.addEventListener('mouseleave',()=>{cursor.classList.remove('expand');ring.classList.remove('expand')});
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function a(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+document.querySelectorAll('a,button,.svc-row,.stat,.ig-cell,.profile-card,.region-tag').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.classList.add('ex');ring.classList.add('ex')});
+  el.addEventListener('mouseleave',()=>{cur.classList.remove('ex');ring.classList.remove('ex')});
 });
-window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>50)});
-const lines=document.getElementById('heroLines');
-for(let i=0;i<8;i++){
-  const l=document.createElement('div');
-  l.className='hero-line';
-  l.style.cssText=`left:${8+i*12}%;height:${180+Math.random()*280}px;top:${Math.random()*60}%;animation-delay:${i*0.9}s;animation-duration:${6+Math.random()*4}s`;
-  lines.appendChild(l);
-}
-const obs=new IntersectionObserver(els=>els.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-document.querySelectorAll('.svc-item').forEach(item=>{
-  const desc=item.querySelector('.svc-desc-inline');
-  item.addEventListener('mouseenter',()=>{desc.style.height=desc.scrollHeight+'px';desc.style.opacity='1';desc.style.marginTop='0.6rem'});
-  item.addEventListener('mouseleave',()=>{desc.style.height='0';desc.style.opacity='0';desc.style.marginTop='0'});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>60));
+const canvas=document.getElementById('pts'),ctx=canvas.getContext('2d');
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+resizeCanvas();window.addEventListener('resize',resizeCanvas);
+const pts=Array.from({length:60},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.2+.4}));
+(function drawPts(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(110,179,232,0.12)';ctx.fill();});
+  pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<100){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(110,179,232,${.05*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke()}}));
+  requestAnimationFrame(drawPts);
+})();
+gsap.registerPlugin(ScrollTrigger);
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.ht .ln span').forEach((s,i)=>{gsap.to(s,{y:0,duration:1.1,ease:'power4.out',delay:.2+i*.15})});
+  gsap.to('.hero-sub',{opacity:1,y:0,duration:.9,ease:'power3.out',delay:.75});
+  gsap.to('.hero-acts',{opacity:1,y:0,duration:.9,ease:'power3.out',delay:.95});
 });
+document.querySelectorAll('.ig-cell img').forEach(img=>{gsap.to(img,{yPercent:-8,ease:'none',scrollTrigger:{trigger:img,start:'top bottom',end:'bottom top',scrub:true}})});
+const obs=new IntersectionObserver(els=>els.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.08});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+document.querySelectorAll('.svc-row').forEach(row=>{
+  const d=row.querySelector('.svc-desc-r');
+  row.addEventListener('mouseenter',()=>{d.style.height=d.scrollHeight+'px';d.style.opacity='1';d.style.marginTop='.5rem'});
+  row.addEventListener('mouseleave',()=>{d.style.height='0';d.style.opacity='0';d.style.marginTop='0'});
+});
+const mapData={type:"FeatureCollection",features:[
+  {type:"Feature",properties:{name:"France",active:true,gold:false},geometry:{type:"Polygon",coordinates:[[[2,51],[8,49],[7,44],[3,43],[-2,47],[-2,49],[2,51]]]}},
+  {type:"Feature",properties:{name:"UK",active:true,gold:false},geometry:{type:"Polygon",coordinates:[[[-6,50],[-2,51],[2,51],[1,53],[-4,58],[-8,58],[-6,50]]]}},
+  {type:"Feature",properties:{name:"Germany",active:true,gold:false},geometry:{type:"Polygon",coordinates:[[[6,51],[15,51],[15,48],[13,47],[8,47],[6,48],[6,51]]]}},
+  {type:"Feature",properties:{name:"Netherlands",active:true,gold:false},geometry:{type:"Polygon",coordinates:[[[4,51],[7,53],[5,53],[4,52],[4,51]]]}},
+  {type:"Feature",properties:{name:"Belgium",active:true,gold:false},geometry:{type:"Polygon",coordinates:[[[3,50],[6,51],[6,50],[3,49],[3,50]]]}},
+  {type:"Feature",properties:{name:"Spain",active:true,gold:false},geometry:{type:"Polygon",coordinates:[[[-10,44],[3,43],[4,40],[0,37],[-3,36],[-9,38],[-10,44]]]}},
+  {type:"Feature",properties:{name:"Italy",active:true,gold:false},geometry:{type:"Polygon",coordinates:[[[7,44],[15,44],[16,41],[16,38],[15,37],[13,38],[8,40],[7,44]]]}},
+  {type:"Feature",properties:{name:"Egypt",active:true,gold:false},geometry:{type:"Polygon",coordinates:[[[25,22],[37,22],[37,31],[35,31],[33,30],[25,30],[25,22]]]}},
+  {type:"Feature",properties:{name:"UAE",active:true,gold:true},geometry:{type:"Polygon",coordinates:[[[51,24],[56,24],[56,22],[54,22],[51,23],[51,24]]]}},
+  {type:"Feature",properties:{name:"Saudi Arabia",active:true,gold:true},geometry:{type:"Polygon",coordinates:[[[37,30],[56,30],[56,24],[51,24],[43,16],[37,22],[37,30]]]}},
+  {type:"Feature",properties:{name:"Qatar",active:true,gold:true},geometry:{type:"Polygon",coordinates:[[[50,25],[52,25],[52,24],[51,24],[50,25]]]}},
+  {type:"Feature",properties:{name:"South Africa",active:true,gold:false},geometry:{type:"Polygon",coordinates:[[[17,-34],[33,-34],[33,-22],[30,-18],[26,-18],[20,-18],[17,-34]]]}},
+  {type:"Feature",properties:{name:"Morocco",active:true,gold:false},geometry:{type:"Polygon",coordinates:[[[-6,36],[-1,35],[-1,30],[-9,28],[-13,28],[-6,36]]]}},
+  {type:"Feature",properties:{name:"Sweden",active:false},geometry:{type:"Polygon",coordinates:[[[12,56],[22,66],[24,70],[20,68],[12,68],[11,58],[12,56]]]}},
+  {type:"Feature",properties:{name:"Norway",active:false},geometry:{type:"Polygon",coordinates:[[[5,58],[12,56],[12,68],[6,62],[5,58]]]}},
+  {type:"Feature",properties:{name:"Poland",active:false},geometry:{type:"Polygon",coordinates:[[[14,54],[24,54],[24,50],[18,49],[14,50],[14,54]]]}},
+  {type:"Feature",properties:{name:"Turkey",active:false},geometry:{type:"Polygon",coordinates:[[[26,42],[36,42],[44,37],[36,36],[28,36],[26,38],[26,42]]]}},
+]};
+const cities=[{name:"Dubai",lat:25.2,lon:55.27,gold:true},{name:"Paris",lat:48.85,lon:2.35,gold:false},{name:"London",lat:51.5,lon:-.12,gold:false},{name:"Riyadh",lat:24.7,lon:46.7,gold:true},{name:"Cairo",lat:30.0,lon:31.2,gold:false},{name:"Amsterdam",lat:52.37,lon:4.9,gold:false}];
+const svgEl=document.getElementById('emea-map');
+const w=600,h=500;
+const proj=d3.geoMercator().center([20,35]).scale(380).translate([w/2,h/2]);
+const path=d3.geoPath().projection(proj);
+const svg=d3.select('#emea-map');
+const tip=document.getElementById('mapTip');
+const mapCont=document.getElementById('map-container');
+svg.selectAll('.country').data(mapData.features).enter().append('path')
+  .attr('class',d=>d.properties.gold?'country gold-active':d.properties.active?'country active':'country')
+  .attr('d',path)
+  .on('mousemove',(event,d)=>{if(!d.properties.active&&!d.properties.gold)return;const r=mapCont.getBoundingClientRect();tip.style.opacity='1';tip.style.left=(event.clientX-r.left+12)+'px';tip.style.top=(event.clientY-r.top-28)+'px';tip.textContent=d.properties.name;})
+  .on('mouseleave',()=>{tip.style.opacity='0'});
+const dubaiPos=proj([55.27,25.2]);
+cities.filter(c=>c.name!=='Dubai').forEach(c=>{const pos=proj([c.lon,c.lat]);svg.insert('line','circle').attr('x1',dubaiPos[0]).attr('y1',dubaiPos[1]).attr('x2',pos[0]).attr('y2',pos[1]).attr('stroke','rgba(110,179,232,0.1)').attr('stroke-width',.7).attr('stroke-dasharray','3,4')});
+cities.forEach(c=>{const[x,y]=proj([c.lon,c.lat]);svg.append('circle').attr('class',c.gold?'city-dot gold':'city-dot').attr('cx',x).attr('cy',y).attr('r',4);svg.append('text').attr('x',x+7).attr('y',y+4).attr('fill',c.gold?'rgba(201,168,76,0.7)':'rgba(232,244,255,0.35)').attr('font-size','7').attr('font-family','Plus Jakarta Sans,sans-serif').attr('font-weight','500').text(c.name);});
 </script>
 </body>
 </html>
