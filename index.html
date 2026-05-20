@@ -149,17 +149,21 @@ h1.ht em{font-style:italic;font-weight:300;color:var(--gold)}
 
 /* PORTFOLIO */
 .portfolio{padding:7rem 4rem;background:var(--navy3)}
-.port-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2rem;margin-top:3rem}
-.port-card{background:rgba(232,244,255,.02);border:1px solid rgba(110,179,232,.08);border-radius:10px;overflow:hidden;transition:all .4s;cursor:pointer;min-height:280px;display:flex;align-items:center;justify-content:center}
-.port-card:hover{border-color:rgba(110,179,232,.3);background:rgba(232,244,255,.04);transform:translateY(-4px)}
-.port-preview{width:100%;height:220px;background:rgba(110,179,232,.03);position:relative;overflow:hidden}
-.port-preview img{width:100%;height:100%;object-fit:cover;filter:brightness(.8);transition:transform .6s var(--ease),filter .4s}
-.port-card:hover .port-preview img{transform:scale(1.05);filter:brightness(1)}
-.port-info{padding:1.5rem}
-.port-title{font-size:1.1rem;font-weight:700;color:var(--electric);margin-bottom:.4rem;letter-spacing:-.01em}
-.port-desc{font-size:.72rem;color:var(--grey);line-height:1.7;font-weight:300}
-.port-empty{text-align:center;padding:4rem 2rem;color:rgba(136,153,170,.3);font-size:.8rem;font-weight:300}
-.port-empty-icon{font-size:3rem;margin-bottom:1rem;opacity:.2}
+.port-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem;margin-top:3rem}
+.port-card{display:block;position:relative;background:rgba(232,244,255,.02);border:1px solid rgba(110,179,232,.1);border-radius:12px;overflow:hidden;transition:border-color .35s,background .35s,transform .35s;text-decoration:none;color:inherit}
+.port-card:hover{border-color:rgba(110,179,232,.38);background:rgba(232,244,255,.045);transform:translateY(-5px)}
+.port-preview{height:360px;background:rgba(110,179,232,.03);position:relative;overflow:hidden;border-bottom:1px solid rgba(110,179,232,.08)}
+.port-preview::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(7,16,24,.72),rgba(7,16,24,.08) 48%,rgba(7,16,24,.18));pointer-events:none;z-index:2}
+.port-preview iframe{width:100%;height:100%;border:0;display:block;background:var(--navy3);pointer-events:none;filter:saturate(.9) brightness(.92);transition:transform .8s var(--ease),filter .45s}
+.port-card:hover .port-preview iframe{transform:scale(1.025);filter:saturate(1) brightness(1)}
+.port-live{position:absolute;top:.85rem;left:.85rem;z-index:3;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);background:var(--electric);border-radius:3px;padding:.42rem .65rem;font-weight:800;box-shadow:0 12px 24px rgba(7,16,24,.24)}
+.port-info{padding:1.35rem 1.35rem 1.5rem;position:relative}
+.port-info::after{content:'↗';position:absolute;top:1.35rem;right:1.35rem;color:rgba(110,179,232,.42);transition:transform .35s,color .35s}
+.port-card:hover .port-info::after{transform:translate(3px,-3px);color:var(--gold)}
+.port-title{font-size:1.08rem;font-weight:700;color:var(--electric);margin-bottom:.45rem;letter-spacing:-.01em;padding-right:1.8rem}
+.port-desc{font-size:.72rem;color:var(--grey);line-height:1.7;font-weight:300;max-width:34rem}
+.port-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
+.port-tag{font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,244,255,.46);border:1px solid rgba(110,179,232,.12);border-radius:20px;padding:.28rem .58rem;font-weight:600}
 
 /* MAP */
 .map-section{padding:6rem 4rem;background:var(--navy3);position:relative;overflow:hidden}
@@ -403,10 +407,42 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
 <section class="portfolio" id="portfolio">
   <div class="sec-head">
     <div class="fu"><div class="sec-label">Work</div><h2 class="sec-title">Websites that <em>convert.</em></h2></div>
-    <p class="sec-desc fu fd1">Every design decision backed by conversion data. Clean, fast, mobile-optimized — built to turn visitors into pipeline.</p>
+    <p class="sec-desc fu fd1">Live external builds hosted on Vercel. The previews below pull directly from each deployed site, so updates to those projects appear here automatically.</p>
   </div>
   <div class="port-grid">
-    <div class="port-card fu fd2"><div class="port-empty"><div class="port-empty-icon">🚀</div><div>Portfolio showcase coming soon.<br>Sites designed to generate leads, not just impressions.</div></div></div>
+    <a class="port-card fu fd1" href="https://restaurant-nocturne-mock.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open Nocturne Dubai restaurant website">
+      <div class="port-preview">
+        <span class="port-live">Live preview</span>
+        <iframe src="https://restaurant-nocturne-mock.vercel.app/" title="Nocturne Dubai restaurant website preview" loading="lazy" tabindex="-1"></iframe>
+      </div>
+      <div class="port-info">
+        <div class="port-title">Nocturne Dubai</div>
+        <div class="port-desc">High-end restaurant concept with reservation flow, tasting menus, private dining, and editorial hospitality imagery.</div>
+        <div class="port-tags"><span class="port-tag">Restaurant</span><span class="port-tag">Reservations</span><span class="port-tag">Vercel</span></div>
+      </div>
+    </a>
+    <a class="port-card fu fd2" href="https://barber-mock-codex-2.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open Miraj Grooming House barber website">
+      <div class="port-preview">
+        <span class="port-live">Live preview</span>
+        <iframe src="https://barber-mock-codex-2.vercel.app/" title="Miraj Grooming House barber website preview" loading="lazy" tabindex="-1"></iframe>
+      </div>
+      <div class="port-info">
+        <div class="port-title">Miraj Grooming House</div>
+        <div class="port-desc">Luxury Dubai barber portfolio with WhatsApp booking, service menu, barber profiles, and gallery lightbox.</div>
+        <div class="port-tags"><span class="port-tag">Barber</span><span class="port-tag">WhatsApp</span><span class="port-tag">Vercel</span></div>
+      </div>
+    </a>
+    <a class="port-card fu fd3" href="https://nail-saloon-ten.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open Blush Atelier Dubai nail salon website">
+      <div class="port-preview">
+        <span class="port-live">Live preview</span>
+        <iframe src="https://nail-saloon-ten.vercel.app/" title="Blush Atelier Dubai nail salon website preview" loading="lazy" tabindex="-1"></iframe>
+      </div>
+      <div class="port-info">
+        <div class="port-title">Blush Atelier Dubai</div>
+        <div class="port-desc">Glossy luxury nail salon concept with artist profiles, package cards, mobile gallery, and WhatsApp booking drawer.</div>
+        <div class="port-tags"><span class="port-tag">Beauty</span><span class="port-tag">Booking</span><span class="port-tag">Vercel</span></div>
+      </div>
+    </a>
   </div>
 </section>
 
