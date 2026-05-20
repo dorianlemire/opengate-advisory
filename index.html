@@ -30,6 +30,8 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy3);color:va
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.8rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .5s,padding .4s}
 nav.sc{background:rgba(7,16,24,.97);backdrop-filter:blur(24px);padding:1.1rem 4rem;border-bottom:1px solid rgba(110,179,232,.07)}
+.og-logo{display:flex;align-items:center;text-decoration:none}
+.og-logo svg{width:168px;height:auto;display:block;overflow:visible}
 .nav-logo-img{height:32px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:2.8rem}
 .nav-links a{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);text-decoration:none;position:relative;transition:color .3s;font-weight:500}
@@ -43,8 +45,8 @@ nav.sc{background:rgba(7,16,24,.97);backdrop-filter:blur(24px);padding:1.1rem 4r
 /* HERO */
 .hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.25) saturate(.7)}
-.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,var(--navy3) 15%,rgba(7,16,24,.6) 60%,rgba(7,16,24,.3));z-index:1}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.72) saturate(.92)}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,var(--navy3) 10%,rgba(7,16,24,.42) 52%,rgba(7,16,24,.1)),linear-gradient(to right,rgba(7,16,24,.9) 0%,rgba(7,16,24,.58) 38%,rgba(7,16,24,.08) 74%);z-index:1}
 canvas#pts{position:absolute;inset:0;z-index:2;opacity:.5}
 .hero-content{position:relative;z-index:3;padding:0 4rem 6rem;max-width:700px}
 .hero-eyebrow{font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;color:var(--electric3);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;font-weight:500}
@@ -79,10 +81,10 @@ h1.ht em{font-style:italic;font-weight:300;color:var(--gold)}
 /* IMAGE GRID */
 .img-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;height:420px;gap:6px;padding:6px;background:var(--navy3)}
 .ig-cell{position:relative;overflow:hidden;border-radius:8px;border:1px solid rgba(110,179,232,.08);cursor:pointer;height:100%}
-.ig-cell img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.55) saturate(.65);transition:transform .8s var(--ease),filter .5s;display:block}
-.ig-cell:hover img{transform:scale(1.06);filter:brightness(.75) saturate(.85)}
+.ig-cell img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.82) saturate(.86);transition:transform .8s var(--ease),filter .5s;display:block}
+.ig-cell:hover img{transform:scale(1.06);filter:brightness(.95) saturate(1)}
 .ig-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,16,24,.85),transparent 55%);border-radius:8px;pointer-events:none}
-.ig-label{position:absolute;bottom:1.2rem;left:1.2rem;font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(232,244,255,.4);font-weight:500;transition:color .3s}
+.ig-label{position:absolute;bottom:1.2rem;left:1.2rem;font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(232,244,255,.72);font-weight:500;transition:color .3s}
 .ig-cell:hover .ig-label{color:var(--electric3)}
 .ig-border{position:absolute;inset:0;border-radius:8px;border:1px solid transparent;transition:border-color .4s;pointer-events:none}
 .ig-cell:hover .ig-border{border-color:rgba(110,179,232,.3)}
@@ -208,6 +210,7 @@ h1.ht em{font-style:italic;font-weight:300;color:var(--gold)}
 /* FOOTER */
 footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:flex;align-items:center;justify-content:space-between;background:var(--navy3)}
 .f-logo-img{height:28px;width:auto;opacity:.4}
+.f-logo{opacity:.55}.f-logo svg{width:160px}
 .f-links{display:flex;gap:2.5rem}
 .f-links a{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(136,153,170,.2);text-decoration:none;transition:color .3s;font-weight:500}
 .f-links a:hover{color:var(--electric3)}
@@ -222,24 +225,54 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
 
 /* MOBILE */
 @media(max-width:768px){
+  html{cursor:auto}
+  .cur,.cur-ring{display:none}
   nav{padding:1.2rem 1.5rem}
   nav.sc{padding:1rem 1.5rem}
+  .og-logo svg{width:142px}
   .nav-logo-img{height:26px}
   .nav-links a:not(.nav-cta){display:none}
-  .hero-content{padding:0 1.5rem 5rem}
-  h1.ht{font-size:clamp(3rem,12vw,5rem)}
+  .hero{height:auto;min-height:100svh;align-items:flex-end}
+  .hero-bg img{object-position:62% center}
+  .hero-content{padding:6.5rem 1.5rem 4.5rem;max-width:100%}
+  .hero-eyebrow{letter-spacing:.28em;margin-bottom:1.4rem}
+  h1.ht{font-size:clamp(3rem,15vw,4.8rem);margin-bottom:1.4rem}
+  .hero-sub{font-size:.9rem;line-height:1.75;margin-bottom:2rem;max-width:100%}
+  .hero-acts{display:grid;grid-template-columns:1fr;gap:1rem;align-items:stretch}
+  .btn-e,.btn-ghost{justify-content:center;min-height:3.2rem}
   .hero-scroll{display:none}
-  .img-grid{grid-template-columns:1fr 1fr;height:280px}
+  .img-grid{grid-template-columns:1fr;height:auto}
+  .ig-cell{height:230px}
   .services,.team,.portfolio,.map-section,.cta{padding:5rem 1.5rem}
   .sec-head{grid-template-columns:1fr;gap:1.5rem;margin-bottom:3rem}
-  .svc-row{grid-template-columns:40px 40px 1fr 24px;gap:1rem}
+  .svc-row{grid-template-columns:34px 40px 1fr 20px;gap:.8rem;padding:1.3rem 0}
+  .svc-row:hover{padding:1.3rem .6rem}
   .svc-name{font-size:1.1rem}
+  .svc-desc-text{max-height:110px;opacity:1;margin-top:.55rem}
   .stats{grid-template-columns:1fr}
+  .stat{padding:2.4rem 1.5rem}
+  .stat-n{font-size:3.2rem}
   .team-grid{grid-template-columns:1fr;gap:2.5rem}
+  .team-member{padding:1.5rem}
+  .tm-top{align-items:flex-start}
   .port-grid{grid-template-columns:1fr}
   .map-grid{grid-template-columns:1fr;gap:2rem}
+  #map-container{margin-inline:-.75rem;border-radius:8px;overflow:hidden}
+  .regions{gap:.45rem}
+  .region-tag{font-size:.52rem;padding:.35rem .65rem}
+  .cta-title{font-size:clamp(2.7rem,13vw,4.2rem)}
   footer{flex-direction:column;gap:1.5rem;text-align:center;padding:2rem 1.5rem}
   .f-links{flex-wrap:wrap;justify-content:center;gap:1.2rem}
+}
+
+@media(min-width:769px) and (max-width:1100px){
+  nav{padding:1.4rem 2rem}
+  nav.sc{padding:1rem 2rem}
+  .nav-links{gap:1.4rem}
+  .nav-links a{letter-spacing:.14em}
+  .hero-content{padding-left:2rem}
+  .services,.team,.portfolio,.map-section,.cta{padding-left:2rem;padding-right:2rem}
+  .map-grid{grid-template-columns:1fr;gap:3rem}
 }
 </style>
 </head>
@@ -249,7 +282,24 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
 <div class="cur-ring" id="curRing"></div>
 
 <nav id="nav">
-  <a href="#"><img src="images/logo-light.png" alt="Opengate Advisory" class="nav-logo-img"></a>
+  <a href="#" class="og-logo" aria-label="OpenGate Advisory home">
+    <svg viewBox="0 0 384 82" role="img" aria-label="OpenGate Advisory">
+      <defs>
+        <linearGradient id="ogGold" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#e8c97a"/>
+          <stop offset="1" stop-color="#a77808"/>
+        </linearGradient>
+        <linearGradient id="ogBlue" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#f7fbff"/>
+          <stop offset="1" stop-color="#6EB3E8"/>
+        </linearGradient>
+      </defs>
+      <rect x="2" y="8" width="58" height="58" rx="4" fill="#071018" stroke="rgba(232,244,255,.24)" stroke-width="2"/>
+      <path d="M15 20h33v33h-10V37.5L20.5 55 13 47.5 30.5 30H15z" fill="url(#ogGold)"/>
+      <text x="74" y="39" fill="url(#ogBlue)" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-1.8">OpenGate</text>
+      <text x="76" y="63" fill="#C9A84C" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="19" font-weight="300">Advisory</text>
+    </svg>
+  </a>
   <div class="nav-links">
     <a href="#services">Services</a>
     <a href="#team">Team</a>
@@ -261,7 +311,7 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
 </nav>
 
 <section class="hero">
-  <div class="hero-bg"><img src="images/dubai-skyline.jpg" alt="Dubai Skyline" onerror="this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80'"></div>
+  <div class="hero-bg"><img src="dubai-skyline.jpg" alt="Dubai Skyline" onerror="this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80'"></div>
   <div class="hero-gradient"></div>
   <canvas id="pts"></canvas>
   <div class="hero-content">
@@ -302,9 +352,9 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
 </div>
 
 <div class="img-grid">
-  <div class="ig-cell"><img src="images/business-meeting.jpg" alt="Executive Meetings" onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Executive Meetings</div></div>
-  <div class="ig-cell"><img src="images/hand-shake.jpg" alt="Partnerships" onerror="this.src='https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Partnerships</div></div>
-  <div class="ig-cell"><img src="images/strategy-whiteboard.jpg" alt="GTM Strategy" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">GTM Strategy</div></div>
+  <div class="ig-cell"><img src="business-meeting.jpg" alt="Executive Meetings" onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Executive Meetings</div></div>
+  <div class="ig-cell"><img src="hand-shake.jpg" alt="Partnerships" onerror="this.src='https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Partnerships</div></div>
+  <div class="ig-cell"><img src="strategy-whiteboard.jpg" alt="GTM Strategy" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">GTM Strategy</div></div>
 </div>
 
 <section class="services" id="services">
@@ -336,13 +386,13 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   </div>
   <div class="team-grid">
     <div class="team-member fu">
-      <div class="tm-top"><div class="tm-avatar"><img src="images/Georges.jpeg" alt="Georges Lemire"></div><div><div class="tm-name">Georges Lemire</div><div class="tm-role">Founder · Principal Advisor</div></div></div>
+      <div class="tm-top"><div class="tm-avatar"><img src="Georges.jpeg" alt="Georges Lemire"></div><div><div class="tm-name">Georges Lemire</div><div class="tm-role">Founder · Principal Advisor</div></div></div>
       <p class="tm-bio">Former Managing Director France & Regional Director MEA at Cisco. 25+ years growing technology businesses across Europe, Middle East and Africa. Built and scaled sales organizations from zero to multi-million ARR across EMEA.</p>
       <div class="tm-highlights"><div class="tm-highlight">Managing Director France — Cisco</div><div class="tm-highlight">Regional Director Middle East Africa — Cisco</div><div class="tm-highlight">Director Operations Sales EMEAR — Cisco</div><div class="tm-highlight">Area VP EMEA — Neat</div></div>
       <a href="https://www.linkedin.com/in/georgeslemire/" target="_blank" class="tm-linkedin">↗ LinkedIn Profile</a>
     </div>
     <div class="team-member fu fd1">
-      <div class="tm-top"><div class="tm-avatar"><img src="images/Dorian.jpeg" alt="Dorian Lemire"></div><div><div class="tm-name">Dorian Lemire</div><div class="tm-role">Website Designer · Revenue Growth Strategist</div></div></div>
+      <div class="tm-top"><div class="tm-avatar"><img src="Dorian.jpeg" alt="Dorian Lemire"></div><div><div class="tm-name">Dorian Lemire</div><div class="tm-role">Website Designer · Revenue Growth Strategist</div></div></div>
       <p class="tm-bio">Designs web experiences that generate measurable pipeline. Every site built to convert — not just look good. Specializes in B2B SaaS and enterprise tech, turning traffic into qualified meetings through data-driven design and conversion optimization.</p>
       <div class="tm-highlights"><div class="tm-highlight">3.2x average increase in lead capture rates</div><div class="tm-highlight">47% reduction in sales cycle length post-redesign</div><div class="tm-highlight">Conversion-focused UI/UX for B2B tech</div><div class="tm-highlight">Revenue attribution modeling & analytics</div></div>
       <a href="https://www.linkedin.com/in/dorian-lemire" target="_blank" class="tm-linkedin">↗ LinkedIn Profile</a>
@@ -389,7 +439,14 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
 </section>
 
 <footer>
-  <img src="images/logo-light.png" alt="Opengate Advisory" class="f-logo-img">
+  <a href="#" class="og-logo f-logo" aria-label="OpenGate Advisory home">
+    <svg viewBox="0 0 384 82" role="img" aria-label="OpenGate Advisory">
+      <rect x="2" y="8" width="58" height="58" rx="4" fill="#071018" stroke="rgba(232,244,255,.2)" stroke-width="2"/>
+      <path d="M15 20h33v33h-10V37.5L20.5 55 13 47.5 30.5 30H15z" fill="#C9A84C"/>
+      <text x="74" y="39" fill="#E8F4FF" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-1.8">OpenGate</text>
+      <text x="76" y="63" fill="#C9A84C" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="19" font-weight="300">Advisory</text>
+    </svg>
+  </a>
   <div class="f-links"><a href="#services">Services</a><a href="#team">Team</a><a href="#portfolio">Portfolio</a><a href="#regions">Regions</a><a href="https://www.linkedin.com/in/georgeslemire/" target="_blank">LinkedIn</a><a href="#contact">Contact</a></div>
   <div class="f-copy">© 2025 Opengate Advisory · Dubai, UAE</div>
 </footer>
