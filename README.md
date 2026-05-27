@@ -1,22 +1,41 @@
-# OpenGate Advisory Original Refresh
+# The District Barbers Dubai
 
-This is a quick rebuild based on the original `indexOpenGateE.html`.
+Static website concept for The District Barbers at Al Safa Park Complex, Dubai.
 
-## What changed
+## Files
 
-- Kept the original structure, font, GSAP animations, hover effects, marquee, services, team, portfolio, CTA, and EMEA map.
-- Replaced the stock/fallback image set with new lighter, realistic AI-generated business imagery.
-- Kept the provided Dorian and Georges profile pictures.
-- Replaced the top-left logo image with a compact inline SVG logo based on the provided logo direction.
-- Improved responsive behavior for mobile and tablet without rebuilding the site as mobile-first.
-- Copied local image assets beside `index.html` and updated image paths to root-level filenames for GitHub/Vercel deployment.
+- `index.html` - single-file static site with embedded CSS/JS
+- Root images - referenced directly by the HTML for GitHub/Vercel reliability
+- `images/` - duplicate backup copy of the image assets
+- `favicon.svg` - browser tab icon
+- `before-cut.jpg` / `after-cut.jpg` - interactive before/after haircut reveal assets
 
-## Deploy
+## Deployment
 
-Push this folder to GitHub, then import it into Vercel as a static site:
+Vercel settings:
 
 - Framework preset: `Other`
-- Build command: empty
-- Output directory: empty
+- Build command: leave empty
+- Output directory: leave empty
 
-`index.html` references root-level image files such as `dubai-skyline.jpg`, `business-meeting.jpg`, `Georges.jpeg`, and `Dorian.jpeg`. The old `images/` folder can be ignored.
+## Public Business Details Used
+
+- Business name: The District Barbers
+- Category: Gents salon / beauty salon listing
+- Location: B4 4, 16 Street, Ground Floor, Shop 3, Al Safa 1, Jumeirah, Dubai
+- Coordinates used for map: `25.178762, 55.241978`
+- Hours: daily, 10:00 AM to 10:00 PM
+- Listed features: over-the-phone booking, on-site parking, cards/mobile payments/cash
+- Confirmed phone number: `+971 4 591 1509`
+- Instagram public profile: `@thedistrictbarbersdxb`
+
+Sources checked:
+
+- HiDubai: https://www.hidubai.com/businesses/the-district-barbers-beauty-wellness-health-beauty-salons-al-safa-1-dubai
+- Instagram public profile: https://www.instagram.com/thedistrictbarbersdxb/
+
+## Notes To Confirm Before Client Use
+
+- Prices are realistic Dubai barber menu estimates and should be confirmed with the business.
+- Individual staff names were not public, so the site uses chair-based booking options instead of fake staff names.
+- The visible website does not use "mock" or "placeholder" wording.
