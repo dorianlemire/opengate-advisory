@@ -1,11 +1,16 @@
 # OpenGate Advisory Original Refresh
 
-This is a quick rebuild based on the original `indexOpenGateE.html`.
+Static OpenGate Advisory website with separate portfolio pages for technology and real estate partner presentations.
 
 ## What changed
 
-- Kept the original structure, font, GSAP animations, hover effects, marquee, services, team, portfolio, CTA, and EMEA map.
-- Replaced the stock/fallback image set with new lighter, realistic AI-generated business imagery.
+- Kept the landing page focused on OpenGate services, team, and CTA.
+- Moved portfolio content off the landing page into a dropdown menu with two dedicated pages:
+  - `technology.html` for Morbit Software Ltd.
+  - `real-estate.html` for Bellevue Residencies.
+- Replaced the hero with a brighter, more natural business image.
+- Added the real Morbit SVG logo.
+- Added a more detailed Sri Lanka sales map with roads, mountains, terrain shading, and key location labels.
 - Kept the provided Dorian and Georges profile pictures.
 - Replaced the top-left logo image with a compact inline SVG logo based on the provided logo direction.
 - Improved responsive behavior for mobile and tablet without rebuilding the site as mobile-first.
@@ -19,4 +24,4 @@ Push this folder to GitHub, then import it into Vercel as a static site:
 - Build command: empty
 - Output directory: empty
 
-`index.html` references root-level image files for Vercel/GitHub reliability: `dubai-skyline.jpg`, `business-meeting.jpg`, `Georges.jpeg`, `Dorian.jpeg`, `morbit-tech.png`, and `bellevue-residencies.png`. Backup copies of the new partner visuals are also stored in `images/`.
+The HTML files reference root-level image files for Vercel/GitHub reliability: `hero-bright.jpg`, `morbit-office.jpg`, `bellevue-site.jpg`, `business-meeting.jpg`, `hand-shake.jpg`, `strategy-whiteboard.jpg`, `Georges.jpeg`, `Dorian.jpeg`, and `morbit-logo.svg`. Backup copies of new partner visuals are also stored in `images/`.

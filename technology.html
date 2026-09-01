@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morbit Software Ltd. — OpenGate Technology Portfolio</title>
+<meta name="description" content="OpenGate Advisory technology portfolio section introducing Morbit Software Ltd. for South EMEA and SEA expansion.">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#071018;--panel:#0a1520;--line:rgba(110,179,232,.14);--text:#e8f4ff;--muted:#8da0b2;--blue:#6eb3e8;--gold:#c9a84c;--green:#54d6a0}
+html{scroll-behavior:smooth}body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--ink);color:var(--text);overflow-x:hidden}
+nav{position:fixed;inset:0 0 auto;z-index:30;height:86px;padding:0 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(7,16,24,.88);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+.og-logo svg{width:210px;display:block}.nav-links{display:flex;align-items:center;gap:2.5rem}.nav-links a,.nav-drop{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;background:0;border:0;font:inherit;cursor:pointer}.nav-links a:hover,.nav-drop:hover{color:var(--text)}
+.nav-item{position:relative;min-height:42px;display:flex;align-items:center}.nav-drop::after{content:'⌄';margin-left:.4rem;color:var(--blue)}.dropdown{position:absolute;top:100%;left:50%;transform:translate(-50%,10px);min-width:260px;padding:.55rem;background:rgba(7,16,24,.98);border:1px solid var(--line);border-radius:8px;box-shadow:0 24px 55px rgba(0,0,0,.28);opacity:0;visibility:hidden;pointer-events:none;transition:.25s}.nav-item:hover .dropdown,.nav-item:focus-within .dropdown{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}.dropdown a{display:block;padding:.85rem 1rem;border-radius:6px}.dropdown a span{display:block;margin-top:.25rem;font-size:.58rem;letter-spacing:.04em;text-transform:none;color:var(--muted);line-height:1.45}.dropdown a:hover{background:rgba(110,179,232,.08)}
+.nav-links .nav-cta{display:inline-flex;align-items:center;justify-content:center;color:var(--ink)!important;background:var(--text)!important;padding:.72rem 1.3rem;border-radius:3px;font-weight:800!important}
+.hero{min-height:100svh;padding:8rem 4rem 4rem;display:grid;grid-template-columns:.95fr 1.05fr;gap:3rem;align-items:end;background:radial-gradient(circle at 70% 30%,rgba(84,214,160,.12),transparent 34%),linear-gradient(180deg,#0c1d2b,var(--ink))}
+.hero-copy{max-width:690px}.eyebrow{font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--blue);font-weight:800;margin-bottom:1.5rem}.morbit-logo{width:min(360px,82vw);margin-bottom:2.4rem;filter:drop-shadow(0 20px 40px rgba(0,0,0,.22))}
+h1{font-size:clamp(3.2rem,6.2vw,7.5rem);line-height:.92;letter-spacing:-.06em;margin-bottom:1.6rem}h1 em{font-style:italic;font-weight:300;color:var(--green)}p{font-size:1rem;line-height:1.9;color:var(--muted);font-weight:300}.actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.4rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:.9rem 1.35rem;border:1px solid var(--line);border-radius:3px;color:var(--text);text-decoration:none;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800}.btn.primary{background:var(--text);color:var(--ink)}.btn:hover{border-color:var(--blue);transform:translateY(-1px)}
+.hero-media{position:relative;min-height:580px;border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.35)}.hero-media img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.95) brightness(.88)}.media-card{position:absolute;left:1rem;right:1rem;bottom:1rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(232,244,255,.14);border:1px solid rgba(232,244,255,.12);backdrop-filter:blur(18px)}.media-card div{background:rgba(7,16,24,.72);padding:1rem}.media-card strong{display:block;font-size:1.35rem;margin-bottom:.25rem}.media-card span{font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.section{padding:6rem 4rem}.split{display:grid;grid-template-columns:.8fr 1.2fr;gap:4rem;align-items:start}.sec-title{font-size:clamp(2rem,3.8vw,4rem);line-height:1;letter-spacing:-.04em}.sec-title em{font-style:italic;font-weight:300;color:var(--green)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}.card{background:var(--panel);padding:1.6rem;min-height:220px}.card small{font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);font-weight:800}.card h3{font-size:1.25rem;letter-spacing:-.03em;margin:1.2rem 0 .8rem}.card p{font-size:.82rem;line-height:1.75}
+.band{margin:0 4rem 5rem;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;background:rgba(232,244,255,.025)}.band img{width:100%;height:420px;object-fit:cover;filter:saturate(.96)}.band-copy{padding:3rem;display:flex;flex-direction:column;justify-content:center}.tag-row{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.5rem}.tag{border:1px solid var(--line);border-radius:30px;padding:.45rem .8rem;font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text);font-weight:800}
+footer{padding:2.2rem 4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:rgba(141,160,178,.55);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase}
+@media(max-width:820px){nav{height:66px;padding:0 1rem}.og-logo svg{width:150px}.nav-links a:not(.nav-cta),.nav-item{display:none}.nav-cta{font-size:.55rem;padding:.68rem .82rem;white-space:nowrap}.hero,.split,.band{grid-template-columns:1fr}.hero{padding:6.8rem 1.5rem 3rem;gap:2rem}.hero-media{min-height:360px}.media-card{grid-template-columns:1fr}.section{padding:4.5rem 1.5rem}.grid{grid-template-columns:1fr}.band{margin:0 1.5rem 4rem}.band-copy{padding:1.4rem}.band img{height:280px}footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="og-logo" aria-label="OpenGate Advisory home">
+    <svg viewBox="0 0 384 82" role="img" aria-label="OpenGate Advisory"><rect x="2" y="8" width="58" height="58" rx="4" fill="#071018" stroke="rgba(232,244,255,.24)" stroke-width="2"/><path d="M15 20h33v33h-10V37.5L20.5 55 13 47.5 30.5 30H15z" fill="#C9A84C"/><text x="74" y="39" fill="#E8F4FF" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-1.8">OpenGate</text><text x="76" y="63" fill="#C9A84C" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="19" font-weight="300">Advisory</text></svg>
+  </a>
+  <div class="nav-links"><a href="index.html#services">Services</a><a href="index.html#team">Team</a><div class="nav-item"><button class="nav-drop">Portfolio</button><div class="dropdown"><a href="technology.html">Technology <span>Morbit Software Ltd.</span></a><a href="real-estate.html">Real Estate <span>Bellevue Residencies</span></a></div></div><a href="index.html#contact">Contact</a><a class="nav-cta" href="https://outlook.office.com/book/DiscoveryCall30minutes@morbit.co.uk/" target="_blank">Book a Call</a></div>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Technology Portfolio</div>
+      <img class="morbit-logo" src="morbit-logo.svg" alt="Morbit Software Ltd. logo">
+      <h1>Smart building intelligence for <em>international growth.</em></h1>
+      <p>Morbit Software Ltd. brings IT, AV, IoT, and smart-building operations into one cloud view. OpenGate’s role is to help translate that technical value into clear enterprise conversations across South EMEA and SEA.</p>
+      <div class="actions"><a class="btn primary" href="https://www.morbit.co.uk/" target="_blank">Visit Morbit</a><a class="btn" href="index.html#contact">Discuss Expansion</a></div>
+    </div>
+    <div class="hero-media">
+      <img src="morbit-office.jpg" alt="Modern connected workplace and smart office environment">
+      <div class="media-card"><div><strong>IT</strong><span>Operations</span></div><div><strong>AV</strong><span>Room Health</span></div><div><strong>IoT</strong><span>Building Data</span></div></div>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div><div class="eyebrow">What They Do</div><h2 class="sec-title">A cloud platform for buildings that need <em>clarity.</em></h2></div>
+    <div class="grid">
+      <article class="card"><small>Visibility</small><h3>Unified estate monitoring</h3><p>Bring workplace devices, meeting rooms, environmental signals, and operational systems into one easier view for teams managing distributed buildings.</p></article>
+      <article class="card"><small>Performance</small><h3>Smarter room experiences</h3><p>Help operators understand room health, utilization patterns, and service issues before they become daily friction for employees and guests.</p></article>
+      <article class="card"><small>Commercial</small><h3>Partner-ready expansion</h3><p>Position Morbit for integrators, landlords, enterprise IT teams, and regional channel partners who already serve the built environment.</p></article>
+    </div>
+  </section>
+
+  <section class="band">
+    <img src="hero-bright.jpg" alt="International business discussion in bright modern office">
+    <div class="band-copy">
+      <div class="eyebrow">OpenGate Angle</div>
+      <h2 class="sec-title">From technical product to <em>regional revenue story.</em></h2>
+      <p>For software partners, the job is not only presentation. It is market selection, channel narrative, buyer targeting, local introductions, and a sales motion that respects how enterprise buying actually happens in each region.</p>
+      <div class="tag-row"><span class="tag">Landlords</span><span class="tag">Enterprise IT</span><span class="tag">Systems Integrators</span><span class="tag">Smart Infrastructure</span></div>
+    </div>
+  </section>
+</main>
+
+<footer><span>OpenGate Advisory · Technology</span><span>South EMEA · SEA</span></footer>
+</body>
+</html>

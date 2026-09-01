@@ -39,6 +39,17 @@ nav.sc{background:rgba(7,16,24,.97);backdrop-filter:blur(24px);padding:.95rem 4r
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--electric3);transition:width .4s var(--ease)}
 .nav-links a:hover{color:var(--electric)}
 .nav-links a:hover::after{width:100%}
+.nav-item{position:relative;display:flex;align-items:center;min-height:42px}
+.nav-drop{display:flex;align-items:center;gap:.35rem;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);background:transparent;border:0;font:inherit;cursor:pointer}
+.nav-drop::after{content:'⌄';font-size:.8rem;color:var(--electric3);line-height:1;transform:translateY(-1px);transition:transform .25s}
+.nav-item:hover .nav-drop,.nav-item:focus-within .nav-drop{color:var(--electric)}
+.nav-item:hover .nav-drop::after,.nav-item:focus-within .nav-drop::after{transform:translateY(1px) rotate(180deg)}
+.dropdown{position:absolute;top:100%;left:50%;transform:translate(-50%,10px);min-width:260px;padding:.55rem;background:rgba(7,16,24,.96);border:1px solid rgba(110,179,232,.14);border-radius:8px;box-shadow:0 24px 55px rgba(0,0,0,.28);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,transform .25s,visibility .25s;backdrop-filter:blur(18px)}
+.nav-item:hover .dropdown,.nav-item:focus-within .dropdown{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+.dropdown a{display:block;padding:.9rem 1rem;border-radius:6px;color:rgba(232,244,255,.78)!important;letter-spacing:.16em}
+.dropdown a::after{display:none}
+.dropdown a span{display:block;margin-top:.25rem;font-size:.58rem;letter-spacing:.04em;text-transform:none;color:var(--grey);line-height:1.45;font-weight:300}
+.dropdown a:hover{background:rgba(110,179,232,.08);color:var(--electric)!important}
 .nav-cta{color:var(--navy)!important;background:var(--electric);padding:.6rem 1.5rem;border-radius:3px;font-weight:700!important;transition:background .3s,transform .2s!important}
 .nav-cta::after{display:none!important}
 .nav-cta:hover{background:var(--electric2)!important;transform:translateY(-1px)}
@@ -166,7 +177,7 @@ h1.ht em{font-style:italic;font-weight:300;color:var(--gold)}
 .port-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
 .port-tag{font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,244,255,.46);border:1px solid rgba(110,179,232,.12);border-radius:20px;padding:.28rem .58rem;font-weight:600}
 
-/* PARTNERS */
+/* PARTNER PAGE COMPONENTS */
 .partners{padding:7rem 4rem;background:linear-gradient(180deg,var(--navy3),var(--navy2));position:relative;overflow:hidden}
 .partners::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 10%,rgba(201,168,76,.045),transparent 42%),radial-gradient(ellipse at 78% 55%,rgba(110,179,232,.05),transparent 50%);pointer-events:none}
 .partners-intro{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:4rem;align-items:end;margin-bottom:3.5rem}
@@ -248,7 +259,7 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   .og-logo svg{width:150px}
   .nav-logo-img{height:26px}
   .nav-links{gap:0}
-  .nav-links a:not(.nav-cta){display:none}
+  .nav-links a:not(.nav-cta),.nav-item{display:none}
   .nav-cta{font-size:.55rem;letter-spacing:.1em;padding:.68rem .82rem;white-space:nowrap}
   .hero{height:auto;min-height:100svh;align-items:flex-end}
   .hero-bg img{object-position:62% center}
@@ -261,7 +272,7 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   .hero-scroll{display:none}
   .img-grid{grid-template-columns:1fr;height:auto}
   .ig-cell{height:230px}
-  .services,.team,.portfolio,.partners,.cta{padding:5rem 1.5rem}
+  .services,.team,.cta{padding:5rem 1.5rem}
   .sec-head{grid-template-columns:1fr;gap:1.5rem;margin-bottom:3rem}
   .svc-row{grid-template-columns:28px 40px minmax(0,1fr) 18px;gap:.75rem;padding:1.35rem 0;align-items:start}
   .svc-row:hover,.svc-row.is-open{padding:1.35rem .65rem}
@@ -299,7 +310,7 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   .nav-links{gap:1.4rem}
   .nav-links a{letter-spacing:.14em}
   .hero-content{padding-left:2rem}
-  .services,.team,.portfolio,.partners,.cta{padding-left:2rem;padding-right:2rem}
+  .services,.team,.cta{padding-left:2rem;padding-right:2rem}
   .partners-intro,.partner-panel,.partner-panel.reverse,.bellevue-body{grid-template-columns:1fr}
 }
 </style>
@@ -331,15 +342,20 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   <div class="nav-links">
     <a href="#services">Services</a>
     <a href="#team">Team</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#partners">Partners</a>
+    <div class="nav-item">
+      <button class="nav-drop" type="button">Portfolio</button>
+      <div class="dropdown" aria-label="Portfolio sections">
+        <a href="technology.html">Technology <span>Morbit Software Ltd. partner presentation</span></a>
+        <a href="real-estate.html">Real Estate <span>Bellevue Residencies in Ja-Ela, Sri Lanka</span></a>
+      </div>
+    </div>
     <a href="#contact">Contact</a>
     <a href="https://outlook.office.com/book/DiscoveryCall30minutes@morbit.co.uk/" target="_blank" class="nav-cta">Book a Call</a>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-bg"><img src="dubai-skyline.jpg" alt="Dubai Skyline" onerror="this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80'"></div>
+  <div class="hero-bg"><img src="hero-bright.jpg" alt="International business meeting in a bright modern office" onerror="this.src='https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=80'"></div>
   <div class="hero-gradient"></div>
   <canvas id="pts"></canvas>
   <div class="hero-content">
@@ -381,9 +397,9 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
 </div>
 
 <div class="img-grid">
-  <div class="ig-cell"><img src="morbit-tech.png" alt="Smart building technology" onerror="this.src='https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Smart Building Tech</div></div>
-  <div class="ig-cell"><img src="bellevue-residencies.png" alt="Residential real estate towers" onerror="this.src='https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=700&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">SEA Real Estate</div></div>
-  <div class="ig-cell"><img src="business-meeting.jpg" alt="International partnerships" onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Partner-Led Growth</div></div>
+  <div class="ig-cell"><img src="business-meeting.jpg" alt="Executive meetings" onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Executive Meetings</div></div>
+  <div class="ig-cell"><img src="hand-shake.jpg" alt="Partnership handshake" onerror="this.src='https://images.unsplash.com/photo-1573164713988-8665fc963095?w=700&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Channel Partnerships</div></div>
+  <div class="ig-cell"><img src="strategy-whiteboard.jpg" alt="GTM strategy workshop" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">GTM Strategy</div></div>
 </div>
 
 <section class="services" id="services">
@@ -429,130 +445,6 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   </div>
 </section>
 
-<section class="portfolio" id="portfolio">
-  <div class="sec-head">
-    <div class="fu"><div class="sec-label">Work</div><h2 class="sec-title">Websites that <em>convert.</em></h2></div>
-    <p class="sec-desc fu fd1">Live external builds hosted on Vercel. The previews below pull directly from each deployed site, so updates to those projects appear here automatically.</p>
-  </div>
-  <div class="port-grid">
-    <a class="port-card fu fd1" href="https://restaurant-nocturne-mock.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open Nocturne Dubai restaurant website">
-      <div class="port-preview">
-        <span class="port-live">Live preview</span>
-        <iframe src="https://restaurant-nocturne-mock.vercel.app/" title="Nocturne Dubai restaurant website preview" loading="lazy" tabindex="-1"></iframe>
-      </div>
-      <div class="port-info">
-        <div class="port-title">Nocturne Dubai</div>
-        <div class="port-desc">High-end restaurant concept with reservation flow, tasting menus, private dining, and editorial hospitality imagery.</div>
-        <div class="port-tags"><span class="port-tag">Restaurant</span><span class="port-tag">Reservations</span><span class="port-tag">Vercel</span></div>
-      </div>
-    </a>
-    <a class="port-card fu fd2" href="https://barber-mock-codex-2.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open Miraj Grooming House barber website">
-      <div class="port-preview">
-        <span class="port-live">Live preview</span>
-        <iframe src="https://barber-mock-codex-2.vercel.app/" title="Miraj Grooming House barber website preview" loading="lazy" tabindex="-1"></iframe>
-      </div>
-      <div class="port-info">
-        <div class="port-title">Miraj Grooming House</div>
-        <div class="port-desc">Luxury Dubai barber portfolio with WhatsApp booking, service menu, barber profiles, and gallery lightbox.</div>
-        <div class="port-tags"><span class="port-tag">Barber</span><span class="port-tag">WhatsApp</span><span class="port-tag">Vercel</span></div>
-      </div>
-    </a>
-    <a class="port-card fu fd3" href="https://nail-saloon-ten.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open Blush Atelier Dubai nail salon website">
-      <div class="port-preview">
-        <span class="port-live">Live preview</span>
-        <iframe src="https://nail-saloon-ten.vercel.app/" title="Blush Atelier Dubai nail salon website preview" loading="lazy" tabindex="-1"></iframe>
-      </div>
-      <div class="port-info">
-        <div class="port-title">Blush Atelier Dubai</div>
-        <div class="port-desc">Glossy luxury nail salon concept with artist profiles, package cards, mobile gallery, and WhatsApp booking drawer.</div>
-        <div class="port-tags"><span class="port-tag">Beauty</span><span class="port-tag">Booking</span><span class="port-tag">Vercel</span></div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<section class="partners" id="partners">
-  <div class="partners-intro">
-    <div class="fu"><div class="sec-label">Partners</div><h2 class="sec-title">Built with operators,<br><em>not spectators.</em></h2></div>
-    <p class="sec-desc fu fd1">OpenGate connects international ambition with active partner opportunities in software, smart infrastructure, and high-potential real estate. The focus is practical: qualified buyers, credible channels, and regional stories that sell.</p>
-  </div>
-
-  <div class="partner-stack">
-    <article class="partner-panel fu">
-      <div class="partner-copy">
-        <div>
-          <div class="partner-kicker">Technology Partner</div>
-          <div class="partner-logo"><div class="partner-mark">M</div><div class="partner-word">Morbit <span>Software Ltd.</span></div></div>
-          <h3 class="partner-title">Smart building intelligence for <em>modern operators.</em></h3>
-          <p class="partner-desc">Morbit gives landlords, operators, and enterprise teams a cleaner way to see how buildings, rooms, devices, and workspaces are performing. For OpenGate, it represents the kind of technology partner we can help position, introduce, and commercialize across South EMEA and SEA.</p>
-        </div>
-        <div>
-          <div class="partner-pills"><span class="partner-pill">Smart Buildings</span><span class="partner-pill">Workplace Data</span><span class="partner-pill">UC Monitoring</span><span class="partner-pill">Enterprise Software</span></div>
-          <div class="partner-metrics">
-            <div class="partner-metric"><strong>B2B</strong><span>Technology Sales</span></div>
-            <div class="partner-metric"><strong>SEA</strong><span>Expansion Ready</span></div>
-            <div class="partner-metric"><strong>EMEA</strong><span>Partner Channels</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="partner-visual">
-        <img src="morbit-tech.png" alt="Smart building technology control room">
-        <div class="visual-tag"><strong>Morbit Software Ltd.</strong><span>Technology</span></div>
-      </div>
-    </article>
-
-    <article class="partner-panel reverse fu fd1">
-      <div class="partner-visual">
-        <img src="bellevue-residencies.png" alt="Bellevue Residencies residential towers in a tropical setting">
-        <div class="visual-tag"><strong>Bellevue Residencies</strong><span>Ja-Ela</span></div>
-      </div>
-      <div class="partner-copy">
-        <div>
-          <div class="partner-kicker">Real Estate Partner</div>
-          <h3 class="partner-title">Two planned towers in Sri Lanka's <em>Colombo-airport corridor.</em></h3>
-          <p class="partner-desc">Bellevue Residencies is planned for Q2 2028 handover in the Ja-Ela area, placing buyers between Colombo, Bandaranaike International Airport, Negombo's coastal lifestyle, and the fast-growing northern approach to the capital. The sales story is simple: urban access, greener surroundings, and a region that still feels early enough for long-term upside.</p>
-        </div>
-        <div class="bellevue-notes">
-          <div class="bellevue-note"><strong>Buyer Angle</strong><span>Positioned for diaspora buyers, frequent travelers, investors, and families who want Colombo access without living inside the densest city core.</span></div>
-          <div class="bellevue-note"><strong>Local Appeal</strong><span>Close to the airport corridor, coastal escapes, schools, retail, and everyday services around Ja-Ela and Tudella.</span></div>
-          <div class="bellevue-note"><strong>Launch Story</strong><span>Use early reservation content, realistic renders, unit plans, and investor packs once final imagery is available.</span></div>
-          <div class="bellevue-note"><strong>OpenGate Role</strong><span>Create the commercial narrative, lead capture funnel, partner outreach, and buyer qualification workflow.</span></div>
-        </div>
-      </div>
-    </article>
-
-    <div class="bellevue-body fu fd2">
-      <div>
-        <div class="sec-label">Sri Lanka Map</div>
-        <h3 class="map-title">Ja-Ela gives Bellevue a practical <em>western-province story.</em></h3>
-        <p class="map-desc">The map below frames the project against Colombo, the airport, Negombo, Kandy, and Galle, helping overseas buyers immediately understand where the towers sit in relation to Sri Lanka's most recognizable business, travel, and lifestyle points.</p>
-        <div class="partner-pills"><span class="partner-pill">Ja-Ela / Tudella</span><span class="partner-pill">Colombo Access</span><span class="partner-pill">Airport Corridor</span><span class="partner-pill">Q2 2028 Handover</span></div>
-      </div>
-      <div class="bellevue-map" aria-label="Illustrative Sri Lanka location map showing Bellevue Residencies near Ja-Ela">
-        <svg class="sl-map" viewBox="0 0 520 620" role="img" aria-label="Sri Lanka map with Ja-Ela, Colombo, airport, Negombo, Kandy and Galle">
-          <defs>
-            <linearGradient id="islandFill" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="rgba(110,179,232,.26)"/>
-              <stop offset="1" stop-color="rgba(201,168,76,.18)"/>
-            </linearGradient>
-          </defs>
-          <path d="M285 36c44 28 73 81 90 137 22 72 54 109 73 178 22 80-12 165-80 209-62 40-145 36-202-6-60-44-91-124-75-200 13-62 50-96 61-158 14-79 54-132 133-160Z" fill="url(#islandFill)" stroke="rgba(232,244,255,.22)" stroke-width="2"/>
-          <path class="map-route" d="M178 291 C205 276, 226 258, 242 230"/>
-          <path class="map-route" d="M196 250 C218 232, 240 218, 268 203"/>
-          <path class="map-route" d="M210 265 C257 285, 310 320, 352 362"/>
-          <path class="map-route" d="M170 312 C183 390, 214 470, 254 539"/>
-        </svg>
-        <div class="map-pin primary" style="left:36%;top:43%"><span class="pin-dot"></span><span class="pin-label">Bellevue · Ja-Ela</span></div>
-        <div class="map-pin" style="left:31%;top:50%"><span class="pin-dot"></span><span class="pin-label">Colombo</span></div>
-        <div class="map-pin" style="left:47%;top:34%"><span class="pin-dot"></span><span class="pin-label">Airport</span></div>
-        <div class="map-pin" style="left:43%;top:29%"><span class="pin-dot"></span><span class="pin-label">Negombo</span></div>
-        <div class="map-pin" style="left:68%;top:59%"><span class="pin-dot"></span><span class="pin-label">Kandy</span></div>
-        <div class="map-pin" style="left:49%;top:86%"><span class="pin-dot"></span><span class="pin-label">Galle</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="cta" id="contact">
   <div class="cta-g1"></div><div class="cta-g2"></div>
   <div class="cta-ey fu">Let's Talk</div>
@@ -571,7 +463,7 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
       <text x="76" y="63" fill="#C9A84C" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="19" font-weight="300">Advisory</text>
     </svg>
   </a>
-  <div class="f-links"><a href="#services">Services</a><a href="#team">Team</a><a href="#portfolio">Portfolio</a><a href="#partners">Partners</a><a href="https://www.linkedin.com/in/georgeslemire/" target="_blank">LinkedIn</a><a href="#contact">Contact</a></div>
+  <div class="f-links"><a href="#services">Services</a><a href="#team">Team</a><a href="technology.html">Technology</a><a href="real-estate.html">Real Estate</a><a href="https://www.linkedin.com/in/georgeslemire/" target="_blank">LinkedIn</a><a href="#contact">Contact</a></div>
   <div class="f-copy">© 2025 Opengate Advisory · Dubai, UAE</div>
 </footer>
 
