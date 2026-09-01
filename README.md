@@ -19,4 +19,4 @@ Push this folder to GitHub, then import it into Vercel as a static site:
 - Build command: empty
 - Output directory: empty
 
-`index.html` references root-level image files such as `dubai-skyline.jpg`, `business-meeting.jpg`, `Georges.jpeg`, and `Dorian.jpeg`. The old `images/` folder can be ignored.
+`index.html` references root-level image files for Vercel/GitHub reliability: `dubai-skyline.jpg`, `business-meeting.jpg`, `Georges.jpeg`, `Dorian.jpeg`, `morbit-tech.png`, and `bellevue-residencies.png`. Backup copies of the new partner visuals are also stored in `images/`.

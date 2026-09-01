@@ -3,16 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Opengate Advisory — EMEA Sales Leadership & Revenue Growth</title>
-<meta name="description" content="Senior sales leadership, business development, and revenue-focused website design for international companies targeting EMEA. Based in Dubai.">
+<title>Opengate Advisory — South EMEA & SEA Market Entry</title>
+<meta name="description" content="Senior sales leadership, business development, partner development, and revenue-focused website design for international companies targeting South EMEA and SEA. Based in Dubai.">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -31,10 +29,10 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy3);color:va
 .cur-ring.ex{width:54px;height:54px;border-color:rgba(201,168,76,.5)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.8rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .5s,padding .4s}
-nav.sc{background:rgba(7,16,24,.97);backdrop-filter:blur(24px);padding:1.1rem 4rem;border-bottom:1px solid rgba(110,179,232,.07)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.55rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .5s,padding .4s}
+nav.sc{background:rgba(7,16,24,.97);backdrop-filter:blur(24px);padding:.95rem 4rem;border-bottom:1px solid rgba(110,179,232,.07)}
 .og-logo{display:flex;align-items:center;text-decoration:none}
-.og-logo svg{width:168px;height:auto;display:block;overflow:visible}
+.og-logo svg{width:220px;height:auto;display:block;overflow:visible}
 .nav-logo-img{height:32px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:2.8rem}
 .nav-links a{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);text-decoration:none;position:relative;transition:color .3s;font-weight:500}
@@ -48,8 +46,8 @@ nav.sc{background:rgba(7,16,24,.97);backdrop-filter:blur(24px);padding:1.1rem 4r
 /* HERO */
 .hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.72) saturate(.92)}
-.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,var(--navy3) 10%,rgba(7,16,24,.42) 52%,rgba(7,16,24,.1)),linear-gradient(to right,rgba(7,16,24,.9) 0%,rgba(7,16,24,.58) 38%,rgba(7,16,24,.08) 74%);z-index:1}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.68) saturate(.92)}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,var(--navy3) 10%,rgba(7,16,24,.4) 52%,rgba(7,16,24,.1)),linear-gradient(to right,rgba(7,16,24,.92) 0%,rgba(7,16,24,.6) 39%,rgba(7,16,24,.08) 74%);z-index:1}
 canvas#pts{position:absolute;inset:0;z-index:2;opacity:.5}
 .hero-content{position:relative;z-index:3;padding:0 4rem 6rem;max-width:700px}
 .hero-eyebrow{font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;color:var(--electric3);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;font-weight:500}
@@ -168,35 +166,45 @@ h1.ht em{font-style:italic;font-weight:300;color:var(--gold)}
 .port-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
 .port-tag{font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,244,255,.46);border:1px solid rgba(110,179,232,.12);border-radius:20px;padding:.28rem .58rem;font-weight:600}
 
-/* MAP */
-.map-section{padding:6rem 4rem;background:var(--navy3);position:relative;overflow:hidden}
-.map-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(110,179,232,.03),transparent 60%);pointer-events:none}
-.map-grid{display:grid;grid-template-columns:1fr 1.8fr;gap:5rem;align-items:center}
-.map-info .sec-label{margin-bottom:1.5rem}
-.map-title{font-size:clamp(1.8rem,2.8vw,2.8rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:1.5rem}
+/* PARTNERS */
+.partners{padding:7rem 4rem;background:linear-gradient(180deg,var(--navy3),var(--navy2));position:relative;overflow:hidden}
+.partners::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 10%,rgba(201,168,76,.045),transparent 42%),radial-gradient(ellipse at 78% 55%,rgba(110,179,232,.05),transparent 50%);pointer-events:none}
+.partners-intro{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:4rem;align-items:end;margin-bottom:3.5rem}
+.partner-stack{position:relative;display:grid;gap:1.4rem}
+.partner-panel{display:grid;grid-template-columns:1fr 1.05fr;gap:1.4rem;align-items:stretch;min-height:480px;background:rgba(232,244,255,.025);border:1px solid rgba(110,179,232,.1);border-radius:14px;padding:1.4rem;overflow:hidden}
+.partner-panel.reverse{grid-template-columns:1.08fr .92fr}
+.partner-copy{padding:1.6rem;display:flex;flex-direction:column;justify-content:space-between;gap:2rem}
+.partner-kicker{font-size:.56rem;letter-spacing:.36em;text-transform:uppercase;color:var(--electric3);font-weight:700}
+.partner-logo{display:inline-grid;grid-template-columns:36px auto;gap:.85rem;align-items:center;margin:.9rem 0 1.35rem;color:var(--electric)}
+.partner-mark{width:36px;height:36px;border:1px solid rgba(110,179,232,.25);border-radius:7px;display:grid;place-items:center;background:rgba(110,179,232,.08);font-weight:800;color:var(--gold)}
+.partner-word{font-size:1.3rem;font-weight:800;letter-spacing:-.04em}.partner-word span{color:var(--gold);font-weight:400}
+.partner-title{font-size:clamp(2rem,3.8vw,4.5rem);line-height:.95;letter-spacing:-.045em;margin-bottom:1.1rem}
+.partner-title em{font-style:italic;font-weight:300;color:var(--gold)}
+.partner-desc{font-size:.86rem;line-height:1.9;color:var(--grey);font-weight:300;max-width:46rem}
+.partner-pills{display:flex;flex-wrap:wrap;gap:.55rem}
+.partner-pill{font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,244,255,.58);border:1px solid rgba(110,179,232,.14);border-radius:20px;padding:.38rem .72rem;background:rgba(7,16,24,.34);font-weight:700}
+.partner-visual{position:relative;min-height:420px;border-radius:10px;overflow:hidden;border:1px solid rgba(110,179,232,.1);background:rgba(110,179,232,.04)}
+.partner-visual img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9) brightness(.82);transition:transform .9s var(--ease),filter .45s}
+.partner-panel:hover .partner-visual img{transform:scale(1.04);filter:saturate(1) brightness(.95)}
+.visual-tag{position:absolute;left:1rem;bottom:1rem;background:rgba(7,16,24,.82);border:1px solid rgba(232,244,255,.12);backdrop-filter:blur(14px);border-radius:6px;padding:.85rem 1rem;display:flex;gap:1.1rem;align-items:center}
+.visual-tag strong{font-size:.83rem;color:var(--electric);letter-spacing:-.01em}.visual-tag span{font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--electric3);font-weight:800}
+.partner-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(110,179,232,.08);border:1px solid rgba(110,179,232,.08);border-radius:10px;overflow:hidden}
+.partner-metric{background:rgba(7,16,24,.7);padding:1.1rem}
+.partner-metric strong{display:block;font-size:1.45rem;color:var(--electric);letter-spacing:-.04em;margin-bottom:.25rem}.partner-metric span{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+.bellevue-body{display:grid;grid-template-columns:.92fr 1.08fr;gap:1.4rem}
+.map-title{font-size:clamp(1.8rem,2.8vw,2.8rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:1.2rem}
 .map-title em{font-style:italic;font-weight:300;color:var(--gold)}
 .map-desc{font-size:.86rem;line-height:1.9;color:var(--grey);font-weight:300;margin-bottom:1.5rem}
-.map-legend{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem}
-.legend-item{display:flex;align-items:center;gap:.8rem;font-size:.7rem;color:var(--grey);font-weight:400}
-.legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.legend-dot.gold{background:var(--gold);box-shadow:0 0 6px rgba(201,168,76,.5)}
-.legend-dot.blue{background:var(--electric3);box-shadow:0 0 6px rgba(110,179,232,.4)}
-.legend-dot.dim{background:rgba(110,179,232,.12);border:1px solid rgba(110,179,232,.2)}
-.regions{display:flex;flex-wrap:wrap;gap:.5rem}
-.region-tag{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);border:1px solid rgba(110,179,232,.1);border-radius:20px;padding:.32rem .85rem;transition:all .3s;font-weight:500;cursor:default}
-.region-tag:hover{color:var(--electric3);border-color:rgba(110,179,232,.35);background:rgba(110,179,232,.05)}
-#map-container{border:1px solid rgba(110,179,232,.08);border-radius:12px;background:rgba(10,21,32,.7);padding:.6rem;position:relative;overflow:hidden}
-#emea-svg{width:100%;height:auto;display:block}
-.c-base{fill:rgba(110,179,232,.05);stroke:rgba(110,179,232,.1);stroke-width:.4;transition:fill .3s,stroke .3s}
-.c-active{fill:rgba(110,179,232,.14);stroke:rgba(110,179,232,.35);stroke-width:.5;cursor:pointer;transition:fill .3s,stroke .3s}
-.c-active:hover{fill:rgba(110,179,232,.32);stroke:var(--electric3);stroke-width:.8}
-.c-gold{fill:rgba(201,168,76,.18);stroke:rgba(201,168,76,.45);stroke-width:.5;cursor:pointer;transition:fill .3s,stroke .3s}
-.c-gold:hover{fill:rgba(201,168,76,.4);stroke:var(--gold);stroke-width:.8}
-.map-tip{position:absolute;background:rgba(7,16,24,.95);border:1px solid rgba(110,179,232,.2);border-radius:6px;padding:.5rem .9rem;font-size:.63rem;letter-spacing:.08em;color:var(--electric);pointer-events:none;opacity:0;transition:opacity .2s;font-weight:500;white-space:nowrap;z-index:10;backdrop-filter:blur(8px)}
-.map-hover-card{position:absolute;top:1rem;right:1rem;background:rgba(7,16,24,.92);border:1px solid rgba(110,179,232,.12);border-radius:8px;padding:.8rem 1.2rem;opacity:0;transition:opacity .3s;z-index:5;backdrop-filter:blur(8px);pointer-events:none;min-width:140px}
-.map-hover-card.show{opacity:1}
-.mhc-name{font-size:.85rem;font-weight:700;color:var(--electric);letter-spacing:-.01em;margin-bottom:.2rem}
-.mhc-sub{font-size:.58rem;color:var(--electric3);letter-spacing:.15em;text-transform:uppercase}
+.bellevue-map{position:relative;min-height:500px;border:1px solid rgba(110,179,232,.1);border-radius:10px;background:linear-gradient(150deg,rgba(10,21,32,.96),rgba(7,16,24,.86));overflow:hidden}
+.sl-map{position:absolute;inset:0;width:100%;height:100%;opacity:.96}
+.map-route{fill:none;stroke:rgba(110,179,232,.18);stroke-width:2;stroke-dasharray:8 10}
+.map-pin{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:.5rem;white-space:nowrap}
+.pin-dot{width:11px;height:11px;border-radius:50%;background:var(--electric3);box-shadow:0 0 0 6px rgba(110,179,232,.08),0 0 20px rgba(110,179,232,.38)}
+.map-pin.primary .pin-dot{width:15px;height:15px;background:var(--gold);box-shadow:0 0 0 8px rgba(201,168,76,.1),0 0 28px rgba(201,168,76,.5)}
+.pin-label{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,244,255,.72);font-weight:800;background:rgba(7,16,24,.7);border:1px solid rgba(232,244,255,.1);border-radius:4px;padding:.32rem .5rem}
+.bellevue-notes{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;margin-top:1rem}
+.bellevue-note{border:1px solid rgba(110,179,232,.1);background:rgba(232,244,255,.025);border-radius:8px;padding:1rem}
+.bellevue-note strong{display:block;font-size:.78rem;color:var(--electric);margin-bottom:.35rem}.bellevue-note span{display:block;font-size:.68rem;line-height:1.65;color:var(--grey)}
 
 /* CTA */
 .cta{padding:9rem 4rem;text-align:center;position:relative;overflow:hidden;background:var(--navy2)}
@@ -234,11 +242,14 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
 @media(max-width:768px){
   html{cursor:auto}
   .cur,.cur-ring{display:none}
-  nav{padding:1.2rem 1.5rem}
-  nav.sc{padding:1rem 1.5rem}
-  .og-logo svg{width:142px}
+  .fu{opacity:1;transform:none}
+  nav{padding:1rem 1.05rem}
+  nav.sc{padding:.85rem 1.05rem}
+  .og-logo svg{width:150px}
   .nav-logo-img{height:26px}
+  .nav-links{gap:0}
   .nav-links a:not(.nav-cta){display:none}
+  .nav-cta{font-size:.55rem;letter-spacing:.1em;padding:.68rem .82rem;white-space:nowrap}
   .hero{height:auto;min-height:100svh;align-items:flex-end}
   .hero-bg img{object-position:62% center}
   .hero-content{padding:6.5rem 1.5rem 4.5rem;max-width:100%}
@@ -250,7 +261,7 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   .hero-scroll{display:none}
   .img-grid{grid-template-columns:1fr;height:auto}
   .ig-cell{height:230px}
-  .services,.team,.portfolio,.map-section,.cta{padding:5rem 1.5rem}
+  .services,.team,.portfolio,.partners,.cta{padding:5rem 1.5rem}
   .sec-head{grid-template-columns:1fr;gap:1.5rem;margin-bottom:3rem}
   .svc-row{grid-template-columns:28px 40px minmax(0,1fr) 18px;gap:.75rem;padding:1.35rem 0;align-items:start}
   .svc-row:hover,.svc-row.is-open{padding:1.35rem .65rem}
@@ -266,10 +277,17 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   .team-member{padding:1.5rem}
   .tm-top{align-items:flex-start}
   .port-grid{grid-template-columns:1fr}
-  .map-grid{grid-template-columns:1fr;gap:2rem}
-  #map-container{margin-inline:-.75rem;border-radius:8px;overflow:hidden}
-  .regions{gap:.45rem}
-  .region-tag{font-size:.52rem;padding:.35rem .65rem}
+  .partners-intro,.partner-panel,.partner-panel.reverse,.bellevue-body{grid-template-columns:1fr}
+  .partners-intro{gap:1.5rem;margin-bottom:2.4rem}
+  .partner-panel{padding:1rem;min-height:auto}
+  .partner-copy{padding:.6rem;gap:1.4rem}
+  .partner-visual{min-height:260px}
+  .visual-tag{left:.75rem;right:.75rem;bottom:.75rem;justify-content:space-between}
+  .partner-metrics{grid-template-columns:1fr}
+  .bellevue-map{min-height:430px}
+  .sl-map{height:430px}
+  .map-pin .pin-label{font-size:.5rem;letter-spacing:.1em}
+  .bellevue-notes{grid-template-columns:1fr}
   .cta-title{font-size:clamp(2.7rem,13vw,4.2rem)}
   footer{flex-direction:column;gap:1.5rem;text-align:center;padding:2rem 1.5rem}
   .f-links{flex-wrap:wrap;justify-content:center;gap:1.2rem}
@@ -281,8 +299,8 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   .nav-links{gap:1.4rem}
   .nav-links a{letter-spacing:.14em}
   .hero-content{padding-left:2rem}
-  .services,.team,.portfolio,.map-section,.cta{padding-left:2rem;padding-right:2rem}
-  .map-grid{grid-template-columns:1fr;gap:3rem}
+  .services,.team,.portfolio,.partners,.cta{padding-left:2rem;padding-right:2rem}
+  .partners-intro,.partner-panel,.partner-panel.reverse,.bellevue-body{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -314,7 +332,7 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
     <a href="#services">Services</a>
     <a href="#team">Team</a>
     <a href="#portfolio">Portfolio</a>
-    <a href="#regions">Regions</a>
+    <a href="#partners">Partners</a>
     <a href="#contact">Contact</a>
     <a href="https://outlook.office.com/book/DiscoveryCall30minutes@morbit.co.uk/" target="_blank" class="nav-cta">Book a Call</a>
   </div>
@@ -325,13 +343,13 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   <div class="hero-gradient"></div>
   <canvas id="pts"></canvas>
   <div class="hero-content">
-    <div class="hero-eyebrow">Dubai · EMEA · Revenue Growth</div>
+    <div class="hero-eyebrow">Dubai · South EMEA · SEA</div>
     <h1 class="ht">
       <span class="ln"><span>Scale.</span></span>
       <span class="ln"><span>Expand.</span></span>
       <em class="ln"><span>Win.</span></em>
     </h1>
-    <p class="hero-sub">Senior sales leadership, business development, and revenue-focused digital presence for international companies targeting EMEA. We open the gate — you walk through.</p>
+    <p class="hero-sub">Senior sales leadership, partner development, and revenue-focused digital presence for international companies targeting South EMEA and Southeast Asia. We open the gate — you walk through.</p>
     <div class="hero-acts">
       <a href="https://outlook.office.com/book/DiscoveryCall30minutes@morbit.co.uk/" target="_blank" class="btn-e"><span>Book a Discovery Call</span></a>
       <a href="#services" class="btn-ghost">Explore Services <span class="ar">→</span></a>
@@ -348,7 +366,8 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
     <span class="mq-i">Fractional CRO</span><span class="mq-dot"> · </span>
     <span class="mq-i">Website Design</span><span class="mq-dot"> · </span>
     <span class="mq-i">Lead Generation</span><span class="mq-dot"> · </span>
-    <span class="mq-i">EMEA Expansion</span><span class="mq-dot"> · </span>
+    <span class="mq-i">South EMEA Expansion</span><span class="mq-dot"> · </span>
+    <span class="mq-i">SEA Partnerships</span><span class="mq-dot"> · </span>
     <span class="mq-i">Channel Partnerships</span><span class="mq-dot"> · </span>
     <span class="mq-i">Revenue Scaling</span><span class="mq-dot"> · </span>
     <span class="mq-i">Go-To-Market</span><span class="mq-dot"> · </span>
@@ -362,20 +381,20 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
 </div>
 
 <div class="img-grid">
-  <div class="ig-cell"><img src="business-meeting.jpg" alt="Executive Meetings" onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Executive Meetings</div></div>
-  <div class="ig-cell"><img src="hand-shake.jpg" alt="Partnerships" onerror="this.src='https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Partnerships</div></div>
-  <div class="ig-cell"><img src="strategy-whiteboard.jpg" alt="GTM Strategy" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">GTM Strategy</div></div>
+  <div class="ig-cell"><img src="morbit-tech.png" alt="Smart building technology" onerror="this.src='https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Smart Building Tech</div></div>
+  <div class="ig-cell"><img src="bellevue-residencies.png" alt="Residential real estate towers" onerror="this.src='https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=700&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">SEA Real Estate</div></div>
+  <div class="ig-cell"><img src="business-meeting.jpg" alt="International partnerships" onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80'"><div class="ig-overlay"></div><div class="ig-border"></div><div class="ig-label">Partner-Led Growth</div></div>
 </div>
 
 <section class="services" id="services">
   <div class="sec-head">
     <div class="fu"><div class="sec-label">What We Do</div><h2 class="sec-title">Senior expertise,<br><em>real results.</em></h2></div>
-    <p class="sec-desc fu fd1">We don't consult from the sidelines. We embed at Sales Director and CRO level — carrying the bag, building the pipeline, and designing the digital presence that converts prospects into revenue.</p>
+    <p class="sec-desc fu fd1">We don't consult from the sidelines. We embed at Sales Director and CRO level — carrying the bag, building the pipeline, and designing the digital presence that converts prospects into revenue across South EMEA and SEA.</p>
   </div>
   <div class="svc-list fu fd2">
     <div class="svc-row"><span class="svc-n">01</span><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M2 12h20M16 6l6 6-6 6"/></svg></div><div class="svc-body"><span class="svc-name">Direct Sales</span><span class="svc-desc-text">End-to-end sales execution across EMEA. We prospect, qualify, negotiate and close — with full accountability for revenue outcomes.</span></div><span class="svc-arr">→</span></div>
     <div class="svc-row"><span class="svc-n">02</span><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="svc-body"><span class="svc-name">Business Development</span><span class="svc-desc-text">Strategic partnerships, channel development and ecosystem building to accelerate your regional footprint fast.</span></div><span class="svc-arr">→</span></div>
-    <div class="svc-row"><span class="svc-n">03</span><div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="svc-body"><span class="svc-name">Market Entry</span><span class="svc-desc-text">From ICP definition to first closed deal. Structured GTM planning for companies entering UAE, KSA and broader EMEA.</span></div><span class="svc-arr">→</span></div>
+    <div class="svc-row"><span class="svc-n">03</span><div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="svc-body"><span class="svc-name">Market Entry</span><span class="svc-desc-text">From ICP definition to first closed deal. Structured GTM planning for companies entering the Gulf, South EMEA and Southeast Asia.</span></div><span class="svc-arr">→</span></div>
     <div class="svc-row"><span class="svc-n">04</span><div class="svc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="svc-body"><span class="svc-name">Fractional CRO</span><span class="svc-desc-text">CRO-level revenue leadership on a flexible model. Own your strategy, process and commercial outcomes — without permanent headcount.</span></div><span class="svc-arr">→</span></div>
     <div class="svc-row"><span class="svc-n">05</span><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="svc-body"><span class="svc-name">Channel & Partnerships</span><span class="svc-desc-text">Build and activate the partner ecosystem that multiplies your reach across resellers, distributors and alliances in the region.</span></div><span class="svc-arr">→</span></div>
     <div class="svc-row"><span class="svc-n">06</span><div class="svc-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="svc-body"><span class="svc-name">Revenue Scaling</span><span class="svc-desc-text">Pipeline architecture, forecasting discipline and sales process engineering — the backbone your growth requires.</span></div><span class="svc-arr">→</span></div>
@@ -397,7 +416,7 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   <div class="team-grid">
     <div class="team-member fu">
       <div class="tm-top"><div class="tm-avatar"><img src="Georges.jpeg" alt="Georges Lemire"></div><div><div class="tm-name">Georges Lemire</div><div class="tm-role">Founder · Principal Advisor</div></div></div>
-      <p class="tm-bio">Former Managing Director France & Regional Director MEA at Cisco. 25+ years growing technology businesses across Europe, Middle East and Africa. Built and scaled sales organizations from zero to multi-million ARR across EMEA.</p>
+      <p class="tm-bio">Former Managing Director France & Regional Director MEA at Cisco. 25+ years growing technology businesses across Europe, Middle East and Africa, with a practical network for companies expanding into South EMEA and SEA.</p>
       <div class="tm-highlights"><div class="tm-highlight">Managing Director France — Cisco</div><div class="tm-highlight">Regional Director Middle East Africa — Cisco</div><div class="tm-highlight">Director Operations Sales EMEAR — Cisco</div><div class="tm-highlight">Area VP EMEA — Neat</div></div>
       <a href="https://www.linkedin.com/in/georgeslemire/" target="_blank" class="tm-linkedin">↗ LinkedIn Profile</a>
     </div>
@@ -452,20 +471,83 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   </div>
 </section>
 
-<section class="map-section" id="regions">
-  <div class="map-grid">
-    <div class="map-info fu">
-      <div class="sec-label">Coverage</div>
-      <h2 class="map-title">EMEA reach,<br><em>local expertise.</em></h2>
-      <p class="map-desc">25+ years of relationships and market knowledge across Europe, the Middle East and Africa. Hover any highlighted country to explore.</p>
-      <div class="map-legend"><div class="legend-item"><div class="legend-dot gold"></div>Gulf HQ — Dubai</div><div class="legend-item"><div class="legend-dot blue"></div>Active markets</div><div class="legend-item"><div class="legend-dot dim"></div>Broader EMEA</div></div>
-      <div class="regions"><div class="region-tag">🇦🇪 UAE</div><div class="region-tag">🇸🇦 KSA</div><div class="region-tag">🇶🇦 Qatar</div><div class="region-tag">🇫🇷 France</div><div class="region-tag">🇬🇧 UK</div><div class="region-tag">🇩🇪 DACH</div><div class="region-tag">🇳🇱 Benelux</div><div class="region-tag">🇪🇸 Iberia</div><div class="region-tag">🇿🇦 Africa</div><div class="region-tag">🇪🇬 Egypt</div></div>
-    </div>
-    <div class="fu fd1">
-      <div id="map-container">
-        <div class="map-tip" id="mapTip"></div>
-        <div class="map-hover-card" id="mapCard"><div class="mhc-name" id="mapCardName"></div><div class="mhc-sub" id="mapCardSub"></div></div>
-        <svg id="emea-svg" viewBox="0 0 900 650"></svg>
+<section class="partners" id="partners">
+  <div class="partners-intro">
+    <div class="fu"><div class="sec-label">Partners</div><h2 class="sec-title">Built with operators,<br><em>not spectators.</em></h2></div>
+    <p class="sec-desc fu fd1">OpenGate connects international ambition with active partner opportunities in software, smart infrastructure, and high-potential real estate. The focus is practical: qualified buyers, credible channels, and regional stories that sell.</p>
+  </div>
+
+  <div class="partner-stack">
+    <article class="partner-panel fu">
+      <div class="partner-copy">
+        <div>
+          <div class="partner-kicker">Technology Partner</div>
+          <div class="partner-logo"><div class="partner-mark">M</div><div class="partner-word">Morbit <span>Software Ltd.</span></div></div>
+          <h3 class="partner-title">Smart building intelligence for <em>modern operators.</em></h3>
+          <p class="partner-desc">Morbit gives landlords, operators, and enterprise teams a cleaner way to see how buildings, rooms, devices, and workspaces are performing. For OpenGate, it represents the kind of technology partner we can help position, introduce, and commercialize across South EMEA and SEA.</p>
+        </div>
+        <div>
+          <div class="partner-pills"><span class="partner-pill">Smart Buildings</span><span class="partner-pill">Workplace Data</span><span class="partner-pill">UC Monitoring</span><span class="partner-pill">Enterprise Software</span></div>
+          <div class="partner-metrics">
+            <div class="partner-metric"><strong>B2B</strong><span>Technology Sales</span></div>
+            <div class="partner-metric"><strong>SEA</strong><span>Expansion Ready</span></div>
+            <div class="partner-metric"><strong>EMEA</strong><span>Partner Channels</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="partner-visual">
+        <img src="morbit-tech.png" alt="Smart building technology control room">
+        <div class="visual-tag"><strong>Morbit Software Ltd.</strong><span>Technology</span></div>
+      </div>
+    </article>
+
+    <article class="partner-panel reverse fu fd1">
+      <div class="partner-visual">
+        <img src="bellevue-residencies.png" alt="Bellevue Residencies residential towers in a tropical setting">
+        <div class="visual-tag"><strong>Bellevue Residencies</strong><span>Ja-Ela</span></div>
+      </div>
+      <div class="partner-copy">
+        <div>
+          <div class="partner-kicker">Real Estate Partner</div>
+          <h3 class="partner-title">Two planned towers in Sri Lanka's <em>Colombo-airport corridor.</em></h3>
+          <p class="partner-desc">Bellevue Residencies is planned for Q2 2028 handover in the Ja-Ela area, placing buyers between Colombo, Bandaranaike International Airport, Negombo's coastal lifestyle, and the fast-growing northern approach to the capital. The sales story is simple: urban access, greener surroundings, and a region that still feels early enough for long-term upside.</p>
+        </div>
+        <div class="bellevue-notes">
+          <div class="bellevue-note"><strong>Buyer Angle</strong><span>Positioned for diaspora buyers, frequent travelers, investors, and families who want Colombo access without living inside the densest city core.</span></div>
+          <div class="bellevue-note"><strong>Local Appeal</strong><span>Close to the airport corridor, coastal escapes, schools, retail, and everyday services around Ja-Ela and Tudella.</span></div>
+          <div class="bellevue-note"><strong>Launch Story</strong><span>Use early reservation content, realistic renders, unit plans, and investor packs once final imagery is available.</span></div>
+          <div class="bellevue-note"><strong>OpenGate Role</strong><span>Create the commercial narrative, lead capture funnel, partner outreach, and buyer qualification workflow.</span></div>
+        </div>
+      </div>
+    </article>
+
+    <div class="bellevue-body fu fd2">
+      <div>
+        <div class="sec-label">Sri Lanka Map</div>
+        <h3 class="map-title">Ja-Ela gives Bellevue a practical <em>western-province story.</em></h3>
+        <p class="map-desc">The map below frames the project against Colombo, the airport, Negombo, Kandy, and Galle, helping overseas buyers immediately understand where the towers sit in relation to Sri Lanka's most recognizable business, travel, and lifestyle points.</p>
+        <div class="partner-pills"><span class="partner-pill">Ja-Ela / Tudella</span><span class="partner-pill">Colombo Access</span><span class="partner-pill">Airport Corridor</span><span class="partner-pill">Q2 2028 Handover</span></div>
+      </div>
+      <div class="bellevue-map" aria-label="Illustrative Sri Lanka location map showing Bellevue Residencies near Ja-Ela">
+        <svg class="sl-map" viewBox="0 0 520 620" role="img" aria-label="Sri Lanka map with Ja-Ela, Colombo, airport, Negombo, Kandy and Galle">
+          <defs>
+            <linearGradient id="islandFill" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="rgba(110,179,232,.26)"/>
+              <stop offset="1" stop-color="rgba(201,168,76,.18)"/>
+            </linearGradient>
+          </defs>
+          <path d="M285 36c44 28 73 81 90 137 22 72 54 109 73 178 22 80-12 165-80 209-62 40-145 36-202-6-60-44-91-124-75-200 13-62 50-96 61-158 14-79 54-132 133-160Z" fill="url(#islandFill)" stroke="rgba(232,244,255,.22)" stroke-width="2"/>
+          <path class="map-route" d="M178 291 C205 276, 226 258, 242 230"/>
+          <path class="map-route" d="M196 250 C218 232, 240 218, 268 203"/>
+          <path class="map-route" d="M210 265 C257 285, 310 320, 352 362"/>
+          <path class="map-route" d="M170 312 C183 390, 214 470, 254 539"/>
+        </svg>
+        <div class="map-pin primary" style="left:36%;top:43%"><span class="pin-dot"></span><span class="pin-label">Bellevue · Ja-Ela</span></div>
+        <div class="map-pin" style="left:31%;top:50%"><span class="pin-dot"></span><span class="pin-label">Colombo</span></div>
+        <div class="map-pin" style="left:47%;top:34%"><span class="pin-dot"></span><span class="pin-label">Airport</span></div>
+        <div class="map-pin" style="left:43%;top:29%"><span class="pin-dot"></span><span class="pin-label">Negombo</span></div>
+        <div class="map-pin" style="left:68%;top:59%"><span class="pin-dot"></span><span class="pin-label">Kandy</span></div>
+        <div class="map-pin" style="left:49%;top:86%"><span class="pin-dot"></span><span class="pin-label">Galle</span></div>
       </div>
     </div>
   </div>
@@ -475,7 +557,7 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
   <div class="cta-g1"></div><div class="cta-g2"></div>
   <div class="cta-ey fu">Let's Talk</div>
   <h2 class="cta-title fu fd1">Ready to open<br>your <em>gate?</em></h2>
-  <p class="cta-sub fu fd2">Let's talk about scaling your business across EMEA.</p>
+  <p class="cta-sub fu fd2">Let's talk about scaling your business across South EMEA and SEA.</p>
   <a href="https://outlook.office.com/book/DiscoveryCall30minutes@morbit.co.uk/" target="_blank" class="btn-cta fu fd3"><span>Book a Discovery Call</span></a>
   <div class="cta-note fu">Free · 30 minutes · No commitment</div>
 </section>
@@ -489,7 +571,7 @@ footer{padding:2.5rem 4rem;border-top:1px solid rgba(110,179,232,.06);display:fl
       <text x="76" y="63" fill="#C9A84C" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="19" font-weight="300">Advisory</text>
     </svg>
   </a>
-  <div class="f-links"><a href="#services">Services</a><a href="#team">Team</a><a href="#portfolio">Portfolio</a><a href="#regions">Regions</a><a href="https://www.linkedin.com/in/georgeslemire/" target="_blank">LinkedIn</a><a href="#contact">Contact</a></div>
+  <div class="f-links"><a href="#services">Services</a><a href="#team">Team</a><a href="#portfolio">Portfolio</a><a href="#partners">Partners</a><a href="https://www.linkedin.com/in/georgeslemire/" target="_blank">LinkedIn</a><a href="#contact">Contact</a></div>
   <div class="f-copy">© 2025 Opengate Advisory · Dubai, UAE</div>
 </footer>
 
@@ -498,7 +580,7 @@ const cur=document.getElementById('cur'),ring=document.getElementById('curRing')
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
 (function a(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
-document.querySelectorAll('a,button,.svc-row,.stat,.ig-cell,.team-member,.port-card,.region-tag').forEach(el=>{el.addEventListener('mouseenter',()=>{cur.classList.add('ex');ring.classList.add('ex')});el.addEventListener('mouseleave',()=>{cur.classList.remove('ex');ring.classList.remove('ex')})});
+document.querySelectorAll('a,button,.svc-row,.stat,.ig-cell,.team-member,.port-card,.partner-panel,.map-pin').forEach(el=>{el.addEventListener('mouseenter',()=>{cur.classList.add('ex');ring.classList.add('ex')});el.addEventListener('mouseleave',()=>{cur.classList.remove('ex');ring.classList.remove('ex')})});
 document.querySelectorAll('.svc-row').forEach(row=>{
   row.setAttribute('tabindex','0');
   row.setAttribute('role','button');
@@ -526,28 +608,6 @@ gsap.utils.toArray('.ig-cell img').forEach(img=>{gsap.to(img,{yPercent:-8,ease:'
 const obs=new IntersectionObserver(els=>els.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.08});
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 
-const ACTIVE=new Set(['France','United Kingdom','Germany','Netherlands','Belgium','Spain','Italy','Switzerland','Austria','Portugal','Ireland','Denmark','Norway','Sweden','Finland','Poland','Egypt','Morocco','Nigeria','South Africa','Kenya','Tunisia','Algeria']);
-const GOLD=new Set(['United Arab Emirates','Saudi Arabia','Qatar','Kuwait','Bahrain','Oman']);
-const CITY_META={'United Arab Emirates':{label:'Dubai — HQ',sub:'Gulf Regional HQ'},'Saudi Arabia':{label:'Riyadh',sub:'KSA Operations'},'France':{label:'Paris',sub:'France & Benelux Lead'},'United Kingdom':{label:'London',sub:'UK & Ireland Lead'},'Germany':{label:'Frankfurt',sub:'DACH Region Lead'},'Egypt':{label:'Cairo',sub:'North Africa Lead'},'Netherlands':{label:'Amsterdam',sub:'Benelux Hub'},'South Africa':{label:'Johannesburg',sub:'Sub-Saharan Africa'},'Spain':{label:'Madrid',sub:'Iberia Lead'},'Italy':{label:'Milan',sub:'Italy Operations'},'Belgium':{label:'Brussels',sub:'EU Headquarters'},'Sweden':{label:'Stockholm',sub:'Nordics Hub'},'Norway':{label:'Oslo',sub:'Northern Europe'}};
-const FLAGS={'United Arab Emirates':'🇦🇪','Saudi Arabia':'🇸🇦','Qatar':'🇶🇦','France':'🇫🇷','United Kingdom':'🇬🇧','Germany':'🇩🇪','Netherlands':'🇳🇱','Belgium':'🇧🇪','Spain':'🇪🇸','Italy':'🇮🇹','Switzerland':'🇨🇭','Egypt':'🇪🇬','Morocco':'🇲🇦','South Africa':'🇿🇦','Nigeria':'🇳🇬','Kenya':'🇰🇪','Norway':'🇳🇴','Sweden':'🇸🇪','Finland':'🇫🇮','Poland':'🇵🇱','Denmark':'🇩🇰','Austria':'🇦🇹','Portugal':'🇵🇹','Ireland':'🇮🇪','Kuwait':'🇰🇼','Bahrain':'🇧🇭','Oman':'🇴🇲','Tunisia':'🇹🇳','Algeria':'🇩🇿'};
-const CITIES=[{name:'Dubai',lon:55.27,lat:25.2,gold:true,country:'United Arab Emirates'},{name:'Paris',lon:2.35,lat:48.85,gold:false,country:'France'},{name:'London',lon:-.12,lat:51.5,gold:false,country:'United Kingdom'},{name:'Frankfurt',lon:8.68,lat:50.11,gold:false,country:'Germany'},{name:'Amsterdam',lon:4.9,lat:52.37,gold:false,country:'Netherlands'},{name:'Cairo',lon:31.2,lat:30.06,gold:false,country:'Egypt'},{name:'Riyadh',lon:46.7,lat:24.7,gold:true,country:'Saudi Arabia'},{name:'Madrid',lon:-3.7,lat:40.42,gold:false,country:'Spain'},{name:'Milan',lon:9.19,lat:45.46,gold:false,country:'Italy'},{name:'Brussels',lon:4.35,lat:50.85,gold:false,country:'Belgium'},{name:'Stockholm',lon:18.06,lat:59.33,gold:false,country:'Sweden'},{name:'Oslo',lon:10.75,lat:59.91,gold:false,country:'Norway'},{name:'Johannesburg',lon:28.05,lat:-26.2,gold:false,country:'South Africa'}];
-const NAME_MAP={4:'Afghanistan',8:'Albania',12:'Algeria',24:'Angola',32:'Argentina',36:'Australia',40:'Austria',50:'Bangladesh',56:'Belgium',64:'Bhutan',68:'Bolivia',76:'Brazil',100:'Bulgaria',116:'Cambodia',120:'Cameroon',124:'Canada',144:'Sri Lanka',152:'Chile',156:'China',170:'Colombia',180:'Democratic Republic of the Congo',196:'Cyprus',203:'Czech Republic',208:'Denmark',818:'Egypt',231:'Ethiopia',246:'Finland',250:'France',266:'Gabon',276:'Germany',288:'Ghana',300:'Greece',320:'Guatemala',324:'Guinea',340:'Honduras',348:'Hungary',356:'India',360:'Indonesia',364:'Iran',368:'Iraq',372:'Ireland',376:'Israel',380:'Italy',384:'Ivory Coast',392:'Japan',400:'Jordan',398:'Kazakhstan',404:'Kenya',414:'Kuwait',418:'Laos',422:'Lebanon',430:'Liberia',434:'Libya',442:'Luxembourg',450:'Madagascar',454:'Malawi',458:'Malaysia',484:'Mexico',504:'Morocco',508:'Mozambique',516:'Namibia',524:'Nepal',528:'Netherlands',554:'New Zealand',562:'Niger',566:'Nigeria',578:'Norway',512:'Oman',586:'Pakistan',604:'Peru',608:'Philippines',616:'Poland',620:'Portugal',634:'Qatar',642:'Romania',643:'Russia',646:'Rwanda',682:'Saudi Arabia',686:'Senegal',694:'Sierra Leone',706:'Somalia',710:'South Africa',724:'Spain',729:'Sudan',752:'Sweden',756:'Switzerland',760:'Syria',764:'Thailand',792:'Turkey',800:'Uganda',804:'Ukraine',784:'United Arab Emirates',826:'United Kingdom',840:'United States of America',858:'Uruguay',862:'Venezuela',704:'Vietnam',887:'Yemen',894:'Zambia',716:'Zimbabwe',788:'Tunisia'};
-const mapSvg=d3.select('#emea-svg');
-const mapTip=document.getElementById('mapTip');
-const mapCard=document.getElementById('mapCard');
-const mapCardName=document.getElementById('mapCardName');
-const mapCardSub=document.getElementById('mapCardSub');
-const mapCont=document.getElementById('map-container');
-const proj=d3.geoNaturalEarth1().center([12,30]).scale(550).translate([450,325]);
-const pathGen=d3.geoPath().projection(proj);
-d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world=>{
-  const countries=topojson.feature(world,world.objects.countries);
-  mapSvg.append('path').datum(d3.geoGraticule()()).attr('d',pathGen).attr('fill','none').attr('stroke','rgba(110,179,232,0.04)').attr('stroke-width',.4);
-  mapSvg.selectAll('path.country').data(countries.features).enter().append('path').attr('class',d=>{const n=NAME_MAP[+d.id]||'';if(GOLD.has(n))return'country c-gold';if(ACTIVE.has(n))return'country c-active';return'country c-base'}).attr('d',pathGen).on('mousemove',(event,d)=>{const n=NAME_MAP[+d.id]||'';if(!ACTIVE.has(n)&&!GOLD.has(n))return;const r=mapCont.getBoundingClientRect();mapTip.innerHTML=`${FLAGS[n]||''} ${n}`;mapTip.style.opacity='1';mapTip.style.left=(event.clientX-r.left+14)+'px';mapTip.style.top=(event.clientY-r.top-36)+'px';if(CITY_META[n]){mapCardName.textContent=CITY_META[n].label;mapCardSub.textContent=CITY_META[n].sub;mapCard.classList.add('show')}}).on('mouseleave',()=>{mapTip.style.opacity='0';mapCard.classList.remove('show')});
-  const dubaiXY=proj([55.27,25.2]);
-  CITIES.filter(c=>c.name!=='Dubai').forEach((c,i)=>{const[x,y]=proj([c.lon,c.lat]);mapSvg.insert('line','path.country').attr('x1',dubaiXY[0]).attr('y1',dubaiXY[1]).attr('x2',x).attr('y2',y).attr('stroke',c.gold?'rgba(201,168,76,0.18)':'rgba(110,179,232,0.14)').attr('stroke-width',.7).attr('stroke-dasharray','4 5').attr('opacity',0).transition().delay(600+i*120).duration(700).attr('opacity',1)});
-  CITIES.forEach((c,i)=>{const[x,y]=proj([c.lon,c.lat]);const col=c.gold?'#C9A84C':'#6EB3E8';const r=c.name==='Dubai'?7:4;function pulseRing(){mapSvg.append('circle').attr('cx',x).attr('cy',y).attr('r',r).attr('fill','none').attr('stroke',col).attr('stroke-width',1).attr('opacity',.7).transition().duration(2200).ease(d3.easeCubicOut).attr('r',r+14).attr('opacity',0).remove()}const pulseInterval=setInterval(()=>{if(document.getElementById('emea-svg'))pulseRing();else clearInterval(pulseInterval)},2200);setTimeout(()=>pulseRing(),i*300+600);mapSvg.append('circle').attr('cx',x).attr('cy',y).attr('r',r).attr('fill',col).attr('opacity',0).transition().delay(400+i*120).duration(500).attr('opacity',1);mapSvg.append('text').attr('x',c.name==='Dubai'?x+10:x+7).attr('y',c.name==='Dubai'?y-10:y-6).attr('fill',c.gold?'rgba(201,168,76,0.8)':'rgba(232,244,255,0.45)').attr('font-size',c.name==='Dubai'?'9':'7.5').attr('font-weight',c.name==='Dubai'?'700':'500').attr('font-family','Plus Jakarta Sans,sans-serif').attr('opacity',0).text(c.name).transition().delay(500+i*120).duration(500).attr('opacity',1)})
-}).catch(()=>{mapSvg.append('text').attr('x',450).attr('y',325).attr('text-anchor','middle').attr('fill','rgba(110,179,232,0.3)').attr('font-size','13').attr('font-family','Plus Jakarta Sans,sans-serif').text('Map loading...')});
 </script>
 </body>
 </html>
