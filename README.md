@@ -1,6 +1,15 @@
 # OpenGate Advisory Original Refresh
 
-Static OpenGate Advisory website with separate portfolio pages for technology and real estate partner presentations.
+Static OpenGate Advisory website with a shared navigation/footer system and clean Vercel routes for Technology, Real Estate, and Web Design.
+
+## Published routes
+
+- `/` — OpenGate Advisory landing page
+- `/technology` — Morbit technology portfolio
+- `/real-estate` — Bellevue Residencies portfolio
+- `/web-design` — Web design, content creation, and selected live work
+
+All pages use `site.css` and `site.js`, so the header, portfolio dropdown, mobile menu, and footer remain identical throughout the site. `vercel.json` enables clean URLs without `.html` in the published address.
 
 ## What changed
 
