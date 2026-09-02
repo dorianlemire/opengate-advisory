@@ -11,3 +11,27 @@ document.querySelector('.nav-trigger')?.addEventListener('click',e=>{const menu=
 document.addEventListener('click',e=>{if(!e.target.closest('.portfolio-menu'))document.querySelector('.portfolio-menu')?.classList.remove('open')});
 document.querySelectorAll('[data-tabs]').forEach(tabs=>{const buttons=tabs.querySelectorAll('.tab-button'),panels=tabs.querySelectorAll('.tab-panel');buttons.forEach(button=>button.addEventListener('click',()=>{buttons.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));button.classList.add('active');tabs.querySelector(`#${button.dataset.target}`).classList.add('active')}))});
 document.querySelectorAll('.reveal').forEach(reveal=>{const range=reveal.querySelector('input'),after=reveal.querySelector('.reveal-after'),line=reveal.querySelector('.reveal-line'),handle=reveal.querySelector('.reveal-handle');range.addEventListener('input',()=>{const value=range.value;after.style.clipPath=`inset(0 ${100-value}% 0 0)`;line.style.left=value+'%';handle.style.left=value+'%'})});
+
+const pageClass=path==='/technology'?'technology-page':path==='/real-estate'?'real-estate-page':path==='/web-design'?'web-design-page':'home-page';
+document.body.classList.add(pageClass);
+
+if(pageClass==='home-page'){
+  const technologyVisual=document.querySelector('.service-visual[href="/technology"] img');
+  const marketingVisual=document.querySelector('.service-visual[href="/web-design"] img');
+  if(technologyVisual){technologyVisual.src='morbit-office.jpg';technologyVisual.alt='Natural modern workplace and meeting-room technology'}
+  if(marketingVisual){marketingVisual.src='strategy-whiteboard.jpg';marketingVisual.alt='Natural creative strategy workshop'}
+  const teamGrid=document.querySelector('#team .team-grid');
+  if(teamGrid)teamGrid.innerHTML=`<article class="person"><div class="person-head"><img src="Georges-new.png" alt="Georges Lemire"><div><h3>Georges Lemire</h3><div class="role">Founder · Principal Advisor</div></div></div><p class="person-bio">Former Managing Director France and Regional Director MEA at Cisco. Georges brings 25+ years growing enterprise technology businesses across Europe, the Middle East and Africa, supported by a practical network for companies expanding into South EMEA and Southeast Asia.</p><div class="person-highlights"><span>Managing Director France — Cisco</span><span>Regional Director Middle East & Africa — Cisco</span><span>Director Operations Sales EMEAR — Cisco</span><span>Area VP EMEA — Neat</span></div><a class="person-link" href="https://www.linkedin.com/in/georgeslemire/" target="_blank" rel="noopener">↗ LinkedIn Profile</a></article><article class="person"><div class="person-head"><img src="Dorian.jpeg" alt="Dorian Lemire"><div><h3>Dorian Lemire</h3><div class="role">Web Designer · Revenue Growth Strategist</div></div></div><p class="person-bio">Dorian designs digital experiences that turn complex offers into clear buyer journeys. His work combines positioning, responsive web design, content creation and conversion thinking for B2B, hospitality and growth-focused brands.</p><div class="person-highlights"><span>Conversion-focused UI and UX</span><span>Responsive static websites</span><span>Content systems and campaign visuals</span><span>Lead journeys and commercial messaging</span></div><a class="person-link" href="https://www.linkedin.com/in/dorian-lemire" target="_blank" rel="noopener">↗ LinkedIn Profile</a></article>`;
+}
+
+if(pageClass==='technology-page'){
+  document.querySelector('.page-hero-media')?.classList.add('dashboard-frame');
+  const channelImage=document.querySelector('#tab-channel img');
+  if(channelImage)channelImage.src='morbit-ecosystem-dark.png';
+  const metricSection=document.querySelector('.metric-row')?.closest('section');
+  if(metricSection)metricSection.insertAdjacentHTML('afterend',`<section class="section technology-ecosystem"><div class="container"><div class="section-head"><div><div class="eyebrow">Connected ecosystem</div><h2 class="section-title">Every room, device and signal<br><em>in one operational story.</em></h2></div><p class="lead">Hover across the stage to explore how Morbit connects collaboration spaces, workplace hardware, environmental signals and management insight without forcing teams through disconnected tools.</p></div><div class="ecosystem-stage"><img src="morbit-ecosystem-dark.png" alt="Morbit connected workplace ecosystem"><div class="ecosystem-copy"><h3>One platform across the workplace</h3><p>From the room and its devices to the operations dashboard, the value is a simpler picture of performance—clear enough for technical teams and credible enough for senior decision-makers.</p></div></div></div></section>`);
+}
+
+const motionItems=document.querySelectorAll('.section-head,.service-visual,.capability,.person,.metric,.location-card,.work-card,.ecosystem-stage');
+motionItems.forEach(item=>item.classList.add('motion-item'));
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target)}}),{threshold:.08});motionItems.forEach(item=>observer.observe(item))}else motionItems.forEach(item=>item.classList.add('in-view'));
