@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blush Atelier Dubai is a fictional luxury nail salon concept in Dubai Marina with glossy manicures, Gel-X, Russian manicure, bridal nails, and WhatsApp booking.">
+  <meta name="theme-color" content="#fff4f8">
+  <meta property="og:title" content="Blush Atelier Dubai | Luxury Nail Salon">
+  <meta property="og:description" content="A fictional glossy luxury nail salon concept for Dubai Marina.">
+  <meta property="og:image" content="hero-chrome-manicure.jpg">
+  <title>Blush Atelier Dubai | Luxury Nail Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #20171e;
+      --muted: #7d6f79;
+      --blush: #ffb6cd;
+      --blush-2: #ffe3ec;
+      --hot: #ff3f9e;
+      --lav: #d9c7ff;
+      --pearl: #fffafc;
+      --milk: #fff4f8;
+      --chrome: #d9dce5;
+      --silver: #a6aab7;
+      --glass: rgba(255, 255, 255, .68);
+      --line: rgba(32, 23, 30, .1);
+      --shadow: 0 24px 70px rgba(168, 72, 124, .18);
+      --radius: 26px;
+      --ease: cubic-bezier(.2, .9, .2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--pearl);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 8%, rgba(255, 63, 158, .18), transparent 28rem),
+        radial-gradient(circle at 86% 14%, rgba(217, 199, 255, .34), transparent 24rem),
+        linear-gradient(180deg, #fff7fb 0%, #fff 38%, #fff5f9 100%);
+      overflow-x: hidden;
+    }
+
+    body.drawer-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    select,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .shell {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 12px 0;
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      background: rgba(255, 250, 252, .78);
+      border-bottom: 1px solid rgba(255, 255, 255, .78);
+    }
+
+    .nav-inner {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 10px 8px 16px;
+      border: 1px solid rgba(255, 255, 255, .82);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,255,255,.76), rgba(255,227,236,.48));
+      box-shadow: 0 18px 48px rgba(168, 72, 124, .12);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,182,205,.55)),
+        radial-gradient(circle at 68% 25%, #fff 0 12%, transparent 13%);
+      border: 1px solid rgba(255,255,255,.9);
+      box-shadow: inset 0 0 0 1px rgba(255,63,158,.15), 0 10px 28px rgba(255,63,158,.18);
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 12px 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--hot), var(--lav), var(--chrome));
+      transform: rotate(-22deg);
+    }
+
+    .brand strong {
+      display: block;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.05rem;
+      line-height: .95;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .66rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 3px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.48);
+      border: 1px solid rgba(255,255,255,.72);
+    }
+
+    .nav-links a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 14px;
+      border-radius: 999px;
+      color: #655961;
+      font-size: .82rem;
+      font-weight: 800;
+      transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 63, 158, .11);
+      color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    .btn {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 999px;
+      padding: 0 18px;
+      color: var(--ink);
+      font-size: .86rem;
+      font-weight: 900;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--hot), #ff75bd 54%, #bba7ff);
+      box-shadow: 0 16px 38px rgba(255, 63, 158, .28);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 20px 50px rgba(255, 63, 158, .36);
+    }
+
+    .btn-ghost {
+      color: var(--ink);
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(255, 63, 158, .2);
+    }
+
+    .nav .btn {
+      padding: 0 14px;
+      min-height: 44px;
+      font-size: .78rem;
+    }
+
+    .hero {
+      min-height: calc(100svh - 84px);
+      display: grid;
+      align-items: center;
+      padding: 30px 0 48px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      width: fit-content;
+      padding: 0 12px;
+      border-radius: 999px;
+      color: #7b4761;
+      background: rgba(255, 255, 255, .64);
+      border: 1px solid rgba(255, 63, 158, .14);
+      box-shadow: 0 12px 28px rgba(168,72,124,.1);
+      font-size: .74rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .spark {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--hot);
+      box-shadow: 0 0 0 6px rgba(255, 63, 158, .14), 0 0 22px rgba(255, 63, 158, .8);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      letter-spacing: 0;
+    }
+
+    .hero h1 {
+      max-width: 11ch;
+      margin-top: 14px;
+      font-size: 3.35rem;
+      line-height: .9;
+    }
+
+    .hero h1 em {
+      color: var(--hot);
+      font-style: italic;
+      text-shadow: 0 12px 34px rgba(255, 63, 158, .2);
+    }
+
+    .hero-copy {
+      max-width: 570px;
+      margin: 18px 0 0;
+      color: #62545e;
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      margin-top: 22px;
+      padding-bottom: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      flex: 0 0 auto;
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 13px;
+      border-radius: 999px;
+      color: #6d5260;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255, 63, 158, .13);
+      font-size: .79rem;
+      font-weight: 850;
+      box-shadow: 0 10px 24px rgba(168,72,124,.08);
+    }
+
+    .hero-visual {
+      position: relative;
+      border-radius: 34px;
+      isolation: isolate;
+    }
+
+    .hero-frame {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,.86);
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+
+    .hero-frame img {
+      width: 100%;
+      height: 100%;
+      min-height: 390px;
+      object-fit: cover;
+      object-position: 64% center;
+    }
+
+    .hero-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(130deg, rgba(255,250,252,.32), transparent 34%),
+        linear-gradient(0deg, rgba(32,23,30,.12), transparent 42%);
+      pointer-events: none;
+    }
+
+    .floating-card {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      z-index: 2;
+      width: min(260px, calc(100% - 28px));
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 18px 42px rgba(32, 23, 30, .12);
+    }
+
+    .floating-card small {
+      color: var(--muted);
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .floating-card strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 1.1rem;
+    }
+
+    .shine-line {
+      position: absolute;
+      z-index: 3;
+      top: 14%;
+      left: -16%;
+      width: 48%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.96), transparent);
+      transform: rotate(-19deg);
+      animation: shimmer 5s var(--ease) infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0%, 34% { transform: translateX(-30%) rotate(-19deg); opacity: 0; }
+      42%, 58% { opacity: 1; }
+      80%, 100% { transform: translateX(280%) rotate(-19deg); opacity: 0; }
+    }
+
+    .ticker {
+      overflow: hidden;
+      border-block: 1px solid rgba(255, 63, 158, .12);
+      background: linear-gradient(90deg, rgba(255,255,255,.38), rgba(255,227,236,.58), rgba(255,255,255,.38));
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: scroll 24s linear infinite;
+    }
+
+    .ticker span {
+      padding: 16px 18px;
+      color: #8c6377;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    section {
+      padding: 68px 0;
+      scroll-margin-top: 96px;
+    }
+
+    .section-head {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      color: var(--hot);
+      font-size: .76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .section-head h2 {
+      max-width: 760px;
+      font-size: 2.35rem;
+      line-height: .98;
+    }
+
+    .section-head p {
+      max-width: 560px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .service-tabs {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 18px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .service-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab {
+      min-height: 44px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 63, 158, .16);
+      border-radius: 999px;
+      padding: 0 15px;
+      color: #6a5963;
+      background: rgba(255,255,255,.7);
+      font-size: .83rem;
+      font-weight: 900;
+      transition: transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+    }
+
+    .tab:hover,
+    .tab.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--hot), #bf9dff);
+      transform: translateY(-1px);
+    }
+
+    .service-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .service-card,
+    .artist-card,
+    .package-card,
+    .visit-panel {
+      border: 1px solid rgba(255,255,255,.82);
+      background: linear-gradient(145deg, rgba(255,255,255,.82), rgba(255,227,236,.46));
+      box-shadow: 0 18px 48px rgba(168, 72, 124, .12);
+    }
+
+    .service-card {
+      display: grid;
+      gap: 14px;
+      padding: 18px;
+      border-radius: 24px;
+      transition: transform .28s var(--ease), box-shadow .28s var(--ease), border-color .28s var(--ease);
+    }
+
+    .service-card:hover,
+    .artist-card:hover,
+    .package-card:hover,
+    .look-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 60px rgba(168, 72, 124, .18);
+      border-color: rgba(255, 63, 158, .26);
+    }
+
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      line-height: 1.05;
+    }
+
+    .service-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 10px;
+      border-radius: 999px;
+      color: #765b67;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.8);
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    .price {
+      flex: 0 0 auto;
+      color: var(--hot);
+      font-size: 1rem;
+      font-weight: 950;
+    }
+
+    .service-card p,
+    .artist-card p,
+    .package-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: .92rem;
+    }
+
+    .mini-btn {
+      min-height: 44px;
+      width: fit-content;
+      border: 1px solid rgba(255, 63, 158, .18);
+      border-radius: 999px;
+      padding: 0 14px;
+      color: var(--ink);
+      background: rgba(255,255,255,.72);
+      font-size: .78rem;
+      font-weight: 950;
+      transition: transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+    }
+
+    .mini-btn:hover {
+      color: #fff;
+      background: var(--hot);
+      transform: translateX(3px);
+    }
+
+    .gallery-wrap {
+      margin-inline: -16px;
+      overflow: hidden;
+    }
+
+    .gallery-row {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 78%);
+      gap: 14px;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: inline mandatory;
+      padding: 4px 16px 18px;
+      scrollbar-width: none;
+    }
+
+    .gallery-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .look-card {
+      position: relative;
+      min-height: 380px;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.82);
+      scroll-snap-align: start;
+      background: #fff;
+      box-shadow: 0 18px 48px rgba(168, 72, 124, .14);
+      transition: transform .28s var(--ease), box-shadow .28s var(--ease), border-color .28s var(--ease);
+    }
+
+    .look-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      object-fit: cover;
+      object-position: center;
+      transition: transform .7s var(--ease), filter .7s var(--ease);
+    }
+
+    .look-card.detail img {
+      object-position: center 46%;
+    }
+
+    .look-card.wide {
+      min-height: 310px;
+    }
+
+    .look-card.wide img {
+      min-height: 310px;
+      object-position: center;
+    }
+
+    .look-card:hover img {
+      transform: scale(1.05);
+      filter: saturate(1.08) brightness(1.04);
+    }
+
+    .look-label {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      color: #fff;
+      background: rgba(32, 23, 30, .42);
+      border: 1px solid rgba(255,255,255,.24);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .look-label strong {
+      font-size: .95rem;
+    }
+
+    .look-label span {
+      color: rgba(255,255,255,.78);
+      font-size: .76rem;
+      font-weight: 850;
+    }
+
+    .artists-grid,
+    .packages-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .artist-card,
+    .package-card {
+      padding: 18px;
+      border-radius: 26px;
+      transition: transform .28s var(--ease), box-shadow .28s var(--ease), border-color .28s var(--ease);
+    }
+
+    .artist-photo {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      margin-bottom: 16px;
+      overflow: hidden;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid rgba(255,255,255,.84);
+      box-shadow: 0 16px 38px rgba(255,63,158,.22);
+    }
+
+    .artist-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 52%, rgba(32,23,30,.18)),
+        linear-gradient(120deg, rgba(255,255,255,.32), transparent 34%);
+      pointer-events: none;
+    }
+
+    .artist-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 38%;
+      transition: transform .7s var(--ease), filter .7s var(--ease);
+    }
+
+    .artist-card:hover .artist-photo img {
+      transform: scale(1.04);
+      filter: saturate(1.06) brightness(1.03);
+    }
+
+    .artist-card h3,
+    .package-card h3 {
+      font-size: 1.48rem;
+    }
+
+    .artist-specialty,
+    .package-price {
+      display: block;
+      margin: 7px 0 10px;
+      color: var(--hot);
+      font-size: .82rem;
+      font-weight: 950;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 14px 0 16px;
+    }
+
+    .package-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .package-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0 54%, rgba(255,255,255,.54) 60%, transparent 68%);
+      transform: translateX(-80%);
+      transition: transform .8s var(--ease);
+      pointer-events: none;
+    }
+
+    .package-card:hover::before {
+      transform: translateX(80%);
+    }
+
+    .package-list {
+      display: grid;
+      gap: 8px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+      color: #675862;
+      font-size: .9rem;
+      line-height: 1.48;
+    }
+
+    .package-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .package-list li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      flex: 0 0 auto;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--hot), var(--lav));
+    }
+
+    .visit-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .visit-panel {
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .visit-copy {
+      padding: 22px;
+    }
+
+    .visit-copy h2 {
+      font-size: 2.15rem;
+      line-height: .98;
+    }
+
+    .visit-copy p {
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    .visit-details {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .visit-detail {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(255,255,255,.76);
+      color: #675862;
+      font-size: .88rem;
+    }
+
+    .visit-detail strong {
+      color: var(--ink);
+    }
+
+    .visit-image {
+      min-height: 300px;
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .footer {
+      padding: 38px 0 104px;
+      color: #725f6b;
+      background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,227,236,.8));
+    }
+
+    .footer-inner {
+      display: grid;
+      gap: 22px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 63, 158, .14);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-weight: 850;
+      font-size: .88rem;
+    }
+
+    .footer-links a {
+      min-width: 44px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .footer small {
+      line-height: 1.6;
+    }
+
+    .mobile-book {
+      position: fixed;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      z-index: 45;
+      display: flex;
+      gap: 10px;
+      padding: 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(255,255,255,.88);
+      box-shadow: 0 18px 48px rgba(168, 72, 124, .2);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .mobile-book .btn {
+      width: 100%;
+      min-height: 50px;
+    }
+
+    .drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: end center;
+      background: rgba(32, 23, 30, .28);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .28s var(--ease);
+    }
+
+    .drawer.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-panel {
+      width: min(520px, 100%);
+      max-height: calc(100svh - 18px);
+      overflow-y: auto;
+      padding: 18px;
+      border-radius: 30px 30px 0 0;
+      background:
+        radial-gradient(circle at 16% 0, rgba(255,63,158,.16), transparent 17rem),
+        linear-gradient(180deg, rgba(255,255,255,.96), #fff4f8);
+      border: 1px solid rgba(255,255,255,.9);
+      box-shadow: 0 -18px 70px rgba(32, 23, 30, .16);
+      transform: translateY(28px);
+      transition: transform .32s var(--ease);
+    }
+
+    .drawer.active .drawer-panel {
+      transform: translateY(0);
+    }
+
+    .drawer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .drawer h2 {
+      font-size: 2rem;
+      line-height: .96;
+    }
+
+    .drawer p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: .9rem;
+    }
+
+    .close-btn {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(255,63,158,.16);
+      border-radius: 50%;
+      background: rgba(255,255,255,.7);
+      color: var(--ink);
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .booking-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: #6d5965;
+      font-size: .78rem;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .field select,
+    .field input {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid rgba(255, 63, 158, .16);
+      border-radius: 16px;
+      padding: 0 13px;
+      color: var(--ink);
+      background: rgba(255,255,255,.78);
+      outline: 0;
+    }
+
+    .field select:focus,
+    .field input:focus {
+      border-color: rgba(255, 63, 158, .55);
+      box-shadow: 0 0 0 4px rgba(255, 63, 158, .1);
+    }
+
+    .wa-preview {
+      padding: 14px;
+      border-radius: 18px;
+      color: #65515e;
+      background: rgba(255,255,255,.66);
+      border: 1px solid rgba(255,255,255,.8);
+      line-height: 1.55;
+      font-size: .86rem;
+    }
+
+    .wa-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .wa-actions .btn {
+      width: 100%;
+    }
+
+    .mock-note {
+      color: #8a7984;
+      font-size: .78rem;
+      line-height: 1.55;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 720px) {
+      .shell {
+        width: min(1160px, calc(100% - 48px));
+      }
+
+      .hero-grid {
+        grid-template-columns: .86fr 1.14fr;
+        gap: 28px;
+      }
+
+      .hero h1 {
+        font-size: 4.55rem;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr .82fr;
+        align-items: end;
+      }
+
+      .section-head h2 {
+        font-size: 3.1rem;
+      }
+
+      .service-grid,
+      .artists-grid,
+      .packages-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .visit-grid {
+        grid-template-columns: 1fr .82fr;
+      }
+
+      .visit-image {
+        min-height: 100%;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1.1fr 1fr;
+        align-items: start;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .nav-links {
+        display: inline-flex;
+      }
+
+      .nav .btn {
+        padding: 0 18px;
+        font-size: .82rem;
+      }
+
+      .hero {
+        padding: 44px 0 58px;
+      }
+
+      .hero h1 {
+        font-size: 5.6rem;
+      }
+
+      .hero-frame,
+      .hero-frame img {
+        min-height: 650px;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .artists-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .packages-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .gallery-wrap {
+        margin-inline: 0;
+      }
+
+      .gallery-row {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-flow: initial;
+        grid-auto-columns: initial;
+        overflow: visible;
+        gap: 18px;
+        padding: 4px 0 8px;
+      }
+
+      .look-card {
+        min-height: 340px;
+        border-radius: 22px;
+      }
+
+      .look-card.wide {
+        grid-column: span 2;
+        min-height: 430px;
+      }
+
+      .look-card img {
+        min-height: 340px;
+      }
+
+      .look-card.wide img {
+        min-height: 430px;
+      }
+
+      .mobile-book {
+        display: none;
+      }
+
+      .footer {
+        padding-bottom: 42px;
+      }
+
+      .drawer {
+        place-items: center end;
+      }
+
+      .drawer-panel {
+        height: 100svh;
+        max-height: none;
+        border-radius: 32px 0 0 32px;
+      }
+    }
+
+    @media (max-width: 389px) {
+      .brand strong {
+        font-size: .94rem;
+      }
+
+      .nav .btn {
+        padding: 0 11px;
+        font-size: .72rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top" aria-label="Blush Atelier Dubai home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <strong>Blush Atelier</strong>
+          <span>Dubai Nail Studio</span>
+        </span>
+      </a>
+      <div class="nav-links" aria-label="Page links">
+        <a href="#services">Services</a>
+        <a href="#artists">Artists</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#packages">Packages</a>
+        <a href="#visit">Visit</a>
+      </div>
+      <button class="btn btn-primary open-booking" type="button">Book on WhatsApp</button>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-content reveal">
+          <span class="eyebrow"><span class="spark"></span> Dubai Marina nail atelier</span>
+          <h1>Glossy nails with a little <em>main character</em> energy.</h1>
+          <p class="hero-copy">A fictional luxury nail salon concept for chrome finishes, Russian manicures, bridal pearls, and high-gloss sets made for close-ups.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary open-booking" type="button">Book Appointment</button>
+            <a class="btn btn-ghost" href="#services">View Nail Menu</a>
+          </div>
+          <div class="chips" aria-label="Salon highlights">
+            <span class="chip">Russian Manicure</span>
+            <span class="chip">Gel-X</span>
+            <span class="chip">Dubai Marina</span>
+            <span class="chip">Same-day slots</span>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-frame">
+            <span class="shine-line" aria-hidden="true"></span>
+            <img src="hero-chrome-manicure.jpg" alt="Luxury chrome manicure close-up in a glossy Dubai nail salon">
+            <div class="floating-card">
+              <small>Today at the atelier</small>
+              <strong>Chrome glow, BIAB strength, camera-ready cuticles.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Glazed Chrome</span><span>Soft French</span><span>BIAB Glow</span><span>Bridal Pearl</span><span>Minimal Art</span><span>Dubai Marina</span>
+        <span>Glazed Chrome</span><span>Soft French</span><span>BIAB Glow</span><span>Bridal Pearl</span><span>Minimal Art</span><span>Dubai Marina</span>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Nail menu</span>
+            <h2>Precision prep, glossy finishes, and sets that photograph beautifully.</h2>
+          </div>
+          <p>Filter by mood or choose from the full menu. Prices are mock AED rates for this portfolio concept.</p>
+        </div>
+        <div class="service-tabs reveal" role="tablist" aria-label="Service filters">
+          <button class="tab active" type="button" data-filter="all">All</button>
+          <button class="tab" type="button" data-filter="manicure">Manicure</button>
+          <button class="tab" type="button" data-filter="gel">Gel & Extensions</button>
+          <button class="tab" type="button" data-filter="finish">Finishes</button>
+          <button class="tab" type="button" data-filter="bridal">Bridal</button>
+        </div>
+        <div class="service-grid reveal" id="serviceGrid">
+          <article class="service-card" data-category="manicure" data-service="Classic Manicure">
+            <div class="service-top"><div><h3>Classic Manicure</h3><div class="service-meta"><span class="pill">45 min</span><span class="pill">Clean prep</span></div></div><span class="price">AED 120</span></div>
+            <p>Shape, cuticle tidy, buff, massage, and your choice of regular polish.</p>
+            <button class="mini-btn book-service" type="button">Book this</button>
+          </article>
+          <article class="service-card" data-category="manicure" data-service="Russian Manicure">
+            <div class="service-top"><div><h3>Russian Manicure</h3><div class="service-meta"><span class="pill">75 min</span><span class="pill">Detail prep</span></div></div><span class="price">AED 210</span></div>
+            <p>Ultra-clean cuticle work and precise shaping for a polished editorial finish.</p>
+            <button class="mini-btn book-service" type="button">Book this</button>
+          </article>
+          <article class="service-card" data-category="gel" data-service="Gel Polish">
+            <div class="service-top"><div><h3>Gel Polish</h3><div class="service-meta"><span class="pill">60 min</span><span class="pill">High shine</span></div></div><span class="price">AED 170</span></div>
+            <p>Long-wear color with a glossy cured finish and careful nail prep.</p>
+            <button class="mini-btn book-service" type="button">Book this</button>
+          </article>
+          <article class="service-card" data-category="gel" data-service="BIAB / Builder Gel">
+            <div class="service-top"><div><h3>BIAB / Builder Gel</h3><div class="service-meta"><span class="pill">90 min</span><span class="pill">Strength</span></div></div><span class="price">AED 260</span></div>
+            <p>Builder base for stronger natural nails with a soft structured shape.</p>
+            <button class="mini-btn book-service" type="button">Book this</button>
+          </article>
+          <article class="service-card" data-category="gel" data-service="Gel-X Extensions">
+            <div class="service-top"><div><h3>Gel-X Extensions</h3><div class="service-meta"><span class="pill">105 min</span><span class="pill">Length</span></div></div><span class="price">AED 330</span></div>
+            <p>Lightweight full-cover extensions shaped into almond, square, or coffin.</p>
+            <button class="mini-btn book-service" type="button">Book this</button>
+          </article>
+          <article class="service-card" data-category="finish" data-service="Nail Art">
+            <div class="service-top"><div><h3>Nail Art</h3><div class="service-meta"><span class="pill">+20 min</span><span class="pill">Custom detail</span></div></div><span class="price">from AED 45</span></div>
+            <p>Minimal lines, aura blush, pearls, tiny crystals, or statement details.</p>
+            <button class="mini-btn book-service" type="button">Book this</button>
+          </article>
+          <article class="service-card" data-category="finish" data-service="French / Chrome Finish">
+            <div class="service-top"><div><h3>French / Chrome Finish</h3><div class="service-meta"><span class="pill">+15 min</span><span class="pill">Gloss top-up</span></div></div><span class="price">from AED 60</span></div>
+            <p>Fine French tips, glazed powder, pearl chrome, or mirror shine accents.</p>
+            <button class="mini-btn book-service" type="button">Book this</button>
+          </article>
+          <article class="service-card" data-category="manicure" data-service="Pedicure">
+            <div class="service-top"><div><h3>Pedicure</h3><div class="service-meta"><span class="pill">70 min</span><span class="pill">Spa finish</span></div></div><span class="price">AED 190</span></div>
+            <p>Soak, tidy, exfoliation, massage, polish, and glossy sandal-ready toes.</p>
+            <button class="mini-btn book-service" type="button">Book this</button>
+          </article>
+          <article class="service-card" data-category="bridal" data-service="Bridal Nail Package">
+            <div class="service-top"><div><h3>Bridal Nail Package</h3><div class="service-meta"><span class="pill">2.5 hrs</span><span class="pill">Trial + day-of</span></div></div><span class="price">AED 620</span></div>
+            <p>Consultation, Russian manicure, bridal finish, art accents, and touch-up kit.</p>
+            <button class="mini-btn book-service" type="button">Book this</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">The feed</span>
+            <h2>Looks with glossy close-up energy.</h2>
+          </div>
+          <p>Swipe the gallery on mobile. On desktop, the set opens into an editorial wall of salon moments and nail details.</p>
+        </div>
+        <div class="gallery-wrap reveal">
+          <div class="gallery-row" aria-label="Nail look gallery">
+            <article class="look-card detail"><img src="glazed-chrome.jpg" alt="Glazed chrome blush nails"><div class="look-label"><strong>Glazed Chrome</strong><span>Pearl mirror</span></div></article>
+            <article class="look-card detail"><img src="soft-french.jpg" alt="Soft French tip manicure"><div class="look-label"><strong>Soft French</strong><span>Clean girl</span></div></article>
+            <article class="look-card detail"><img src="bridal-pearl.jpg" alt="Bridal pearl manicure close-up"><div class="look-label"><strong>Bridal Pearl</strong><span>Ivory glow</span></div></article>
+            <article class="look-card detail"><img src="minimal-art.jpg" alt="Minimal silver nail art details"><div class="look-label"><strong>Minimal Art</strong><span>Tiny details</span></div></article>
+            <article class="look-card wide"><img src="pedicure-station.jpg" alt="Luxury blush pedicure station"><div class="look-label"><strong>Pedicure Suite</strong><span>Gloss lounge</span></div></article>
+            <article class="look-card wide"><img src="salon-interior.jpg" alt="Glossy luxury nail salon interior"><div class="look-label"><strong>Atelier Interior</strong><span>Dubai Marina</span></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="artists">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Nail artists</span>
+            <h2>Book by vibe, precision level, or favorite finish.</h2>
+          </div>
+          <p>Fictional profiles for a premium salon concept, each with a clear specialty and booking path.</p>
+        </div>
+        <div class="artists-grid reveal">
+          <article class="artist-card">
+            <div class="artist-photo"><img src="artist-maya-k.jpg" alt="Portrait of Maya K., fictional luxury nail artist"></div>
+            <h3>Maya K.</h3>
+            <span class="artist-specialty">Russian manicure and BIAB structure</span>
+            <p>Calm, meticulous, and beloved by clients who want clean cuticles and a natural nail glow.</p>
+            <div class="tag-row"><span class="pill">Russian prep</span><span class="pill">BIAB</span><span class="pill">Nude tones</span></div>
+            <button class="mini-btn book-artist" type="button" data-artist="Maya K.">Book with Maya</button>
+          </article>
+          <article class="artist-card">
+            <div class="artist-photo"><img src="artist-lina-rose.jpg" alt="Portrait of Lina Rose, fictional luxury nail artist"></div>
+            <h3>Lina Rose</h3>
+            <span class="artist-specialty">Chrome, French, and camera-ready finishes</span>
+            <p>Fast with polish, generous with shade advice, and always chasing the perfect glossy highlight.</p>
+            <div class="tag-row"><span class="pill">Chrome</span><span class="pill">French tips</span><span class="pill">Gel-X</span></div>
+            <button class="mini-btn book-artist" type="button" data-artist="Lina Rose">Book with Lina</button>
+          </article>
+          <article class="artist-card">
+            <div class="artist-photo"><img src="artist-sofia-noor.jpg" alt="Portrait of Sofia Noor, fictional bridal nail artist"></div>
+            <h3>Sofia Noor</h3>
+            <span class="artist-specialty">Bridal pearls and delicate nail art</span>
+            <p>Soft-spoken, detail-obsessed, and the artist for bridal trials, tiny pearls, and blush aura sets.</p>
+            <div class="tag-row"><span class="pill">Bridal</span><span class="pill">Pearls</span><span class="pill">Fine art</span></div>
+            <button class="mini-btn book-artist" type="button" data-artist="Sofia Noor">Book with Sofia</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Packages and looks</span>
+            <h2>Choose the personality, then let the details shine.</h2>
+          </div>
+          <p>Signature mock packages with flexible finishes, add-ons, and social-ready styling.</p>
+        </div>
+        <div class="packages-grid reveal">
+          <article class="package-card">
+            <h3>The Clean Girl Set</h3>
+            <span class="package-price">AED 260-340</span>
+            <p>Sheer, tidy, and fresh from the Pilates studio.</p>
+            <ul class="package-list"><li>Russian manicure or classic prep</li><li>BIAB nude base</li><li>Soft gloss finish</li></ul>
+          </article>
+          <article class="package-card">
+            <h3>Dubai Chrome Set</h3>
+            <span class="package-price">AED 320-460</span>
+            <p>Reflective, high-flash, and made for evening plans.</p>
+            <ul class="package-list"><li>Gel polish or Gel-X base</li><li>Pearl or mirror chrome</li><li>Cuticle oil glow service</li></ul>
+          </article>
+          <article class="package-card">
+            <h3>Bridal Pearl Set</h3>
+            <span class="package-price">AED 520-720</span>
+            <p>Soft ivory detail with a couture bridal mood.</p>
+            <ul class="package-list"><li>Consult and shape mapping</li><li>Russian manicure</li><li>Pearl accents and touch-up kit</li></ul>
+          </article>
+          <article class="package-card">
+            <h3>Birthday Drama Set</h3>
+            <span class="package-price">AED 390-590</span>
+            <p>Longer, louder, glossy, and impossible to ignore.</p>
+            <ul class="package-list"><li>Gel-X extensions</li><li>Hot pink, chrome, or aura art</li><li>Crystals or statement accents</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit">
+      <div class="shell">
+        <div class="visit-grid reveal">
+          <div class="visit-panel visit-copy">
+            <span class="section-kicker">Visit</span>
+            <h2>Dubai Marina, polished from arrival to last top coat.</h2>
+            <p>Fictional address: Marina Pearl Tower, Level 3, Dubai Marina. Pull up for gloss, chrome, bridal prep, or a last-minute same-day slot before dinner.</p>
+            <div class="visit-details">
+              <div class="visit-detail"><strong>Hours</strong><span>10:00 AM - 9:00 PM daily</span></div>
+              <div class="visit-detail"><strong>Parking</strong><span>2 hours validated, valet nearby</span></div>
+              <div class="visit-detail"><strong>Instagram</strong><span>@blushatelierdxb</span></div>
+            </div>
+            <div class="hero-actions">
+              <button class="btn btn-primary open-booking" type="button">Book on WhatsApp</button>
+              <a class="btn btn-ghost" href="https://www.instagram.com/" target="_blank" rel="noreferrer">Open Instagram</a>
+            </div>
+          </div>
+          <div class="visit-panel">
+            <img class="visit-image" src="salon-interior.jpg" alt="Luxury blush and chrome salon interior in Dubai">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <div>
+        <a class="brand" href="#top" aria-label="Blush Atelier Dubai home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>
+            <strong>Blush Atelier</strong>
+            <span>Dubai Nail Studio</span>
+          </span>
+        </a>
+        <p class="mock-note">This is a fictional portfolio website. Services, pricing, WhatsApp number, Instagram handle, and address are mock data.</p>
+      </div>
+      <div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#artists">Artists</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#packages">Packages</a>
+          <a href="#visit">Visit</a>
+          <a href="https://wa.me/971501234567" target="_blank" rel="noreferrer">WhatsApp</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+        </div>
+        <small>Blush Atelier Dubai concept. Built as a static HTML/CSS/JavaScript site ready for GitHub and Vercel.</small>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-book" aria-label="Mobile booking action">
+    <button class="btn btn-primary open-booking" type="button">Book on WhatsApp</button>
+  </div>
+
+  <div class="drawer" id="bookingDrawer" aria-hidden="true">
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+      <div class="drawer-head">
+        <div>
+          <span class="section-kicker">Mock WhatsApp booking</span>
+          <h2 id="bookingTitle">Build your appointment request.</h2>
+          <p>Choose a service, artist, and preferred time. The button opens a prefilled WhatsApp message to a placeholder UAE number.</p>
+        </div>
+        <button class="close-btn" type="button" id="closeBooking" aria-label="Close booking drawer">x</button>
+      </div>
+      <form class="booking-form" id="bookingForm">
+        <div class="field">
+          <label for="bookingService">Service</label>
+          <select id="bookingService" name="service"></select>
+        </div>
+        <div class="field">
+          <label for="bookingArtist">Artist</label>
+          <select id="bookingArtist" name="artist">
+            <option>Maya K.</option>
+            <option>Lina Rose</option>
+            <option>Sofia Noor</option>
+            <option>First available artist</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bookingTime">Preferred time</label>
+          <select id="bookingTime" name="time">
+            <option>Today after 5 PM</option>
+            <option>Tomorrow morning</option>
+            <option>Tomorrow after 6 PM</option>
+            <option>This weekend</option>
+            <option>First available slot</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bookingName">Name</label>
+          <input id="bookingName" name="name" type="text" placeholder="Your name">
+        </div>
+        <div class="wa-preview" id="waPreview"></div>
+        <div class="wa-actions">
+          <a class="btn btn-primary" id="waLink" href="#" target="_blank" rel="noreferrer">Send WhatsApp request</a>
+          <span class="mock-note">Mock number: +971 50 123 4567. This concept site does not contact a real salon.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const services = [
+      "Classic Manicure",
+      "Russian Manicure",
+      "Gel Polish",
+      "BIAB / Builder Gel",
+      "Gel-X Extensions",
+      "Nail Art",
+      "French / Chrome Finish",
+      "Pedicure",
+      "Bridal Nail Package"
+    ];
+
+    const serviceSelect = document.querySelector("#bookingService");
+    const artistSelect = document.querySelector("#bookingArtist");
+    const timeSelect = document.querySelector("#bookingTime");
+    const nameInput = document.querySelector("#bookingName");
+    const waPreview = document.querySelector("#waPreview");
+    const waLink = document.querySelector("#waLink");
+    const drawer = document.querySelector("#bookingDrawer");
+    const closeBooking = document.querySelector("#closeBooking");
+    const placeholderNumber = "971501234567";
+
+    services.forEach((service) => {
+      const option = document.createElement("option");
+      option.textContent = service;
+      serviceSelect.appendChild(option);
+    });
+
+    function updateWhatsAppLink() {
+      const name = nameInput.value.trim() || "Guest";
+      const message = `Hi Blush Atelier Dubai, this is ${name}. I would like to book ${serviceSelect.value} with ${artistSelect.value} for ${timeSelect.value}. I know this is a mock portfolio booking number.`;
+      waPreview.textContent = message;
+      waLink.href = `https://wa.me/${placeholderNumber}?text=${encodeURIComponent(message)}`;
+    }
+
+    function openDrawer({ service, artist } = {}) {
+      if (service && services.includes(service)) serviceSelect.value = service;
+      if (artist) artistSelect.value = artist;
+      updateWhatsAppLink();
+      drawer.classList.add("active");
+      drawer.setAttribute("aria-hidden", "false");
+      document.body.classList.add("drawer-open");
+      setTimeout(() => serviceSelect.focus(), 120);
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove("active");
+      drawer.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("drawer-open");
+    }
+
+    document.querySelectorAll(".open-booking").forEach((button) => {
+      button.addEventListener("click", () => openDrawer());
+    });
+
+    document.querySelectorAll(".book-service").forEach((button) => {
+      button.addEventListener("click", () => {
+        const service = button.closest(".service-card").dataset.service;
+        openDrawer({ service });
+      });
+    });
+
+    document.querySelectorAll(".book-artist").forEach((button) => {
+      button.addEventListener("click", () => openDrawer({ artist: button.dataset.artist }));
+    });
+
+    [serviceSelect, artistSelect, timeSelect, nameInput].forEach((field) => {
+      field.addEventListener("input", updateWhatsAppLink);
+      field.addEventListener("change", updateWhatsAppLink);
+    });
+
+    closeBooking.addEventListener("click", closeDrawer);
+    drawer.addEventListener("click", (event) => {
+      if (event.target === drawer) closeDrawer();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && drawer.classList.contains("active")) closeDrawer();
+    });
+
+    document.querySelectorAll(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach((item) => item.classList.remove("active"));
+        tab.classList.add("active");
+        const filter = tab.dataset.filter;
+        document.querySelectorAll(".service-card").forEach((card) => {
+          const show = filter === "all" || card.dataset.category === filter;
+          card.style.display = show ? "grid" : "none";
+        });
+      });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+    updateWhatsAppLink();
+  </script>
+</body>
+</html>
