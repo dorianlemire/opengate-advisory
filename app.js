@@ -164,31 +164,91 @@ towerStage?.addEventListener('keydown', event => {
 });
 document.querySelector('[data-reset-model]')?.addEventListener('click', () => { towerRotation = -20; renderTower(); });
 
+const galleryItems = [
+  { src: '/assets/amenity-pool.jpg', alt: 'Artist impression of the Bellevue infinity pool, tropical resident deck and twin-tower masterplan at blue hour', title: 'Infinity Pool & Resident Deck', hint: 'Artist impression' },
+  { src: '/assets/bellevue-vision-reference.jpg', alt: 'Aerial artist impression of the Bellevue twin-tower masterplan beside the coast at sunrise', title: 'Coastal Masterplan Vision', hint: 'Artist impression · published masterplan vision' },
+  { src: '/assets/bellevue-hero.jpg', alt: "Artist impression of Bellevue Residencies' twin-tower masterplan rising above tropical Ja-Ela at sunset", title: 'Twin Towers at Dusk', hint: 'Artist impression' }
+];
+const residenceOrder = ['2br', '3br', '4br', 'penthouse'];
+let galleryIndex = 0;
+let tourMode = 'residence';
+
+const galleryMainImg = document.querySelector('[data-gallery-main]');
+const galleryThumbs = document.querySelectorAll('.gallery-thumb');
+const selectGalleryImage = index => {
+  galleryIndex = index;
+  const item = galleryItems[index];
+  if (galleryMainImg) { galleryMainImg.src = item.src; galleryMainImg.alt = item.alt; }
+  galleryThumbs.forEach(thumb => {
+    const active = Number(thumb.dataset.galleryIndex) === index;
+    thumb.classList.toggle('active', active);
+    thumb.setAttribute('aria-pressed', String(active));
+  });
+};
+galleryThumbs.forEach(thumb => thumb.addEventListener('click', () => selectGalleryImage(Number(thumb.dataset.galleryIndex))));
+
 const tourModal = document.querySelector('[data-tour-modal]');
 const modalImage = document.querySelector('[data-modal-image]');
 const modalTitle = document.querySelector('[data-modal-title]');
-const openTour = () => {
+const modalHint = document.querySelector('[data-modal-hint]');
+const modalPrev = document.querySelector('[data-tour-prev]');
+const modalNext = document.querySelector('[data-tour-next]');
+
+const renderTourFrame = () => {
+  if (tourMode === 'gallery') {
+    const item = galleryItems[galleryIndex];
+    modalImage.src = item.src;
+    modalImage.alt = item.alt;
+    modalTitle.textContent = item.title;
+    if (modalHint) modalHint.textContent = item.hint;
+  } else {
+    const residence = residences[activeResidence];
+    modalImage.src = residence.image;
+    modalImage.alt = residence.alt;
+    modalTitle.textContent = residence.title;
+    if (modalHint) modalHint.textContent = 'Move your pointer or drag to look across the room · Artist impression';
+  }
+};
+const openTour = (mode, index) => {
   if (!tourModal) return;
-  const residence = residences[activeResidence];
-  modalImage.src = residence.image;
-  modalImage.alt = residence.alt;
-  modalTitle.textContent = residence.title;
+  tourMode = mode === 'gallery' ? 'gallery' : 'residence';
+  if (tourMode === 'gallery' && typeof index === 'number') galleryIndex = index;
+  renderTourFrame();
   tourModal.classList.add('open');
   tourModal.setAttribute('aria-hidden', 'false');
   body.classList.add('modal-open');
   document.querySelector('[data-close-tour]')?.focus();
-  track('open_residence_preview', { residence_type: activeResidence });
+  track('open_media_preview', { mode: tourMode, key: tourMode === 'gallery' ? galleryItems[galleryIndex].title : activeResidence });
 };
 const closeTour = () => {
   tourModal?.classList.remove('open');
   tourModal?.setAttribute('aria-hidden', 'true');
   body.classList.remove('modal-open');
-  document.querySelector('[data-open-tour]')?.focus();
+  (tourMode === 'gallery' ? document.querySelector('[data-open-gallery]') : document.querySelector('[data-open-tour]'))?.focus();
 };
-document.querySelector('[data-open-tour]')?.addEventListener('click', openTour);
+const navTour = direction => {
+  if (tourMode === 'gallery') {
+    galleryIndex = (galleryIndex + direction + galleryItems.length) % galleryItems.length;
+    selectGalleryImage(galleryIndex);
+  } else {
+    const i = residenceOrder.indexOf(activeResidence);
+    selectResidence(residenceOrder[(i + direction + residenceOrder.length) % residenceOrder.length]);
+  }
+  renderTourFrame();
+};
+document.querySelector('[data-open-tour]')?.addEventListener('click', () => openTour('residence'));
+document.querySelector('[data-open-gallery]')?.addEventListener('click', () => openTour('gallery', galleryIndex));
+galleryMainImg?.addEventListener('click', () => openTour('gallery', galleryIndex));
 document.querySelector('[data-close-tour]')?.addEventListener('click', closeTour);
+modalPrev?.addEventListener('click', () => navTour(-1));
+modalNext?.addEventListener('click', () => navTour(1));
 tourModal?.addEventListener('click', event => { if (event.target === tourModal) closeTour(); });
-document.addEventListener('keydown', event => { if (event.key === 'Escape' && tourModal?.classList.contains('open')) closeTour(); });
+document.addEventListener('keydown', event => {
+  if (!tourModal?.classList.contains('open')) return;
+  if (event.key === 'Escape') closeTour();
+  if (event.key === 'ArrowLeft') navTour(-1);
+  if (event.key === 'ArrowRight') navTour(1);
+});
 document.querySelector('[data-tour-frame]')?.addEventListener('pointermove', event => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const rect = event.currentTarget.getBoundingClientRect();
@@ -273,3 +333,61 @@ leadForm?.addEventListener('submit', async event => {
 document.querySelectorAll('a[href^="#enquire"],a[href*="wa.me"],a[href^="tel:"]').forEach(link => {
   link.addEventListener('click', () => track('contact_intent', { destination: link.getAttribute('href') }));
 });
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const scrollRail = document.querySelector('[data-scroll-rail]');
+const railLinks = document.querySelectorAll('[data-rail-target]');
+if (scrollRail && railLinks.length) {
+  const railSections = Array.from(railLinks).map(link => document.getElementById(link.dataset.railTarget)).filter(Boolean);
+  const toggleRailVisibility = () => scrollRail.classList.toggle('visible', window.scrollY > window.innerHeight * .5);
+  toggleRailVisibility();
+  window.addEventListener('scroll', toggleRailVisibility, { passive: true });
+  if ('IntersectionObserver' in window && railSections.length) {
+    const railObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const link = document.querySelector(`[data-rail-target="${entry.target.id}"]`);
+        if (!link) return;
+        railLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    }, { threshold: 0, rootMargin: '-45% 0px -45% 0px' });
+    railSections.forEach(section => railObserver.observe(section));
+  }
+}
+
+const parallaxEls = document.querySelectorAll('[data-parallax]');
+if (parallaxEls.length && !reduceMotion) {
+  let ticking = false;
+  const updateParallax = () => {
+    parallaxEls.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const progress = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
+      const shift = Math.max(-40, Math.min(40, progress * -32));
+      el.style.transform = `scale(1.08) translateY(${shift}px)`;
+    });
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { window.requestAnimationFrame(updateParallax); ticking = true; }
+  }, { passive: true });
+  updateParallax();
+}
+
+const magnetTargets = document.querySelectorAll('[data-magnetic]');
+if (magnetTargets.length && window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+  magnetTargets.forEach(el => {
+    const strength = .35;
+    const resetMagnet = () => { el.style.transition = 'transform .5s var(--ease)'; el.style.transform = 'translate(0,0)'; };
+    el.addEventListener('pointermove', event => {
+      const rect = el.getBoundingClientRect();
+      const x = (event.clientX - rect.left - rect.width / 2) * strength;
+      const y = (event.clientY - rect.top - rect.height / 2) * strength;
+      el.style.transition = 'transform .1s linear';
+      el.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    el.addEventListener('pointerleave', resetMagnet);
+    el.addEventListener('pointerup', resetMagnet);
+  });
+}

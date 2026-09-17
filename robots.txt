@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.opengate-advisory.com/sitemap.xml
+Sitemap: https://www.bellevueresidencies.com/sitemap.xml
