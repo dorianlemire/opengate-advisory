@@ -1,10 +1,7 @@
 {
-  "name": "opengate-advisory",
+  "name": "bellevue-residencies",
   "private": true,
   "scripts": {
-    "check": "node --check site.js"
-  },
-  "dependencies": {
-    "@vercel/analytics": "^2.0.1"
+    "check": "node --check app.js"
   }
 }
