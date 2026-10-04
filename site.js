@@ -151,14 +151,41 @@ document.querySelectorAll('[data-ecosystem-stage]').forEach(stage=>{
 
 document.querySelectorAll('[data-gradient-hero]').forEach(hero=>{
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const depthItems=hero.querySelectorAll('[data-hero-depth]');
   hero.addEventListener('pointermove',event=>{
     const bounds=hero.getBoundingClientRect();
-    hero.style.setProperty('--hero-x',`${((event.clientX-bounds.left)/bounds.width*100).toFixed(2)}%`);
-    hero.style.setProperty('--hero-y',`${((event.clientY-bounds.top)/bounds.height*100).toFixed(2)}%`);
+    const x=(event.clientX-bounds.left)/bounds.width;
+    const y=(event.clientY-bounds.top)/bounds.height;
+    hero.style.setProperty('--hero-x',`${(x*100).toFixed(2)}%`);
+    hero.style.setProperty('--hero-y',`${(y*100).toFixed(2)}%`);
+    depthItems.forEach(item=>{
+      const depth=Number(item.dataset.heroDepth)||20;
+      item.style.setProperty('--card-x',`${((x-.5)*depth).toFixed(2)}px`);
+      item.style.setProperty('--card-y',`${((y-.5)*depth*.72).toFixed(2)}px`);
+    });
   });
   hero.addEventListener('pointerleave',()=>{
     hero.style.setProperty('--hero-x','72%');
     hero.style.setProperty('--hero-y','36%');
+    depthItems.forEach(item=>{
+      item.style.setProperty('--card-x','0px');
+      item.style.setProperty('--card-y','0px');
+    });
+  });
+});
+
+document.querySelectorAll('[data-product-stage]').forEach(stage=>{
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  stage.addEventListener('pointermove',event=>{
+    const bounds=stage.getBoundingClientRect();
+    const x=(event.clientX-bounds.left)/bounds.width-.5;
+    const y=(event.clientY-bounds.top)/bounds.height-.5;
+    stage.style.setProperty('--product-rx',`${(-y*3.5).toFixed(2)}deg`);
+    stage.style.setProperty('--product-ry',`${(x*4.5).toFixed(2)}deg`);
+  });
+  stage.addEventListener('pointerleave',()=>{
+    stage.style.setProperty('--product-rx','0deg');
+    stage.style.setProperty('--product-ry','0deg');
   });
 });
 
@@ -181,7 +208,7 @@ document.querySelectorAll('[data-secure-stage]').forEach(stage=>{
 const pageClass=path==='/technology'?'technology-page':path==='/private-discuss'?'private-discuss-page':path==='/real-estate'?'real-estate-page':path==='/web-design'?'web-design-page':path==='/about'?'about-page':servicePaths.includes(path)?'service-page':['/privacy-policy','/thank-you'].includes(path)?'utility-page':'home-page';
 document.body.classList.add(pageClass);
 
-const motionItems=document.querySelectorAll('.section-head,.service-visual,.capability,.person,.metric,.location-card,.work-card,.ecosystem-stage,.about-principle,.about-gateway,.about-proof-card,.faq-item,.secure-stage,.private-use-card,.deployment-card');
+const motionItems=document.querySelectorAll('.section-head,.service-visual,.capability,.person,.metric,.location-card,.work-card,.ecosystem-stage,.about-principle,.about-gateway,.about-proof-card,.faq-item,.secure-stage,.private-use-card,.deployment-card,.private-product-card,.private-use-feature');
 motionItems.forEach(item=>item.classList.add('motion-item'));
 if('IntersectionObserver' in window){
   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
