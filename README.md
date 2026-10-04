@@ -1,43 +1,44 @@
-# Bellevue Residencies — Sales & Showcase Website
+# OpenGate Advisory Original Refresh
 
-Static, deployment-ready website for Bellevue Residencies, 40 Negombo Road, Tudella, Ja-Ela, Sri Lanka.
+Static OpenGate Advisory website with a shared navigation/footer system and clean Vercel routes for About, Technology, Real Estate, and Web Design.
 
-## Run locally
+## Published routes
 
-Use any static server from this folder. For example:
+- `/` — OpenGate Advisory landing page
+- `/about` — OpenGate story, mission, regional experience, and approach
+- `/technology` — Morbit technology portfolio
+- `/real-estate` — Bellevue Residencies portfolio
+- `/web-design` — Web design, content creation, and selected live work
 
-```bash
-npx serve .
-```
+All pages use `site.css` and `site.js`, so the header, portfolio dropdown, mobile menu, and footer remain identical throughout the site. `vercel.json` enables clean URLs without `.html` in the published address.
 
-The project has no build step. `vercel.json` enables clean URLs on Vercel.
+Vercel Web Analytics is loaded centrally through `site.js`, with `@vercel/analytics` recorded in `package.json`. Enable Web Analytics for the deployed project in the Vercel dashboard before publishing the next deployment.
 
-## Production checklist
+## What changed
 
-1. Add the approved GA4 measurement ID to `data-ga-id` on every HTML `<html>` tag. Analytics does not load while it is blank.
-2. Connect the lead form by adding a HTTPS JSON endpoint to `data-endpoint` on `<form data-lead-form>`. Until then, a validated submission prepares a WhatsApp message for the buyer to review and send.
-3. Replace provisional residence levels, plan diagrams, availability, handover, prices, payment terms and specifications with the approved sales release.
-4. Confirm the public sales telephone/WhatsApp number (`+94 71 515 0150`) before launch.
-5. Have Sri Lankan counsel review the privacy policy, foreign ownership language and investment disclaimers.
-6. Confirm the production domain. Canonical, Open Graph, schema and sitemap URLs currently use `https://www.bellevueresidencies.com`.
-7. Confirm the project's official survey coordinates before launch. The local OpenStreetMap orientation currently uses the public Ja-Ela location (`7.0744, 79.8919`); Google Maps links search the full street address.
+- Kept the landing page focused on OpenGate services, team, and CTA.
+- Moved portfolio content off the landing page into a dropdown menu with three dedicated pages:
+  - `technology.html` for Morbit Software Ltd.
+  - `real-estate.html` for Bellevue Residencies.
+  - `web-design.html` for web design and content work.
+- Added `about.html` with the OpenGate story, market-entry philosophy, regional reach, and mission.
+- Replaced the hero with a brighter, more natural business image.
+- Added the real Morbit SVG logo.
+- Added a live OpenStreetMap view of Ja-Ela with a direct Google Maps link.
+- Added interactive Morbit metric cards, capability tabs, and a connected-device hotspot experience using public-facing collateral.
+- Added Charles Boschetti to the team with the supplied portrait.
+- Added the registered OpenGate Advisory company information to the shared footer.
+- Kept the provided Dorian and Georges profile pictures.
+- Replaced the top-left logo image with a compact inline SVG logo based on the provided logo direction.
+- Improved responsive behavior for mobile and tablet without rebuilding the site as mobile-first.
+- Copied local image assets beside `index.html` and updated image paths to root-level filenames for GitHub/Vercel deployment.
 
-## Research and factual guardrails
+## Deploy
 
-- LMD / Daily FT 2019 announcement: 600,000 sq ft mixed-use masterplan; two towers; 2–4 bedroom homes and penthouses; pool, gym, recreation and solar-powered common areas; later commercial phase.
-- NCD Consultants current portfolio: 35-storey luxury apartment complex, piled foundations, four parking floors, transfer-floor atrium, 30 apartment floors and central lift core; in progress.
-- Thilanka Group current profile: 34-storey Bellevue high-rise and 170 apartments. Because published sources conflict on total inventory and one-vs-two-tower implementation, the website avoids a unit-count claim and identifies twin-tower imagery as the published masterplan vision.
-- Central Bank of Sri Lanka Q2 2025: Colombo new-condominium price index +12.8% YoY; condominium sales volume +44.2% YoY; 54% of units in surveyed ongoing projects reserved. These are market indicators, not Bellevue ROI promises.
-- Rome2Rio / public mapping context: approximately 15 km from Ja-Ela to Bandaranaike International Airport. Travel times are expressly qualified.
-- Sunday Times founder profile (2019): Chandima Kahandawala's French Riviera construction career and return to Sri Lanka.
-- The location panel uses a locally hosted OpenStreetMap tile mosaic so the real map remains visible when privacy-focused browsers block third-party iframes. Attribution is displayed over the map; Google Maps links provide live search and directions.
+Push this folder to GitHub, then import it into Vercel as a static site:
 
-## Visual sources and disclosure
+- Framework preset: `Other`
+- Build command: empty
+- Output directory: empty
 
-- `assets/bellevue-boi-render.jpg`: published 2019 project rendering from Daily FT.
-- `assets/bellevue-official-ncd.jpg`: NCD portfolio image retained for research reference, not used as a Bellevue site visual because it visibly depicts central Colombo landmarks.
-- `assets/bellevue-hero.jpg`, `amenity-pool.jpg`, `residence-3br.jpg`, `residence-4br.jpg`, `residence-penthouse.jpg`: generated with OpenAI ImageGen using the published Bellevue twin-tower rendering and/or the existing Bellevue interior mood image as references. Every public use is labelled “artist impression”.
-- `assets/bellevue-interior-reference.jpg`: inherited from the OpenGate Bellevue portfolio page and used as an indicative two-bedroom mood visual.
-- `assets/bellevue-vision-reference.jpg`: generated aerial artist impression of the twin-tower masterplan beside the coast, used in the amenity gallery as an indicative "coastal masterplan vision" frame.
-
-Do not present generated imagery as a construction photograph or approved architectural render.
+The HTML files reference root-level image files for Vercel/GitHub reliability. Upload the entire folder so the HTML, `site.css`, `site.js`, `vercel.json`, profile images, Morbit collateral, and real-estate reveal images remain together.
