@@ -1,0 +1,5 @@
+Cabinet Grotesk, Indian Type Foundry / Fontshare.
+Official distribution: https://www.fontshare.com/fonts/cabinet-grotesk
+Stylesheet source: https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700&display=swap
+Weights: 400, 500, 700. WOFF2 files served locally for dependable rendering.
+License information: https://www.fontshare.com/licenses

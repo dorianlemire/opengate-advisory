@@ -1,0 +1,10 @@
+{
+  "name": "opengate-advisory",
+  "private": true,
+  "scripts": {
+    "check": "node --check site.js"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}

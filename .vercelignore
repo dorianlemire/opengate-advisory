@@ -1,10 +1,21 @@
 node_modules/
 TEMPLATES/
 ARCHIVE/
+docs/
+motion-design/
+source-assets/
+CLAUDE.md
 images/
 graphify-out/
 mobile-preview.html
 README.md
+scripts/
+tests/
+test-results/
+playwright-report/
+partials/
+site.css
+site.js
 
 # Source and superseded media retained locally but not shipped to production.
 service-scaling.png

@@ -1,44 +1,51 @@
-# OpenGate Advisory Original Refresh
+# OpenGate Advisory
 
-Static OpenGate Advisory website with a shared navigation/footer system and clean Vercel routes for About, Technology, Real Estate, and Web Design.
+A static website for international market-entry and commercial growth advisory.
 
-## Published routes
+The current design uses a light theme by default, an optional persistent dark theme, Cabinet Grotesk typography, concise content and blank spaces reserved for approved real photography.
 
-- `/` — OpenGate Advisory landing page
-- `/about` — OpenGate story, mission, regional experience, and approach
-- `/technology` — Morbit technology portfolio
-- `/real-estate` — Bellevue Residencies portfolio
-- `/web-design` — Web design, content creation, and selected live work
+## Workspace
 
-All pages use `site.css` and `site.js`, so the header, portfolio dropdown, mobile menu, and footer remain identical throughout the site. `vercel.json` enables clean URLs without `.html` in the published address.
+/Users/dorianlemire/Projects/OpenGate-Advisory
 
-Vercel Web Analytics is loaded centrally through `site.js`, with `@vercel/analytics` recorded in `package.json`. Enable Web Analytics for the deployed project in the Vercel dashboard before publishing the next deployment.
+Read CLAUDE.md for business and project context. Website work belongs here.
 
-## What changed
+## Preview and verify
 
-- Kept the landing page focused on OpenGate services, team, and CTA.
-- Moved portfolio content off the landing page into a dropdown menu with three dedicated pages:
-  - `technology.html` for Morbit Software Ltd.
-  - `real-estate.html` for Bellevue Residencies.
-  - `web-design.html` for web design and content work.
-- Added `about.html` with the OpenGate story, market-entry philosophy, regional reach, and mission.
-- Replaced the hero with a brighter, more natural business image.
-- Added the real Morbit SVG logo.
-- Added a live OpenStreetMap view of Ja-Ela with a direct Google Maps link.
-- Added interactive Morbit metric cards, capability tabs, and a connected-device hotspot experience using public-facing collateral.
-- Added Charles Boschetti to the team with the supplied portrait.
-- Added the registered OpenGate Advisory company information to the shared footer.
-- Kept the provided Dorian and Georges profile pictures.
-- Replaced the top-left logo image with a compact inline SVG logo based on the provided logo direction.
-- Improved responsive behavior for mobile and tablet without rebuilding the site as mobile-first.
-- Copied local image assets beside `index.html` and updated image paths to root-level filenames for GitHub/Vercel deployment.
+- npm run preview — starts http://127.0.0.1:8091 with clean URLs.
+- npm run check — checks JavaScript syntax.
+- npm run verify — browser checks; run while the preview server is active. Requires Google Chrome.
+- npm run sync-layout — copies the shared header/footer from partials/ into every public page.
 
-## Deploy
+## Website files
 
-Push this folder to GitHub, then import it into Vercel as a static site:
+- design.css — typography, layout, responsive rules and both themes.
+- theme-init.js — applies the saved theme before first paint.
+- interface.js — menus, theme switch, product tabs, property comparison, FAQ support, map loading, mobile CTA and analytics.
+- assets/fonts/ — self-hosted Cabinet Grotesk.
+- assets/vendor/ — local GSAP and ScrollTrigger.
+- partials/ — shared header and footer source.
+- Public HTML files retain their metadata and canonical clean routes.
+- docs/LIGHT_REDESIGN.md — full design and image-placement notes.
 
-- Framework preset: `Other`
-- Build command: empty
-- Output directory: empty
+The previous site.css and site.js are retained for reference but no longer loaded or deployed. The complete previous website sources are backed up in ARCHIVE/pre-light-redesign-2026-10-08/.
 
-The HTML files reference root-level image files for Vercel/GitHub reliability. Upload the entire folder so the HTML, `site.css`, `site.js`, `vercel.json`, profile images, Morbit collateral, and real-estate reveal images remain together.
+## Routes
+
+/, /about, /market-entry-consulting, /fractional-sales-leadership, /channel-partner-development, /technology-commercialisation, /technology, /real-estate, /web-design, /privacy-policy, /thank-you, and the custom 404 page.
+
+All public pages have identical pre-rendered navigation and footers; core content does not depend on JavaScript rendering. Private Discuss remains archived and excluded.
+
+## Images
+
+New photography placements are blank and identified in the HTML by data-image-slot. Insert approved real photographs when ready. Morbit's actual dashboard and brand logo remain visible. All prior media is preserved.
+
+The Bellevue comparison control currently has blank image layers and remains ready for matched site photography and an approved architectural visualisation. Website projects still link to all four live concepts, including Nocturne Restaurant and Trim Street Dubai.
+
+## Deployment
+
+Vercel framework preset: Other. No build command. No output directory. Clean URLs are configured in vercel.json.
+
+Upload the public HTML and assets together, including design.css, interface.js, theme-init.js and the assets/ directory. Preserve .vercelignore, which excludes archives, source material, documentation, scripts, tests and the superseded styling/behavior files.
+
+Vercel Analytics wiring is preserved. GA4 still requires the owner's measurement ID in interface.js. This redesign has not been deployed.

@@ -2,9 +2,16 @@
   "name": "opengate-advisory",
   "private": true,
   "scripts": {
-    "check": "node --check site.js"
+    "check": "node --check interface.js && node --check theme-init.js && node --check scripts/preview.mjs",
+    "preview": "node scripts/preview.mjs",
+    "sync-layout": "node scripts/sync-layout.mjs",
+    "verify": "node scripts/verify-design.mjs"
   },
   "dependencies": {
-    "@vercel/analytics": "^2.0.1"
+    "@vercel/analytics": "^2.0.1",
+    "gsap": "^3.15.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0"
   }
 }
