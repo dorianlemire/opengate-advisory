@@ -2,6 +2,8 @@
 
 Implemented 8 October 2026 in the standalone OpenGate project.
 
+Historical design record. The October 9 cleanup moved published files into `public/`, styles/scripts into `public/assets/css/` and `public/assets/js/`, and archives/source material to the external reference folder. See `README.md` and `REPOSITORY_CLEANUP.md` for current paths and publishing instructions. Private Discuss is now restored, and the live website has 13 routes.
+
 ## Direction
 
 Warm off-white, ink blue, muted blue and restrained gold. Cabinet Grotesk is served locally. Compact navigation, short writing and brief motion focus attention on the business.
@@ -12,30 +14,23 @@ All 12 public pages share one visual system. Initial visits use light mode. The 
 
 ## Maintenance
 
-Shared layout is pre-rendered in every HTML page. Edit partials/header.html or partials/footer.html, then run npm run sync-layout. Active styling and behavior are design.css, interface.js and theme-init.js. Superseded site.css/site.js remain locally and are excluded from deployment.
+Shared layout is pre-rendered in every public HTML page. Edit partials/header.html or partials/footer.html, then run npm run sync-layout. Active styling and behavior are in public/assets/css/ and public/assets/js/. Superseded site.css/site.js are preserved in the external reference folder.
 
 The existing SEO metadata, canonical URLs, sitemap and robots file are preserved. Home and Morbit FAQ schema have been updated to match the visible answers.
 
 ## Real image placement
 
-Blank areas have data-image-slot attributes, with no public placeholder instructions. Source images are preserved locally. The actual Morbit dashboard is displayed uncropped; brand marks remain.
+Remaining blank areas have data-image-slot attributes, with no public placeholder instructions. Owner-supplied Georges event photographs fill the Home hero, Home story and About gallery. Georges and Dorian now use saved profile portraits in the team section; those are no longer empty slots. Morbit's former meeting/operations placeholders were replaced with interactive illustrations. Sources are documented in PRIVATE_DISCUSS_SOURCES.md and REPOSITORY_CLEANUP.md. The actual Morbit dashboard is displayed uncropped; brand marks remain.
 
 Insert an approved image into its slot. Remove aria-hidden from the wrapper when the image is meaningful and provide descriptive alt text. Supply image dimensions, decoding=async and loading=lazy except for above-the-fold imagery. Prefer compressed responsive AVIF/WebP. Fixed aspect ratios prevent layout shifts.
 
 | Page | Slot | Intended real image |
 | --- | --- | --- |
-| Home | home-hero | Wide understated business/environment photograph |
-| Home | home-working-together | Candid working session |
-| Home | georges-portrait | Approved Georges portrait |
-| Home | dorian-portrait | Approved Dorian portrait |
 | Home | charles-portrait | Approved Charles portrait |
-| About | about-people | Wide authentic team/working photograph |
 | Market entry | market-entry-consulting-hero | Regional business context |
 | Sales leadership | fractional-sales-leadership-hero | Real team discussion |
 | Channels | channel-partner-development-hero | Partner working session |
 | Technology growth | technology-commercialisation-hero | Product/enterprise context |
-| Morbit | morbit-meeting-room | Approved meeting-room image |
-| Morbit | morbit-operations | Operations/support team |
 | Bellevue | bellevue-hero | Approved property/location image |
 | Bellevue | bellevue-land | Verified site photograph |
 | Bellevue | bellevue-vision | Approved render aligned with the site image |
@@ -55,10 +50,10 @@ Browser checks cover both themes, all 12 routes at 360/768/1440/1920 widths, add
 
 ## Publishing and recovery
 
-No push or deployment was performed. Vercel still uses static clean URLs with no build step. Include all public HTML, design.css, interface.js, theme-init.js, assets/, the existing public product/logo/social-share files, robots.txt, sitemap.xml and vercel.json.
+No push or deployment was performed. Vercel uses static clean URLs with no build step and `public/` as its output directory. Commit the complete repository change, including moved-file deletions and root config, not just a selection of HTML pages. See README.md.
 
 Preserve .vercelignore. Internal documentation, tests, scripts, archives, source media and old CSS/JS are excluded.
 
-Vercel analytics wiring is preserved. GA4 still requires a real measurement ID; none was invented. Private Discuss remains archived.
+Vercel analytics wiring is preserved. GA4 still requires a real measurement ID; none was invented. The current Private Discuss page is live in the local preview; its historical version remains safely archived.
 
-The exact pre-redesign sources are in ARCHIVE/pre-light-redesign-2026-10-08/. That backup contains the original public HTML, CSS/JS, package files and documentation. All former image assets are still present.
+The exact pre-redesign sources are in the external reference folder's ARCHIVE/pre-light-redesign-2026-10-08/. That backup contains original HTML, CSS/JS, package files and documentation. Unused original media is preserved alongside it.

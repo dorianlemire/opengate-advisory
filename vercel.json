@@ -1,7 +1,31 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "",
+  "outputDirectory": "public",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {"source":"/design.css","destination":"/assets/css/design.css","permanent":true},
+    {"source":"/motion.css","destination":"/assets/css/motion.css","permanent":true},
+    {"source":"/morbit.css","destination":"/assets/css/morbit.css","permanent":true},
+    {"source":"/private-discuss.css","destination":"/assets/css/private-discuss.css","permanent":true},
+    {"source":"/interface.js","destination":"/assets/js/interface.js","permanent":true},
+    {"source":"/showcase.js","destination":"/assets/js/showcase.js","permanent":true},
+    {"source":"/motion.js","destination":"/assets/js/motion.js","permanent":true},
+    {"source":"/morbit.js","destination":"/assets/js/morbit.js","permanent":true},
+    {"source":"/theme-init.js","destination":"/assets/js/theme-init.js","permanent":true},
+    {"source":"/morbit-logo.svg","destination":"/assets/morbit/morbit-logo.svg","permanent":true},
+    {"source":"/morbit-studio-dashboard-full.jpg","destination":"/assets/morbit/morbit-studio-dashboard-full.jpg","permanent":true},
+    {"source":"/morbit-studio-dashboard-800.jpg","destination":"/assets/morbit/morbit-studio-dashboard-800.jpg","permanent":true},
+    {"source":"/morbit-studio-dashboard-1400.jpg","destination":"/assets/morbit/morbit-studio-dashboard-1400.jpg","permanent":true},
+    {"source":"/og-opengate-advisory.jpg","destination":"/assets/social/og-opengate-advisory.jpg","permanent":true},
+    {"source":"/og-bellevue-residencies.jpg","destination":"/assets/social/og-bellevue-residencies.jpg","permanent":true},
+    {"source":"/og-morbit-technology.jpg","destination":"/assets/social/og-morbit-technology.jpg","permanent":true},
+    {"source":"/og-web-design-dubai.jpg","destination":"/assets/social/og-web-design-dubai.jpg","permanent":true},
+    {"source":"/Dorian.jpeg","destination":"/assets/team/dorian-lemire.jpeg","permanent":true},
+    {"source":"/Georges-new.png","destination":"/assets/team/georges-lemire.png","permanent":true}
+  ],
   "headers": [
     {
       "source": "/(.*)",

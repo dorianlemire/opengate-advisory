@@ -2,7 +2,7 @@
   "name": "opengate-advisory",
   "private": true,
   "scripts": {
-    "check": "node --check interface.js && node --check theme-init.js && node --check scripts/preview.mjs",
+    "check": "node scripts/check-project.mjs",
     "preview": "node scripts/preview.mjs",
     "sync-layout": "node scripts/sync-layout.mjs",
     "verify": "node scripts/verify-design.mjs"

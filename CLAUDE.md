@@ -51,7 +51,7 @@ Priority geography:
 ## Team represented on the website
 
 - Georges Lemire — Founder and Principal Advisor.
-- Dorian Lemire — Business Development Representative (BDR).
+- Dorian Lemire — AI Developer. Creates motion design, websites and content, helping SaaS and technology businesses strengthen their overall online presence.
 - Charles Boschetti — Sales Development Representative (SDR), with content creation and photography capabilities.
 
 ## Website and portfolio
@@ -67,11 +67,14 @@ Main routes:
 - `/channel-partner-development` — channel-partner service.
 - `/technology-commercialisation` — technology commercialisation service.
 - `/technology` — Morbit product and commercial partnership page.
+- `/private-discuss` — sovereign communication and collaboration partner page.
 - `/real-estate` — Bellevue Residencies portfolio page.
 - `/web-design` — web design and content portfolio.
 - `/privacy-policy`, `/thank-you`, and the custom 404 page.
 
-Current site behavior lives in `interface.js`, styling in `design.css`, and early theme selection in `theme-init.js`. The previous `site.js` and `site.css` are unused and excluded from deployment. Shared header/footer source is in `partials/`; run `npm run sync-layout` after editing it to update all public HTML pages. Keep the header, navigation, footer, responsive behavior, breadcrumbs, analytics, and calls to action consistent across all public pages.
+Published pages now live in `public/`, styles in `public/assets/css/`, and browser scripts in `public/assets/js/`. Shared behavior is `interface.js`, shared styling is `design.css`, and early theme selection is `theme-init.js` within those asset folders. Shared header/footer source remains in `partials/`; run `npm run sync-layout` after editing it to update every public page. Keep navigation, footer, responsive behavior, breadcrumbs, analytics and calls to action consistent. Never put source documents, credentials or archives in `public/`.
+
+The shared dimensional layer is `motion.css` / `motion.js` in the corresponding public asset folders. Morbit-specific presentation and interactive illustrations live in `morbit.css` / `morbit.js`, with its main HTML sourced from `partials/morbit-main.html`. Edit that partial, then run `npm run sync-layout`; do not edit only the generated main section in `public/technology.html`. `showcase.js` owns product shortcuts, image enlargement and short panel transitions.
 
 ### Morbit
 
@@ -85,11 +88,11 @@ Bellevue is the real-estate portfolio project in Ja-Ela, Sri Lanka. Its presenta
 
 The portfolio demonstrates OpenGate's ability to turn offers into clear digital buyer journeys. External showcase websites should remain external links rather than being folded into the OpenGate codebase.
 
-### Private Discuss archive
+### Private Discuss
 
-Private Discuss is intentionally removed from the published site. Its exact former page and media are preserved under `ARCHIVE/private-discuss/`, which is excluded by `.vercelignore`.
+Private Discuss was restored at the user's request on 9 October 2026. The public page is `/private-discuss`, alongside Morbit (`/technology`) under the Technologies menu. Current product images live in `public/assets/private-discuss/`; sources and claim boundaries are recorded in `docs/PRIVATE_DISCUSS_SOURCES.md`.
 
-Do not restore Private Discuss, add it to navigation, include it in the sitemap, or publish its assets unless the user explicitly asks to bring it back.
+The former page and media remain preserved in the external reference folder listed below. Keep them outside the Git repository and deployment. Do not publish customer data from Morbit Studio; use an approved demo or anonymised assets only.
 
 ## Brand and design direction
 
@@ -97,16 +100,17 @@ The site should feel premium, executive, international, technically credible, an
 
 - Current palette: warm off-white backgrounds, ink-blue text, muted blue accents and restrained gold. Light mode is the default; dark mode preserves the same layout with deep blue-grey surfaces.
 - Typography: self-hosted Cabinet Grotesk. Keep copy concise, hierarchy clear and the number of competing actions low.
-- Use calm solid surfaces, considered whitespace and thin rules. Avoid heavy gradients, nested cards and decorative dashboard mockups.
-- New photo areas are intentionally blank pending approved real images. Keep data-image-slot markers for replacement. The real Morbit dashboard and brand marks remain visible.
-- Motion is brief and restrained: once-only GSAP reveals and clear hover feedback. Keep all copy readable and respect reduced-motion preferences.
+- The October 9 refinement is Apple-inspired, not a copy: translucent navigation, tactile pill controls, soft rounded imagery, subtle material shading and sculptural gate shapes. Preserve restrained colour and clear hierarchy. Avoid saturated gradients and card nesting.
+- Owner-approved Georges event photography is used on Home and About. Georges's newer saved portrait and Dorian's saved portrait are in `public/assets/team/` and shown in the team section. Keep any remaining data-image-slot markers for later replacement. The existing Morbit dashboard preview and brand marks remain visible.
+- Motion includes brief entrances, low-amplitude pointer depth and limited scroll-linked perspective. No scroll hijacking, pinned narrative or looping decoration. Reduced motion must disable movement without hiding content.
+- Morbit's explorable graphics are explicitly illustrative, never live customer data. Do not introduce fabricated operational numbers or copy private account screens. See `docs/MOTION_REFINEMENT.md`.
 - Maintain excellent behavior across mobile, tablet, laptop, and large desktop screens.
 
-The historical visual guidance is in `docs/DESIGN_SYSTEM_LEGACY.md`. Treat it as reference rather than a reason to overwrite newer site decisions.
+Historical visual guidance is in the external reference folder's `legacy-docs/`. Treat it as reference rather than a reason to overwrite newer site decisions.
 
 ## Motion-design direction
 
-OpenGate is now also a motion-design project. New animation work belongs in `motion-design/`:
+OpenGate's existing motion-design sources have been preserved under `motion-design/` in the external reference folder. Standalone video work belongs in that separate workspace, not in the website's Git repository:
 
 - `briefs/` — objectives, audience, format, duration, and copy.
 - `storyboards/` — shot plans, frames, and timing notes.
@@ -129,7 +133,8 @@ Vercel configuration:
 
 - Framework preset: `Other`.
 - Build command: empty.
-- Output directory: empty.
+- Output directory: `public` (committed in `vercel.json`).
+- Root directory: repository root, not `public`.
 - Clean URLs are configured in `vercel.json`.
 
 Local preview:
@@ -144,24 +149,26 @@ Open `http://127.0.0.1:8091/` and verify all changed routes at desktop and mobil
 Before finishing work:
 
 1. Check that every internal link and referenced asset resolves.
-2. Run `npm run check` and validate `sitemap.xml`.
+2. Run `npm run check` and validate `public/sitemap.xml`.
 3. Test navigation, dropdowns, interactive controls, forms, and sticky mobile CTA.
 4. Check for horizontal overflow and cropped content at common breakpoints.
-5. Confirm non-public folders remain covered by `.vercelignore`.
+5. Confirm only `public/` is published; source folders, secrets and archives must stay outside it. Do not track dependencies or test outputs.
 6. Preserve unrelated user files and archived material.
 
 ## October 2026 redesign notes
 
 Light is the first-visit default. The header toggle saves the choice under `opengate-theme`, applies before first paint and persists across pages. Do not use OS dark-mode preference to override the first-visit light theme.
 
-Run `npm run verify` with the preview server running and Google Chrome installed. The script checks all 12 routes in both themes at four widths, as well as navigation, keyboard input, theme persistence, product tabs, the property slider, map loading, FAQs, the mobile CTA, internal links and HTTP 404 behavior. Reports and screenshots are in excluded `test-results/`.
+Run `npm run verify` with the preview server running and Google Chrome installed. The script checks all 13 routes in both themes at four widths, as well as navigation, keyboard input, theme persistence, product/gallery tabs, hosting comparison, image enlargement, the property slider, map loading, FAQs, the mobile CTA, internal links and HTTP 404 behavior. Reports and screenshots are in excluded `test-results/`.
 
-The pre-redesign site is backed up in `ARCHIVE/pre-light-redesign-2026-10-08/`. Read `docs/LIGHT_REDESIGN.md` for image slots and maintenance details.
+The pre-redesign site is backed up under `ARCHIVE/pre-light-redesign-2026-10-08/` in the external reference folder. Read `docs/LIGHT_REDESIGN.md` for image slots and `docs/REPOSITORY_CLEANUP.md` for the current folder mapping.
 
 ## Source of truth
 
-- Current implementation: files at this project root.
+- Current published implementation: `public/`.
 - Current project guidance: this `CLAUDE.md`.
-- Historical handoff: `docs/WEBSITE_HANDOFF_LEGACY.md`.
-- Historical design reference: `docs/DESIGN_SYSTEM_LEGACY.md`.
-- Original high-resolution source material: `source-assets/`.
+- Current folder and deployment guide: `README.md`.
+- Historical handoff/design notes: `legacy-docs/` in the reference folder.
+- Original media, LinkedIn banner and motion-design sources: the reference folder.
+
+External reference folder: `/Users/dorianlemire/Projects/OpenGate-Advisory-Reference-2026-10-09-jgHF9r/`. It includes `before-cleanup.tar.gz` and `cleanup-manifest.json` for recovery. Do not add this folder back to GitHub or publish it. The installed local `node_modules/` remains usable but is no longer tracked.

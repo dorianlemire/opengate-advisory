@@ -1,51 +1,76 @@
 # OpenGate Advisory
 
-A static website for international market-entry and commercial growth advisory.
+The GitHub-ready website repository. Light-first design, optional dark mode, Cabinet Grotesk, real photography and interactive partner pages.
 
-The current design uses a light theme by default, an optional persistent dark theme, Cabinet Grotesk typography, concise content and blank spaces reserved for approved real photography.
+## Folder guide
 
-## Workspace
+```text
+public/              The complete published website
+  *.html             Pages; Vercel serves extension-free URLs
+  assets/
+    css/             Shared and product-specific styles
+    js/              Menus, themes, animation and product controls
+    fonts/           Self-hosted Cabinet Grotesk
+    vendor/          Local GSAP and ScrollTrigger
+    photos/          Approved event photography
+    team/            Georges and Dorian portraits
+    morbit/          Logo and responsive dashboard previews
+    private-discuss/ Official product visuals
+    social/          Social sharing images
+partials/            Shared header/footer and Morbit main-content source
+scripts/             Layout sync, local preview and verification
+docs/                Design, source and maintenance notes
+CLAUDE.md            Business and implementation context
+vercel.json          Deployment settings and legacy asset redirects
+package*.json        Reproducible local tooling
+```
 
-/Users/dorianlemire/Projects/OpenGate-Advisory
+`node_modules/` and `test-results/` are local-only and ignored by Git. No credentials, archived designs or source media belong in `public/`.
 
-Read CLAUDE.md for business and project context. Website work belongs here.
+## Work locally
 
-## Preview and verify
+Run these commands from this repository:
 
-- npm run preview — starts http://127.0.0.1:8091 with clean URLs.
-- npm run check — checks JavaScript syntax.
-- npm run verify — browser checks; run while the preview server is active. Requires Google Chrome.
-- npm run sync-layout — copies the shared header/footer from partials/ into every public page.
+```sh
+npm ci
+npm run sync-layout
+npm run check
+npm run preview
+```
 
-## Website files
+Open http://127.0.0.1:8091/. In another terminal, run `npm run verify` (requires Google Chrome). It checks all 13 routes in both themes, four widths, interactive features and team portraits. Reports/screenshots are local under `test-results/`.
 
-- design.css — typography, layout, responsive rules and both themes.
-- theme-init.js — applies the saved theme before first paint.
-- interface.js — menus, theme switch, product tabs, property comparison, FAQ support, map loading, mobile CTA and analytics.
-- assets/fonts/ — self-hosted Cabinet Grotesk.
-- assets/vendor/ — local GSAP and ScrollTrigger.
-- partials/ — shared header and footer source.
-- Public HTML files retain their metadata and canonical clean routes.
-- docs/LIGHT_REDESIGN.md — full design and image-placement notes.
+Most page edits happen in `public/*.html`. Header/footer edits happen in `partials/`. Edit the Morbit main content in `partials/morbit-main.html`, then run `npm run sync-layout`. CSS/JS changes go in their respective `public/assets/` folders.
 
-The previous site.css and site.js are retained for reference but no longer loaded or deployed. The complete previous website sources are backed up in ARCHIVE/pre-light-redesign-2026-10-08/.
+`npm run check` validates JavaScript syntax, local page/asset references, JSON-LD, redirects and the public-folder boundary. It also prevents tracking `node_modules`.
 
-## Routes
+## GitHub and Vercel
 
-/, /about, /market-entry-consulting, /fractional-sales-leadership, /channel-partner-development, /technology-commercialisation, /technology, /real-estate, /web-design, /privacy-policy, /thank-you, and the custom 404 page.
+Keep the **repository root** as Vercel's Root Directory. Configuration is committed in `vercel.json`:
 
-All public pages have identical pre-rendered navigation and footers; core content does not depend on JavaScript rendering. Private Discuss remains archived and excluded.
+- Framework: Other (`null`).
+- Build command: empty.
+- Output directory: `public`.
+- Clean URLs: enabled.
 
-## Images
+No framework migration or compilation step is needed. Only `public/` is published. Old CSS, JavaScript, Morbit-image and social-image URLs redirect to their organised locations.
 
-New photography placements are blank and identified in the HTML by data-image-slot. Insert approved real photographs when ready. Morbit's actual dashboard and brand logo remain visible. All prior media is preserved.
+Commit **all related changes and removals**, not just the `public/` folder. The root config, partials, scripts, docs and package manifests belong in GitHub too. Do not upload the reference backup, `node_modules`, test outputs or environment files. Verify the Vercel deployment separately after pushing to the connected GitHub branch.
 
-The Bellevue comparison control currently has blank image layers and remains ready for matched site photography and an approved architectural visualisation. Website projects still link to all four live concepts, including Nocturne Restaurant and Trim Street Dubai.
+Vercel Analytics is preserved. Google Analytics remains inactive until the owner's GA4 measurement ID is configured in `public/assets/js/interface.js`.
 
-## Deployment
+## Team and media
 
-Vercel framework preset: Other. No build command. No output directory. Clean URLs are configured in vercel.json.
+Dorian Lemire is an **AI Developer**, creating websites, motion design and content for SaaS/technology businesses and strengthening their online presence. His saved portrait and the newer Georges portrait are now in `public/assets/team/`. These are the existing local files; LinkedIn blocked direct retrieval, so they have not been claimed as newly downloaded or current-profile verified.
 
-Upload the public HTML and assets together, including design.css, interface.js, theme-init.js and the assets/ directory. Preserve .vercelignore, which excludes archives, source material, documentation, scripts, tests and the superseded styling/behavior files.
+Event photographs remain on Home/About. Charles's role, profile link and current image slot are unchanged. The Bellevue comparison retains its current blank image layers; this cleanup does not alter that design.
 
-Vercel Analytics wiring is preserved. GA4 still requires the owner's measurement ID in interface.js. This redesign has not been deployed.
+## Preserved references and recovery
+
+Old designs, unused media, motion-design folders and original source files were moved outside the Git repository:
+
+`/Users/dorianlemire/Projects/OpenGate-Advisory-Reference-2026-10-09-jgHF9r/`
+
+That folder contains a pre-cleanup `before-cleanup.tar.gz`, a move/removal manifest, archived Private Discuss and earlier designs, the LinkedIn banner sources, and unused media. Eleven byte-identical duplicate images and Finder metadata were removed; duplicates remain recoverable from the snapshot. Installed dependencies were untracked, not deleted.
+
+See [cleanup notes](docs/REPOSITORY_CLEANUP.md) for details. Never restore that reference folder into the deployment output.
