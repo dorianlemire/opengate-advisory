@@ -18,12 +18,9 @@ Technology is a core area of expertise, but the work is not limited to one verti
 
 Core services:
 
-- Market-entry strategy and validation.
-- Fractional sales and commercial leadership.
-- Channel and partner development.
-- Technology commercialisation and regional go-to-market execution.
-- Business development, buyer engagement, and pipeline creation.
-- Conversion-focused web design, content, and commercial storytelling.
+- Market Entry & Growth: market validation, technology positioning and regional go-to-market execution.
+- Commercial Leadership & Partnerships: fractional leadership, partner development, buyer engagement and pipeline execution.
+- AI Development & Integration: websites, CRM and AI workflows, motion design and content creation for SaaS and technology businesses.
 
 The operating promise is practical: help clients enter with confidence, avoid common mistakes, build local credibility, and grow at the right pace.
 
@@ -51,8 +48,9 @@ Priority geography:
 ## Team represented on the website
 
 - Georges Lemire — Founder and Principal Advisor.
-- Dorian Lemire — AI Developer. Creates motion design, websites and content, helping SaaS and technology businesses strengthen their overall online presence.
-- Charles Boschetti — Sales Development Representative (SDR), with content creation and photography capabilities.
+- Dorian Lemire — AI Developer. Creates websites, motion design, content, CRM workflows and AI integrations for SaaS and technology businesses.
+
+Charles's profile was removed at the owner's request on 10 October 2026.
 
 ## Website and portfolio
 
@@ -62,14 +60,12 @@ Main routes:
 
 - `/` — company landing page.
 - `/about` — mission, market-entry philosophy, and approach.
-- `/market-entry-consulting` — market-entry service.
-- `/fractional-sales-leadership` — fractional leadership service.
-- `/channel-partner-development` — channel-partner service.
-- `/technology-commercialisation` — technology commercialisation service.
+- `/market-entry-consulting` — Market Entry & Growth, including technology commercialisation.
+- `/fractional-sales-leadership` — Commercial Leadership & Partnerships, including channel development.
+- `/ai-development` — AI Development & Integration.
 - `/technology` — Morbit product and commercial partnership page.
 - `/private-discuss` — sovereign communication and collaboration partner page.
-- `/real-estate` — Bellevue Residencies portfolio page.
-- `/web-design` — web design and content portfolio.
+- `/web-design` — websites, motion design and digital portfolio.
 - `/privacy-policy`, `/thank-you`, and the custom 404 page.
 
 Published pages now live in `public/`, styles in `public/assets/css/`, and browser scripts in `public/assets/js/`. Shared behavior is `interface.js`, shared styling is `design.css`, and early theme selection is `theme-init.js` within those asset folders. Shared header/footer source remains in `partials/`; run `npm run sync-layout` after editing it to update every public page. Keep navigation, footer, responsive behavior, breadcrumbs, analytics and calls to action consistent. Never put source documents, credentials or archives in `public/`.
@@ -82,11 +78,11 @@ Morbit is the principal technology product represented by OpenGate. Position it 
 
 ### Bellevue Residencies
 
-Bellevue is the real-estate portfolio project in Ja-Ela, Sri Lanka. Its presentation should feel premium and credible, use real geographic context, and clearly distinguish indicative visualisations from confirmed project facts.
+Bellevue is the real-estate portfolio project in Ja-Ela, Sri Lanka. It is temporarily paused as of 10 October 2026: no menu/footer entry or sitemap URL, and the original page is preserved in `docs/paused/real-estate.html`. `/real-estate` temporarily redirects to `/web-design`. Restore only when requested; keep indicative visualisations distinct from confirmed project facts.
 
 ### Web design and content
 
-The portfolio demonstrates OpenGate's ability to turn offers into clear digital buyer journeys. External showcase websites should remain external links rather than being folded into the OpenGate codebase.
+The portfolio demonstrates Dorian's websites, motion design and digital work. Four real homepage captures link to the live concept sites. The Beaver IT product explainer adds a motion example beyond Morbit. CRM and AI are described as capabilities, not fabricated completed customer projects. External websites remain external links. Media sources and cleanup prompts are documented in `docs/SITE_REFINEMENT_2026-10-10.md`.
 
 ### Private Discuss
 
@@ -159,7 +155,7 @@ Before finishing work:
 
 Light is the first-visit default. The header toggle saves the choice under `opengate-theme`, applies before first paint and persists across pages. Do not use OS dark-mode preference to override the first-visit light theme.
 
-Run `npm run verify` with the preview server running and Google Chrome installed. The script checks all 13 routes in both themes at four widths, as well as navigation, keyboard input, theme persistence, product/gallery tabs, hosting comparison, image enlargement, the property slider, map loading, FAQs, the mobile CTA, internal links and HTTP 404 behavior. Reports and screenshots are in excluded `test-results/`.
+Run `npm run verify` with the preview server running and Google Chrome installed. The script checks all 11 routes in both themes at four widths, navigation, keyboard input, theme persistence, product/gallery and AI capability tabs, hosting comparison, image enlargement, portfolio destinations, video playback/captions, FAQs, the mobile CTA, redirects, internal links and HTTP 404 behavior. Reports and screenshots are in excluded `test-results/`.
 
 The pre-redesign site is backed up under `ARCHIVE/pre-light-redesign-2026-10-08/` in the external reference folder. Read `docs/LIGHT_REDESIGN.md` for image slots and `docs/REPOSITORY_CLEANUP.md` for the current folder mapping.
 

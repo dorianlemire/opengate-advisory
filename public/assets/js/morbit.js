@@ -29,6 +29,18 @@
       buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
       group.dataset[config.state || config.key] = key;
       group.querySelector(config.output).textContent = config.copy[key];
+      if (config.key === 'estate') {
+        const descriptions = {
+          devices: ['Know what needs attention.', 'Bring UC devices, connected systems and displays into the same view. Review device health, identify alerts and decide where your team should look next.', ['Device categories and asset context.','Health, status and alerts together.','A common starting point for IT and AV.']],
+          communications: ['Put communications in context.', 'Teams, Zoom and room systems are part of the workplace estate. Bring supported platforms into a shared operational view and connect the conversation to the devices people depend on.', ['Supported communication platforms.','Room systems and user context.','One operational conversation.']],
+          spaces: ['Connect the room to the estate.', 'Smart-building and asset views connect technology to a physical location. Move from the building to the floor or meeting space, then investigate the relevant system.', ['Building, floor and room context.','Bookings and workplace usage.','A clearer route to the relevant detail.']],
+          sensors: ['Look beyond the equipment.', 'Environmental and occupancy sensors add context to a room. Review supported CO₂, temperature, humidity and presence information within your deployment.', ['Environmental readings where supported.','Occupancy and motion context.','Connected to the room they belong to.']]
+        };
+        const panel=group.closest('.morbit-panel');
+        panel.querySelector('.estate-detail-heading').textContent=descriptions[key][0];
+        panel.querySelector('.estate-detail-body').textContent=descriptions[key][1];
+        panel.querySelectorAll('.feature-list li').forEach((item,index)=>item.textContent=descriptions[key][2][index]);
+      }
     };
     buttons.forEach((button, index) => {
       button.addEventListener('click', () => select(button));

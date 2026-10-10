@@ -3,7 +3,7 @@ import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 
 const base = 'http://127.0.0.1:8091';
-const routes = ['/', '/about', '/technology', '/private-discuss', '/real-estate', '/web-design', '/market-entry-consulting', '/fractional-sales-leadership', '/channel-partner-development', '/technology-commercialisation', '/privacy-policy', '/thank-you', '/404'];
+const routes = ['/', '/about', '/technology', '/private-discuss', '/web-design', '/market-entry-consulting', '/fractional-sales-leadership', '/ai-development', '/privacy-policy', '/thank-you', '/404'];
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const context = await browser.newContext({ reducedMotion: 'reduce', colorScheme: 'dark' });
 const page = await context.newPage();
@@ -27,6 +27,11 @@ const dorian = page.locator('.person').filter({has:page.getByRole('heading',{nam
 assert.equal(await dorian.locator('.role').innerText(),'AI Developer');
 assert.match(await dorian.locator('p').innerText(),/SaaS and technology/);
 assert.match(await dorian.locator('p').innerText(),/motion design/);
+assert.equal(await page.locator('.person').count(),2,'Team contains Georges and Dorian');
+assert.equal(await page.getByText('Charles Boschetti').count(),0);
+assert.equal(await page.locator('#services .service-card').count(),3,'Three core service offerings');
+assert.equal(await page.locator('#services-menu>a').count(),3);
+assert.equal(await page.locator('header a[href="/real-estate"],footer a[href="/real-estate"]').count(),0);
 const portraits=page.locator('.georges-portrait img,.dorian-portrait img');
 assert.equal(await portraits.count(),2);
 for(const image of await portraits.all()) {
@@ -74,11 +79,11 @@ for (const theme of ['light','dark']) {
 
 await page.setViewportSize({ width: 1440, height: 1000 });
 await page.goto(base);
-await page.locator('button[aria-controls="portfolio-menu"]').hover();
-await page.locator('#portfolio-menu a').first().hover();
-assert.equal(await page.locator('button[aria-controls="portfolio-menu"]').getAttribute('aria-expanded'), 'true', 'Dropdown stays open between trigger and item');
+await page.locator('button[aria-controls="services-menu"]').hover();
+await page.locator('#services-menu a').first().hover();
+assert.equal(await page.locator('button[aria-controls="services-menu"]').getAttribute('aria-expanded'), 'true', 'Dropdown stays open between trigger and item');
 await page.keyboard.press('Escape');
-assert.equal(await page.locator('button[aria-controls="portfolio-menu"]').getAttribute('aria-expanded'), 'false');
+assert.equal(await page.locator('button[aria-controls="services-menu"]').getAttribute('aria-expanded'), 'false');
 await page.locator('button[aria-controls="services-menu"]').focus();
 await page.keyboard.press('ArrowDown');
 assert.equal(await page.locator('#services-menu a').first().evaluate(el => el === document.activeElement), true);
@@ -105,6 +110,7 @@ await page.keyboard.press('Home');
 assert(await page.locator('#panel-estate').isVisible());
 await page.locator('[data-estate="communications"]').click();
 assert.equal(await page.locator('.estate-scene').getAttribute('data-active'), 'communications');
+assert.match(await page.locator('.estate-detail-heading').innerText(),/communications/);
 assert.equal(await page.locator('[data-estate="communications"]').getAttribute('aria-pressed'), 'true');
 await page.keyboard.press('ArrowRight');
 assert.equal(await page.locator('.estate-scene').getAttribute('data-active'), 'spaces');
@@ -168,12 +174,64 @@ assert(await page.getByRole('dialog').isVisible());
 await page.getByRole('button',{name:'Close image',exact:true}).click();
 assert(!(await page.getByRole('dialog').isVisible()));
 
-await page.goto(base + '/real-estate');
-await page.getByRole('slider').fill('75');
-assert.equal(await page.getByRole('slider').getAttribute('aria-valuetext'), '25 percent of the vision revealed');
-await page.route('https://www.openstreetmap.org/**', r => r.fulfill({ status:200, contentType:'text/html', body:'<p>Map test response</p>' }));
-await page.getByRole('button',{name:'View interactive map'}).click();
-assert.equal(await page.locator('iframe.live-map').count(), 1, 'Map loads on request');
+await page.goto(base + '/web-design');
+const portfolio = [
+  ['Nocturne Restaurant', 'https://restaurant-nocturne-mock.vercel.app/'],
+  ['Nail Saloon', 'https://nail-saloon-ten.vercel.app/'],
+  ['District Barbers', 'https://district-barbers.vercel.app/'],
+  ['Trim Street Dubai', 'https://barber-v2-kappa.vercel.app/'],
+];
+assert.equal(await page.locator('.work-card').count(), portfolio.length);
+assert.equal(await page.locator('#work [data-image-slot]').count(), 0, 'No blank portfolio image slots');
+for (const [name, url] of portfolio) {
+  const card = page.locator('.work-card').filter({has:page.getByRole('heading',{name,exact:true})});
+  assert.equal(await card.getAttribute('href'), url);
+  assert.equal(await card.getAttribute('target'), '_blank');
+  assert.match(await card.getAttribute('rel'), /noopener/);
+  const image = card.locator('img');
+  await image.scrollIntoViewIfNeeded();
+  await image.evaluate(el => el.decode());
+  assert(await image.evaluate(el => el.naturalWidth > 0 && Math.abs(el.naturalWidth/el.naturalHeight-1.6)<.01),'Responsive preview decodes with the intended proportions');
+  assert(await image.getAttribute('alt'));
+  await card.focus();
+  assert(await card.evaluate(el => el === document.activeElement), 'Portfolio link is keyboard accessible');
+  // Test the actual click/new-tab behavior without loading third-party trackers in the test.
+  await context.route(url, route => route.fulfill({ status: 200, contentType: 'text/html', body: '<title>Portfolio destination</title>' }));
+  const popupPromise = context.waitForEvent('page');
+  await page.keyboard.press('Enter');
+  const popup = await popupPromise;
+  await popup.waitForLoadState();
+  assert.equal(popup.url(), url);
+  await popup.close();
+  await context.unroute(url);
+}
+for (const theme of ['light', 'dark']) {
+  await page.evaluate(theme => localStorage.setItem('opengate-theme', theme), theme);
+  await page.reload();
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.locator('#work').scrollIntoViewIfNeeded();
+    await page.locator('#work').screenshot({ path: `test-results/portfolio-${theme}-${width}.png` });
+  }
+}
+await page.setViewportSize({ width: 390, height: 844 });
+
+await page.goto(base + '/ai-development');
+await page.getByRole('tab',{name:'Websites',exact:true}).click();
+assert(await page.locator('#ai-websites').isVisible());
+await page.keyboard.press('ArrowRight');
+assert(await page.locator('#ai-content').isVisible());
+await page.keyboard.press('Home');
+assert(await page.locator('#ai-workflows').isVisible());
+await page.goto(base+'/web-design');
+const film=page.locator('#motion-work video');
+assert.equal(await film.getAttribute('preload'),'none');
+assert(await film.evaluate(el=>!el.autoplay));
+await film.scrollIntoViewIfNeeded();
+await film.evaluate(async el=>{el.muted=true;await el.play();});
+await page.waitForFunction(()=>document.querySelector('#motion-work video').currentTime>0);
+await film.evaluate(el=>el.pause());
+assert.equal(await film.locator('track[kind="captions"]').count(),1);
 
 await page.goto(base);
 await page.locator('.faq-item summary').first().click();
@@ -203,7 +261,7 @@ for(const path of ['/CLAUDE.md','/README.md','/package.json','/docs/MOTION_REFIN
 const deployment=JSON.parse(await readFile('vercel.json','utf8'));
 for(const redirect of deployment.redirects) {
   const response=await context.request.get(base+redirect.source,{maxRedirects:0});
-  assert.equal(response.status(),308,'Legacy asset redirect: '+redirect.source);
+  assert.equal(response.status(),redirect.permanent===false?307:308,'Configured redirect: '+redirect.source);
   assert.equal(response.headers().location,redirect.destination);
   assert.equal((await context.request.get(base+redirect.destination)).status(),200);
 }
@@ -228,7 +286,7 @@ for (const width of [320,390,1024]) {
   await page.setViewportSize({width,height:844}); await page.goto(base);
   assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Extra homepage width ' + width);
 }
-const report = { layouts:routes.length * 8, uniqueTitles:titles.size, localLinks:localUrls.size, pageErrors, failures, interactions:'theme persistence, dropdown hover/keyboard, mobile navigation, Morbit/Private Discuss/gallery tabs, Morbit system/room/sensor selectors, hosting comparison, product shortcuts, native dialog/focus restoration, scenario accordion, comparison slider, map loading, FAQ, sticky CTA, motion and reduced-motion preference changes, 404 status' };
+const report = { layouts:routes.length * 8, uniqueTitles:titles.size, localLinks:localUrls.size, pageErrors, failures, interactions:'theme persistence, dropdown hover/keyboard, mobile navigation, three services and two team members, responsive portfolio images and new-tab links, video playback/captions, AI capability tabs, Morbit/Private Discuss/gallery tabs, Morbit system/room/sensor selectors, hosting comparison, product shortcuts, native dialog/focus restoration, scenario accordion, FAQ, sticky CTA, motion and reduced-motion preference changes, redirects and 404 status' };
 await writeFile('test-results/report.json',JSON.stringify(report,null,2));
 console.log(JSON.stringify(report,null,2));
 await browser.close();

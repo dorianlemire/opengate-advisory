@@ -2,7 +2,7 @@
 
 Implemented 8 October 2026 in the standalone OpenGate project.
 
-Historical design record. The October 9 cleanup moved published files into `public/`, styles/scripts into `public/assets/css/` and `public/assets/js/`, and archives/source material to the external reference folder. See `README.md` and `REPOSITORY_CLEANUP.md` for current paths and publishing instructions. Private Discuss is now restored, and the live website has 13 routes.
+Historical design record. The October 9 cleanup moved published files into `public/`, styles/scripts into `public/assets/css/` and `public/assets/js/`, and archives/source material to the external reference folder. The October 10 refinement reduced the site to 11 published routes and three service offerings, removed Charles, filled visible image slots and paused Real Estate. See `SITE_REFINEMENT_2026-10-10.md` and `README.md` for current behavior; the blank-image inventory below records the earlier design.
 
 ## Direction
 

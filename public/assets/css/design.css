@@ -145,7 +145,9 @@ a:hover .image-space img{transform:scale(1.025)}.image-space.wide{aspect-ratio:2
 .live-map{width:100%;height:430px;border:0;display:block}.map-open{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;font-size:14px;background:var(--bg);border-top:1px solid var(--line)}
 .work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:50px 32px}.work-card{min-width:0;display:block}
 .work-card .image-space{aspect-ratio:1.6;border:1px solid var(--line)}.work-meta{display:flex;align-items:center;justify-content:space-between;margin-top:20px;gap:15px}
-.work-meta h3{font-size:25px}.work-meta .icon{transition:transform .25s}.work-card:hover .work-meta .icon{transform:translate(3px,-3px)}.work-card>p{font-size:14px;margin-top:7px}
+.work-meta h3{font-size:25px}.work-meta .icon{transition:transform .25s}.work-card:is(:hover,:focus-visible) .work-meta .icon{transform:translate(3px,-3px)}.work-card>p{font-size:14px;margin-top:7px}
+.work-caption{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;margin-top:7px;font-size:14px}.work-visit{font-weight:600;white-space:nowrap}.work-card:is(:hover,:focus-visible) .work-visit{text-decoration:underline;text-underline-offset:4px}
+.work-card .image-space img{object-fit:contain}.work-card:is(:hover,:focus-visible) .image-space img{transform:none}
 /* Utilities and footer */
 .utility-hero{padding:70px 0}.utility-narrow{max-width:800px}.utility-hero h1{font-size:clamp(46px,6vw,72px)}.utility-hero .lead{margin-top:25px}
 .policy-updated{font-size:13px;margin-top:24px}.policy-copy h2{font-size:26px;margin:40px 0 14px;letter-spacing:-.02em}.policy-copy h2:first-child{margin-top:0}

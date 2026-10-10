@@ -17,7 +17,8 @@ public/              The complete published website
     morbit/          Logo and responsive dashboard previews
     private-discuss/ Official product visuals
     social/          Social sharing images
-partials/            Shared header/footer and Morbit main-content source
+    work/            Real website previews and the Beaver IT motion piece
+partials/            Shared layout, three service pages and Morbit source
 scripts/             Layout sync, local preview and verification
 docs/                Design, source and maintenance notes
 CLAUDE.md            Business and implementation context
@@ -38,9 +39,9 @@ npm run check
 npm run preview
 ```
 
-Open http://127.0.0.1:8091/. In another terminal, run `npm run verify` (requires Google Chrome). It checks all 13 routes in both themes, four widths, interactive features and team portraits. Reports/screenshots are local under `test-results/`.
+Open http://127.0.0.1:8091/. In another terminal, run `npm run verify` (requires Google Chrome). It checks all 11 routes in both themes, four widths, interactive features, portfolio links, video playback and team portraits. Reports/screenshots are local under `test-results/`.
 
-Most page edits happen in `public/*.html`. Header/footer edits happen in `partials/`. Edit the Morbit main content in `partials/morbit-main.html`, then run `npm run sync-layout`. CSS/JS changes go in their respective `public/assets/` folders.
+Most page edits happen in `public/*.html`. Header/footer edits happen in `partials/`. Edit Morbit in `partials/morbit-main.html`; edit the three service pages in their corresponding `*-main.html` partials. Run `npm run sync-layout` after source changes. CSS/JS changes go in their respective `public/assets/` folders.
 
 `npm run check` validates JavaScript syntax, local page/asset references, JSON-LD, redirects and the public-folder boundary. It also prevents tracking `node_modules`.
 
@@ -63,7 +64,11 @@ Vercel Analytics is preserved. Google Analytics remains inactive until the owner
 
 Dorian Lemire is an **AI Developer**, creating websites, motion design and content for SaaS/technology businesses and strengthening their online presence. His saved portrait and the newer Georges portrait are now in `public/assets/team/`. These are the existing local files; LinkedIn blocked direct retrieval, so they have not been claimed as newly downloaded or current-profile verified.
 
-Event photographs remain on Home/About. Charles's role, profile link and current image slot are unchanged. The Bellevue comparison retains its current blank image layers; this cleanup does not alter that design.
+The team contains Georges and Dorian. Charles's profile has been removed. Published event photographs have the Neat wordmark removed with a localized background repair; original files are preserved outside Git. Morbit now uses the owner-supplied demonstration dashboard. No published image frames are blank.
+
+The site has three services: Market Entry & Growth, Commercial Leadership & Partnerships, and AI Development & Integration. Real Estate is temporarily paused; its source is in `docs/paused/real-estate.html` and its URL temporarily redirects to the portfolio. The two merged service pages are preserved there too, with permanent redirects to their combined offerings.
+
+See [October 10 update](docs/SITE_REFINEMENT_2026-10-10.md) for route mappings, media sources and restoration steps. Run `node scripts/capture-portfolio.mjs` to refresh the actual website captures and their responsive versions.
 
 ## Preserved references and recovery
 

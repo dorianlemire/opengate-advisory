@@ -6,6 +6,10 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    {"source":"/channel-partner-development","destination":"/fractional-sales-leadership","permanent":true},
+    {"source":"/technology-commercialisation","destination":"/market-entry-consulting","permanent":true},
+    {"source":"/real-estate","destination":"/web-design","permanent":false},
+    {"source":"/assets/photos/georges-keynote.jpg","destination":"/assets/photos/georges-keynote-clean.jpg","permanent":true},
     {"source":"/design.css","destination":"/assets/css/design.css","permanent":true},
     {"source":"/motion.css","destination":"/assets/css/motion.css","permanent":true},
     {"source":"/morbit.css","destination":"/assets/css/morbit.css","permanent":true},

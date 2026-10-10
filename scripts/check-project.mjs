@@ -13,7 +13,7 @@ async function walk(dir) {
     assert(!entry.isSymbolicLink(), 'No symlinks in public: '+path);
     if (entry.isDirectory()) { await walk(path); continue; }
     assert(!entry.name.startsWith('.'), 'No hidden files in public: '+path);
-    assert(/\.(html|css|js|svg|png|jpe?g|webp|woff2|xml|txt)$/.test(entry.name), 'Unexpected public file: '+path);
+    assert(/\.(html|css|js|svg|png|jpe?g|webp|mp4|vtt|woff2|xml|txt)$/.test(entry.name), 'Unexpected public file: '+path);
     files.push(path);
   }
 }
@@ -52,4 +52,6 @@ const main=await readFile(resolve(publicRoot,'index.html'),'utf8');
 assert(main.includes('AI Developer'));
 assert(!main.includes('Business Development Representative'));
 assert(main.includes('/assets/team/dorian-lemire.jpeg') && main.includes('/assets/team/georges-lemire.png'));
+assert(!main.includes('Charles Boschetti'));
+for(const file of files.filter(path=>path.endsWith('.html'))) assert(!(await readFile(file,'utf8')).includes('data-image-slot='),'No unfilled image slots in published pages: '+file);
 console.log(`Validated ${files.length} public files, ${references} local references, structured data, JS syntax and repository boundaries.`);
