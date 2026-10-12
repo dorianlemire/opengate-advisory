@@ -56,6 +56,7 @@ for (const page of pages) {
     updated = updated.replace('<section class="home-hero">', '<section class="home-hero"><div class="hero-sculpture" aria-hidden="true"><div class="gate-object"><span></span><span></span><span></span></div><div class="gate-object gate-object--small"><span></span><span></span><span></span></div></div>');
   }
   if(page==='index') updated=updated.replace(/<section class="section" id="services">[\s\S]*?<\/section>/,(await readFile(resolve(root,'partials/core-services.html'),'utf8')).trim());
+  if(page==='index') updated=updated.replace(/<section class="section section-rule (?:portfolio-preview|partner-preview)" id="digital-work"[^>]*>[\s\S]*?<\/section>/,(await readFile(resolve(root,'partials/home-partners.html'),'utf8')).trim());
   if(page==='web-design') updated=updated.replace(/<section class="section section-soft" id="motion-work">[\s\S]*?<\/section>/,(await readFile(resolve(root,'partials/motion-work.html'),'utf8')).trim());
   if (original !== updated) await writeFile(file, updated);
 }
