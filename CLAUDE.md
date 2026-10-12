@@ -125,6 +125,10 @@ For web motion:
 
 ## Deployment and verification
 
+### Privacy and contact
+
+The public contact/privacy email is `hello@opengate-advisory.com`. Privacy copy is sourced from `partials/privacy-main.html`. Shared consent controls are in `partials/privacy-controls.html`, with `privacy.js` / `privacy.css` under public assets. Optional analytics, including Vercel, is blocked until opt-in. Do not re-add automatic analytics loading to `interface.js`. GA4 is still inactive; adding a new analytics provider requires an updated notice, preference description and consent version. Booking/email clicks are intent events, never confirmed leads. Run `npm run verify:privacy` when changing measurement or privacy controls. Account follow-through is documented in `docs/PRIVACY_AND_MEASUREMENT.md`.
+
 Vercel configuration:
 
 - Framework preset: `Other`.

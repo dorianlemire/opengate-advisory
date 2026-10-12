@@ -196,28 +196,5 @@
     });
   }
 
-  // Preserve the existing analytics wiring. GA4 only runs with a configured property.
-  const local = ['localhost','127.0.0.1','::1'].includes(location.hostname);
-  if (!local) {
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    const script = document.createElement('script');
-    script.defer = true; script.src = '/_vercel/insights/script.js';
-    script.dataset.opengateAnalytics = 'true'; document.head.appendChild(script);
-  }
-  const googleAnalyticsId = '';
-  if (!local && /^G-[A-Z0-9]+$/.test(googleAnalyticsId)) {
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-    gtag('js', new Date()); gtag('config', googleAnalyticsId, { anonymize_ip: true });
-    const script = document.createElement('script');
-    script.async = true; script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(googleAnalyticsId);
-    document.head.appendChild(script);
-  }
-  document.querySelectorAll('a[href*="outlook.office.com/book/"]').forEach(link => {
-    link.addEventListener('click', () => {
-      const source = link.classList.contains('sticky-mobile-cta') ? 'sticky_mobile_cta' : 'discovery_call_cta';
-      window.va?.('event', { name: 'Book Discovery Call', data: { source } });
-      window.gtag?.('event', 'generate_lead', { event_category: 'engagement', event_label: source });
-    });
-  });
+  // Analytics and enquiry-click measurement are consent-gated in privacy.js.
 })();

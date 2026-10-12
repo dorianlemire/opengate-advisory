@@ -14,7 +14,10 @@ if (!existingPages.includes('ai-development')) {
 }
 const pages = (await readdir(resolve(root,'public'))).filter(file=>file.endsWith('.html')).map(file=>file.slice(0,-5));
 const header = (await readFile(resolve(root, 'partials/header.html'), 'utf8')).trim();
-const footer = (await readFile(resolve(root, 'partials/footer.html'), 'utf8')).trim();
+const privacyControls = (await readFile(resolve(root, 'partials/privacy-controls.html'), 'utf8')).trim();
+const footer = (await readFile(resolve(root, 'partials/footer.html'), 'utf8')).trim()
+  .replace('<a href="/privacy-policy">Privacy</a>', '<a href="/privacy-policy">Privacy</a><button type="button" data-privacy-settings>Privacy settings</button>')
+  .replace('</footer>', privacyControls + '</footer>');
 for (const page of pages) {
   const file = resolve(root, 'public', page + '.html');
   const original = await readFile(file, 'utf8');
@@ -42,6 +45,8 @@ for (const page of pages) {
   if (!updated.includes('href="/assets/css/motion.css"')) updated = updated.replace('</head>', '  <link rel="stylesheet" href="/assets/css/motion.css">\n</head>');
   if (!updated.includes('src="/assets/js/motion.js"')) updated = updated.replace('</body>', '<script src="/assets/js/motion.js" defer></script>\n</body>');
   if (!updated.includes('href="/assets/css/refinement.css"')) updated=updated.replace('</head>','  <link rel="stylesheet" href="/assets/css/refinement.css">\n</head>');
+  if (!updated.includes('href="/assets/css/privacy.css"')) updated=updated.replace('</head>','  <link rel="stylesheet" href="/assets/css/privacy.css">\n</head>');
+  if (!updated.includes('src="/assets/js/privacy.js"')) updated=updated.replace('</body>','<script src="/assets/js/privacy.js" defer></script>\n</body>');
   if (['technology','web-design','ai-development'].includes(page)) updated=updated.replace(/<script src="\/assets\/vendor\/(gsap|ScrollTrigger)\.min\.js" defer><\/script>\n?/g,'');
   if (page === 'technology') {
     updated = updated.replace(/<script src="\/assets\/vendor\/(gsap|ScrollTrigger)\.min\.js" defer><\/script>\n?/g, '');
@@ -58,6 +63,10 @@ for (const page of pages) {
   if(page==='index') updated=updated.replace(/<section class="section" id="services">[\s\S]*?<\/section>/,(await readFile(resolve(root,'partials/core-services.html'),'utf8')).trim());
   if(page==='index') updated=updated.replace(/<section class="section section-rule (?:portfolio-preview|partner-preview)" id="digital-work"[^>]*>[\s\S]*?<\/section>/,(await readFile(resolve(root,'partials/home-partners.html'),'utf8')).trim());
   if(page==='web-design') updated=updated.replace(/<section class="section section-soft" id="motion-work">[\s\S]*?<\/section>/,(await readFile(resolve(root,'partials/motion-work.html'),'utf8')).trim());
+  if(page==='privacy-policy') {
+    updated=updated.replace(/<main id="main">[\s\S]*?<\/main>/,(await readFile(resolve(root,'partials/privacy-main.html'),'utf8')).trim());
+    updated=updated.replace('"dateModified":"2026-09-17"','"dateModified":"2026-10-12"');
+  }
   if (original !== updated) await writeFile(file, updated);
 }
 console.log(`Shared header and footer are synced across all ${pages.length} public pages.`);

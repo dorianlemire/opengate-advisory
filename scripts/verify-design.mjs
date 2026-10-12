@@ -13,6 +13,7 @@ const titles = new Set();
 page.on('pageerror', error => pageErrors.push(error.message));
 await mkdir('test-results', { recursive: true });
 await page.goto(base);
+await page.locator('.privacy-banner [data-consent="reject"]').click();
 await page.evaluate(() => document.fonts.ready);
 assert.equal(await page.locator('html').getAttribute('data-theme'), 'light', 'First visit defaults to light even on a dark OS');
 await page.getByRole('button', { name: 'Switch to dark mode', exact: true }).click();

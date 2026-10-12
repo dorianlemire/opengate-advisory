@@ -5,7 +5,8 @@
     "check": "node scripts/check-project.mjs",
     "preview": "node scripts/preview.mjs",
     "sync-layout": "node scripts/sync-layout.mjs",
-    "verify": "node scripts/verify-design.mjs"
+    "verify": "node scripts/verify-design.mjs",
+    "verify:privacy": "node scripts/verify-privacy.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
