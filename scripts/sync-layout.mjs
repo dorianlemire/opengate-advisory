@@ -5,7 +5,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const services = {
   'market-entry-consulting': { source:'market-entry-main.html', name:'Market entry & growth', title:'Market Entry & Growth Advisory | OpenGate', description:'Market validation, technology positioning and practical go-to-market support for companies expanding across the GCC, EMEA and Southeast Asia.' },
   'fractional-sales-leadership': { source:'commercial-leadership-main.html', name:'Commercial leadership & partnerships', title:'Commercial Leadership & Partnerships | OpenGate', description:'Fractional sales leadership, channel development and commercial execution. Senior experience for your team, pipeline and partner network.' },
-  'ai-development': { source:'ai-development-main.html', name:'AI development & integration', title:'AI Development, CRM Integration & Motion Design | OpenGate', description:'AI and CRM workflows, websites, motion design and content for SaaS and technology businesses. Digital development with Dorian Lemire at OpenGate.' }
+  'ai-development': { source:'ai-development-main.html', name:'AI development & integration', title:'Motion Design, CRM & AI Automation | OpenGate', description:'Motion design, CRM and AI automation for SaaS and technology teams. Product films and connected workflows with Dorian Lemire. Websites as a supporting service.' }
 };
 const existingPages = (await readdir(resolve(root,'public'))).filter(file=>file.endsWith('.html')).map(file=>file.slice(0,-5));
 if (!existingPages.includes('ai-development')) {
@@ -63,6 +63,11 @@ for (const page of pages) {
   if(page==='index') updated=updated.replace(/<section class="section" id="services">[\s\S]*?<\/section>/,(await readFile(resolve(root,'partials/core-services.html'),'utf8')).trim());
   if(page==='index') updated=updated.replace(/<section class="section section-rule (?:portfolio-preview|partner-preview)" id="digital-work"[^>]*>[\s\S]*?<\/section>/,(await readFile(resolve(root,'partials/home-partners.html'),'utf8')).trim());
   if(page==='web-design') updated=updated.replace(/<section class="section section-soft" id="motion-work">[\s\S]*?<\/section>/,(await readFile(resolve(root,'partials/motion-work.html'),'utf8')).trim());
+  if(page==='about') {
+    const film=(await readFile(resolve(root,'partials/about-film.html'),'utf8')).trim();
+    if(updated.includes('id="opengate-film"')) updated=updated.replace(/<section class="section section-rule about-film"[\s\S]*?<\/section>/,film);
+    else updated=updated.replace('<section class="section section-soft">',film+'\n<section class="section section-soft">');
+  }
   if(page==='privacy-policy') {
     updated=updated.replace(/<main id="main">[\s\S]*?<\/main>/,(await readFile(resolve(root,'partials/privacy-main.html'),'utf8')).trim());
     updated=updated.replace('"dateModified":"2026-09-17"','"dateModified":"2026-10-12"');

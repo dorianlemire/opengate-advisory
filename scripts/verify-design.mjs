@@ -218,12 +218,26 @@ for (const theme of ['light', 'dark']) {
 await page.setViewportSize({ width: 390, height: 844 });
 
 await page.goto(base + '/ai-development');
-await page.getByRole('tab',{name:'Websites',exact:true}).click();
-assert(await page.locator('#ai-websites').isVisible());
-await page.keyboard.press('ArrowRight');
+assert.equal(await page.locator('.ai-tabs [role="tab"]').count(),2);
 assert(await page.locator('#ai-content').isVisible());
-await page.keyboard.press('Home');
+await page.getByRole('tab',{name:'CRM & automation',exact:true}).click();
 assert(await page.locator('#ai-workflows').isVisible());
+await page.keyboard.press('Home');
+assert(await page.locator('#ai-content').isVisible());
+await page.keyboard.press('ArrowRight');
+assert(await page.locator('#ai-workflows').isVisible());
+assert(await page.locator('#ai-websites').isVisible());
+assert.equal(await page.locator('#ai-websites').getAttribute('role'),null,'Websites is a supporting section, not a primary tab');
+
+await page.goto(base+'/about');
+const brandFilm=page.locator('#opengate-film video');
+assert.equal(await brandFilm.getAttribute('preload'),'none');
+assert(await brandFilm.evaluate(el=>!el.autoplay));
+await brandFilm.evaluate(async el=>{el.muted=true;el.textTracks[0].mode='hidden';await el.play();});
+await page.waitForFunction(()=>document.querySelector('#opengate-film video').currentTime>0);
+assert(Math.abs(await brandFilm.evaluate(el=>el.duration)-58.816)<0.1);
+await page.waitForFunction(()=>document.querySelector('#opengate-film video').textTracks[0].cues?.length===12);
+await brandFilm.evaluate(el=>el.pause());
 await page.goto(base+'/web-design');
 const film=page.locator('#motion-work video');
 assert.equal(await film.getAttribute('preload'),'none');
@@ -236,6 +250,7 @@ assert.equal(await film.locator('track[kind="captions"]').count(),1);
 assert.equal(await film.locator('source').getAttribute('src'),'/assets/work/morbit-studio-film.mp4');
 assert.equal(await film.locator('track').getAttribute('srclang'),'en');
 assert(Math.abs(await film.evaluate(el=>el.duration)-88)<0.1, 'Full supplied Morbit film');
+assert.equal(await page.locator('#motion-work + .section').evaluate(el=>getComputedStyle(el).borderTopWidth),'1px','Visible section boundary after Morbit');
 
 await page.goto(base);
 await page.locator('.faq-item summary').first().click();

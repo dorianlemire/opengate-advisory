@@ -1,4 +1,11 @@
 /* October 2026: three services, a two-person team and real portfolio work. */
+/* Targeted refinement: preserve brand, variance 5 / motion 3 / density 3.
+   Media uses approved film artwork; the rule below marks a real section boundary. */
+.film-intro{max-width:650px;margin-bottom:36px}.film-intro p{font-size:20px;margin-top:20px}
+.about-film{background:var(--bg)}
+#motion-work + .section{border-top:1px solid var(--line);background:var(--bg)}
+.ai-supporting{margin-top:64px;padding-top:32px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:36px}.ai-supporting h3{font-size:24px}.ai-supporting p{max-width:610px;margin-top:12px;font-size:17px}.ai-supporting .text-link{flex-shrink:0}
+@media(max-width:767px){.ai-supporting{display:block;margin-top:40px}.ai-supporting .text-link{margin-top:24px}.film-intro p{font-size:18px}}
 .core-services{grid-template-columns:1fr 1fr}.core-services .service-card{padding:28px 0 32px;border-top:1px solid var(--line)}
 .core-services .service-card:nth-child(odd){padding-right:22px}.core-services .service-card:nth-child(even){padding-left:22px}.core-services .service-card--digital:nth-child(n){padding-right:0;padding-left:0;border-left:0}
 .core-services .service-card--digital{grid-column:1/-1;display:grid;grid-template-columns:1fr 180px;gap:36px;align-items:center}.service-work-image{overflow:hidden;border-radius:16px;display:block;border:1px solid var(--line)}.service-work-image img{width:100%;height:auto;transition:transform .4s}.service-work-image:hover img{transform:scale(1.025)}

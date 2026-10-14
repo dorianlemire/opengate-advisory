@@ -20,7 +20,7 @@ Core services:
 
 - Market Entry & Growth: market validation, technology positioning and regional go-to-market execution.
 - Commercial Leadership & Partnerships: fractional leadership, partner development, buyer engagement and pipeline execution.
-- AI Development & Integration: websites, CRM and AI workflows, motion design and content creation for SaaS and technology businesses.
+- AI Development & Integration: motion design and CRM & automation are the primary offerings for SaaS and technology businesses. Websites and content creation are supporting services.
 
 The operating promise is practical: help clients enter with confidence, avoid common mistakes, build local credibility, and grow at the right pace.
 
@@ -48,7 +48,7 @@ Priority geography:
 ## Team represented on the website
 
 - Georges Lemire — Founder and Principal Advisor.
-- Dorian Lemire — AI Developer. Creates websites, motion design, content, CRM workflows and AI integrations for SaaS and technology businesses.
+- Dorian Lemire — AI Developer. Creates motion design, CRM workflows and AI automation for SaaS and technology businesses, with websites and content as supporting services.
 
 Charles's profile was removed at the owner's request on 10 October 2026.
 
