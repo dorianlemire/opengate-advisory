@@ -233,6 +233,9 @@ await film.evaluate(async el=>{el.muted=true;await el.play();});
 await page.waitForFunction(()=>document.querySelector('#motion-work video').currentTime>0);
 await film.evaluate(el=>el.pause());
 assert.equal(await film.locator('track[kind="captions"]').count(),1);
+assert.equal(await film.locator('source').getAttribute('src'),'/assets/work/morbit-studio-film.mp4');
+assert.equal(await film.locator('track').getAttribute('srclang'),'en');
+assert(Math.abs(await film.evaluate(el=>el.duration)-88)<0.1, 'Full supplied Morbit film');
 
 await page.goto(base);
 await page.locator('.faq-item summary').first().click();
