@@ -82,7 +82,7 @@ Bellevue is the real-estate portfolio project in Ja-Ela, Sri Lanka. It is tempor
 
 ### Web design and content
 
-The portfolio demonstrates Dorian's websites, motion design and digital work. Four real homepage captures link to the live concept sites. The motion section features the supplied 88-second Morbit Studio product film as of 14 October 2026, with its matching poster and English captions derived from the film's timed narration source. Beaver IT is temporarily not featured; its existing assets are preserved pending a replacement from the owner. Edit `partials/motion-work.html` and run `npm run sync-layout`. CRM and AI are described as capabilities, not fabricated completed customer projects. External websites remain external links. Media sources and cleanup prompts are documented in `docs/SITE_REFINEMENT_2026-10-10.md`.
+The portfolio demonstrates Dorian's websites, motion design and digital work. Four real homepage captures link to the live concept sites. The motion section features the supplied 88-second Morbit Studio product film and the supplied 30-second French Beaver IT brand film, each with its matching poster and timed captions. Edit `partials/motion-work.html` and run `npm run sync-layout`. CRM and AI are described as capabilities, not fabricated completed customer projects. External websites remain external links. Media sources and cleanup prompts are documented in `docs/SITE_REFINEMENT_2026-10-10.md`.
 
 ### Private Discuss
 
